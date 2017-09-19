@@ -1,0 +1,86 @@
+add more xml data - with namespaces - to the xqa-test-data, so that we have about 30 items
+
+in building.md add screenshots of queues/topics - secion 4.
+
+xqa-documentation
+= do a performance comparison
+    = xqa-ingest-balancer
+        = use two shards in some performance testing, possibly change logging in shard to help with capturing performance info?
+how to
+
+==================
+
+use a central database for stats v. elk - i.e. 
+how long to ingest x?
+how long to insert x into db?
+is everything inserted in order of ingest?
+
+in shard - how to show how many concurrent connections are active?
+
+==================
+
+tidy up github notes for java documentation
+
+archive xqa-ingest-balancer-Qpid-Proton-Python?
+= github has an archive facility?
+
+==================
+
+use elk filebeats for xqa apps
+= logging
+
+==================
+
+tidy up jameshnsears/xqa-documentation issues on github & in here
+
+==================
+
+PN_TRACE_EVT=1 PN_TRACE_FRM=1 python receiver.py
+
+==================
+
+take off an ingest msg in a transactional...
+tx.start
+= take off message
+= find smallest shard
+= send to smallest shard
+= tx.commit
+
+if no shards reply then tx.rollback, wait a little an try n times more before shutting down
+
+==================
+
+have it so that tags in github are all alphabetical + similar
+
+==================
+
+pycodestyle - in pip - use it!
+
+===================
+
+-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=<PORT_NUMBER> -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=<HOST'S_IP>
+service:jmx:rmi:///jndi/rmi://<HOST'S_IP>:<PORT_NUMBER>/jmxrmi
+
+==================
+
+. use angular 2 on ui component
+
+. create a video of using the app?
+
+. test/e2e/
+. test/integration/
+. test/unit
+. test/perf - 100 xml files?
+
+. produce performance metrics for XQA v. normal BaseX (file); BaseX RAM.
+
+. bdd
+= behave v. lettuce - these are supported in pycharm
+
+. in xqa-document/README mention sharding and materialised views: see Microsoft cloud patterns
+
+. create example deployment topography diagrams
+
+. bold cassandra onto everything for unit test asserts
+
+. security?

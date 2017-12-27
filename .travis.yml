@@ -40,9 +40,12 @@ script:
   - export PYTHONPATH=/home/travis/build/jameshnsears/xqa-ingest/src:$PYTHONPATH
   - python src/xqa/ingester.py -p ../xqa-test-data > ingester.log
 
+  - sleep 60
+
   - cat ingester.log
   - docker logs xqa-ingest-balancer
 
-  - sleep 30
   - docker logs xqa-shard-1 > xqa-shard-1.log
   - cat xqa-shard-1.log
+
+  - grep 6bdba013502e0235897469dfe5afcf39068ed0955a0f10539a9c3f9095a81e56 xqa-shard-1.log

@@ -1,12 +1,15 @@
 add more xml data - with namespaces - to the xqa-test-data, so that we have about 30 items
 
+on msi rebuild all images + containers
+
+use build.sh + start.sh + stop.sh in xqa-documentation, at start and end - so keeping what we have here already
+
 in building.md add screenshots of queues/topics - secion 4.
 
 xqa-documentation
-= do a performance comparison
-    = xqa-ingest-balancer
-        = use two shards in some performance testing, possibly change logging in shard to help with capturing performance info?
-how to
+= do a performance comparison (using extra data + multiple shards)
+    = record results in a .xls
+    = put results, in graph form, inperformance.md
 
 ==================
 
@@ -19,19 +22,7 @@ in shard - how to show how many concurrent connections are active?
 
 ==================
 
-tidy up github notes for java documentation
-
-archive xqa-ingest-balancer-Qpid-Proton-Python?
-= github has an archive facility?
-
-==================
-
-use elk filebeats for xqa apps
-= logging
-
-==================
-
-tidy up jameshnsears/xqa-documentation issues on github & in here
+tidy up github notes & merge the todo notes in here
 
 ==================
 
@@ -82,5 +73,3 @@ service:jmx:rmi:///jndi/rmi://<HOST'S_IP>:<PORT_NUMBER>/jmxrmi
 . create example deployment topography diagrams
 
 . bold cassandra onto everything for unit test asserts
-
-. security?

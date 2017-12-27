@@ -63,4 +63,5 @@ Visit the [performance](performance.md) page to see how the XQA implementation c
 ## 9. Limitations
 Remember: XQA is **proof of concept** that means it's not production ready...
 * XQA is built around BaseX, whatever limitations that has, then so does XQA.
+* Security of services is not implemented - i.e. default username and passwords are used for UI components.
 * ??? k8s effect of a shard dying?

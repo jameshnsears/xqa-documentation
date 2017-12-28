@@ -1,3 +1,13 @@
+rm pid for python logging, so better aligned with java
++ have it so java thread space log format is aligned with python
+
+find out why some ssh256's are different when arriving at the shard
+
+use the subject to hold the ingest filename
+
+refactor perf so that I can easily scale # of shards I want.
+= pass in to function the # of shards
+
 xqa-documentation
 = do a performance comparison (using extra data + multiple shards)
     = record results in a .xls

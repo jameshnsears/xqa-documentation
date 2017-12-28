@@ -8,9 +8,9 @@ function publish_to_docker_hub() {
     docker rmi jameshnsears/$1:latest
 }
 
-publish_to_docker_hub xqa-elk-elasticsearch
-publish_to_docker_hub xqa-elk-kibana
-publish_to_docker_hub xqa-elk-logstash
+# publish_to_docker_hub xqa-elk-elasticsearch
+# publish_to_docker_hub xqa-elk-kibana
+# publish_to_docker_hub xqa-elk-logstash
 publish_to_docker_hub xqa-message-broker
 publish_to_docker_hub xqa-message-broker-filebeat
 publish_to_docker_hub xqa-ingest-balancer

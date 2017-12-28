@@ -40,7 +40,7 @@ function cadvisor() {
 
 rm_all_containers_volumes_and_images
 cadvisor
-docker_compose_build xqa-elk
+# docker_compose_build xqa-elk
 docker_compose_build xqa-message-broker
 mvn_docker_compose_build xqa-ingest-balancer
 docker_compose_build xqa-shard

@@ -1,11 +1,3 @@
-add more xml data - with namespaces - to the xqa-test-data, so that we have about 30 items
-
-on msi rebuild all images + containers
-
-use build.sh + start.sh + stop.sh in xqa-documentation, at start and end - so keeping what we have here already
-
-in building.md add screenshots of queues/topics - secion 4.
-
 xqa-documentation
 = do a performance comparison (using extra data + multiple shards)
     = record results in a .xls

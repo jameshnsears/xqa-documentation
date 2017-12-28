@@ -17,8 +17,15 @@ XQA was built using:
 * see the bash shell scripts in [xqa-documentation/bin](https://github.com/jameshnsears/xqa-documentation/tree/master/bin).
 * you will need [Maven](https://maven.apache.org/) to be installed and in your path to successfully run build.sh
 
-## 4. Message Broker Queues / "Topics"
-???
+## 4. Message Broker Destinations
+### Queues
+* xqa.ingest
+* xqa.shard.insert.<UUID>
+
+### Topics
+* xqa.cmd.stop
+* xqa.shard.size
+* xqa.shard.xquery
 
 ## 5. Misc. Docker Commands
 export IMG_NAME=<...>

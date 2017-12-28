@@ -62,6 +62,11 @@ Visit the [performance](performance.md) page to see how the XQA implementation c
 
 ## 9. Limitations
 Remember: XQA is **proof of concept** that means it's not production ready...
-* XQA is built around BaseX, whatever limitations that has, then so does XQA.
-* Security of services is not implemented - i.e. default username and passwords are used for UI components.
-* ??? k8s effect of a shard dying?
+* XQA is built with BaseX and Qpid Pronton / JMS, whatever limitations they have, then so does XQA.
+* Services need to be started in sequential order:
+    1. xqa-message-broker
+    2. xqa-shard
+    3. xqa-ingest-balancer
+    4. xqa-ingest
+* Security is not implemented - i.e. default username and passwords are used for UI components & SSL / SASL is not used.
+* Transactions are not implemented.

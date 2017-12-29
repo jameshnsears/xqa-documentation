@@ -49,8 +49,8 @@ def test_check_sha256_consistency(ingester_log, ingest_balancer_log, shard_log):
 
         try:
             assert ingest['sha256'] == ingest_balancer['sha256']
-            assert ingest_balancer['sha256'] == shard['sha256']
+            assert ingest['sha256'] == shard['sha256']
         except AssertionError as e:
-            print('%s != %s != %s' % (ingest['sha256'], ingest_balancer['sha256'], shard['sha256']))
-            print('diff %s %s/%s.%s' % (ingest['file'], os.getenv('LOGFOLDER', default="/tmp"), ingest_correlation_id, shard['sha256']))
+            print('%s v. %s v. %s' % (ingest['sha256'], ingest_balancer['sha256'], shard['sha256']))
+            print('gvimdiff %s %s/%s.%s' % (ingest['file'], os.getenv('LOGFOLDER', default="/tmp"), ingest_correlation_id, shard['sha256']))
             raise e

@@ -1,6 +1,6 @@
 source ../bin/common.sh
 
-function start_static_group() {
+function start_group_static() {
     echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
     NOW=`date --rfc-3339='ns'`
     echo ">>> $NOW start_static_group $1"
@@ -11,7 +11,7 @@ function start_static_group() {
     docker run -d --net="host" --name="xqa-ingest-balancer" jameshnsears/xqa-ingest-balancer
 }
 
-function start_dynamic_group() {
+function start_group_dynamic() {
     echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
     NOW=`date --rfc-3339='ns'`
     echo ">>> $NOW start_dynamic_group $1"

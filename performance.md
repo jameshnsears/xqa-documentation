@@ -5,8 +5,11 @@ The tests, with complete tear down, were carried out on the same environment:
 * CentOS 7 VM, running on a SSD with 8GB of RAM.
 * using xqa-test-data
 
-## 1. One shard - perf-1.sh
+## 1. One shard - perf_1.sh
 * 
 
-## 2. Two shards
+## 2. Two shards - perf_2.sh
+* 
+
+## 2. Four shards - perf_4.sh
 * 

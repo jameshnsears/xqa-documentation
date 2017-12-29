@@ -2,7 +2,7 @@ source common.sh
 
 function rm_all_containers_volumes_and_images() {
     echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-    export NOW=`date --rfc-3339='ns'`
+    NOW=`date --rfc-3339='ns'`
     echo ">>> $NOW rm_all_containers_volumes_and_images"
     docker stop $(docker ps -a -q) > /dev/null 2>&1
     docker rm $(docker ps -a -q) > /dev/null 2>&1
@@ -12,7 +12,7 @@ function rm_all_containers_volumes_and_images() {
 
 function docker_compose_build() {
     echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-    export NOW=`date --rfc-3339='ns'`
+    NOW=`date --rfc-3339='ns'`
     echo ">>> $NOW docker_compose_build $1"
     clone_git_repo $1
     cd $BLD_DIR/$1
@@ -22,7 +22,7 @@ function docker_compose_build() {
 
 function mvn_docker_compose_build() {
     echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-    export NOW=`date --rfc-3339='ns'`
+    NOW=`date --rfc-3339='ns'`
     echo ">>> $NOW mvn_docker_compose_build $1"
     clone_git_repo $1
     cd $BLD_DIR/$1
@@ -33,7 +33,7 @@ function mvn_docker_compose_build() {
 
 function cadvisor() {
     echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-    export NOW=`date --rfc-3339='ns'`
+    NOW=`date --rfc-3339='ns'`
     echo ">>> $NOW cadvisor"
     docker pull google/cadvisor:latest
 }

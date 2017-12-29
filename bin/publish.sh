@@ -1,6 +1,6 @@
 function publish_to_docker_hub() {
     echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-    export NOW=`date --rfc-3339='ns'`
+    NOW=`date --rfc-3339='ns'`
     echo ">>> $NOW publish_to_docker_hub $1"
     docker tag $1 jameshnsears/$1
     docker login -u jameshnsears

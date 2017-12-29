@@ -4,8 +4,7 @@ find out why some ssh256's are different when arriving at the shard
         = see: http://activemq.apache.org/amqp.html
 = test this does and does not work: XQA_WRITE_FILE=1 python src/xqa/shard.py
 
-refactor perf so that I can easily scale # of shards I want.
-= pass in to function the # of shards
+rebuild images + publish
 
 xqa-documentation
 = do a performance comparison (using extra data + multiple shards)

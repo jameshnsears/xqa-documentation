@@ -2,7 +2,7 @@ source common.sh
 
 function start() {
     echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-    export NOW=`date --rfc-3339='ns'`
+    NOW=`date --rfc-3339='ns'`
 	echo ">>> $NOW $1"
     clone_git_repo $1
     cd $BLD_DIR/$1
@@ -11,7 +11,7 @@ function start() {
 }
 
 function cadvisor() {
-    export NOW=`date --rfc-3339='ns'`
+    NOW=`date --rfc-3339='ns'`
     echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 	echo ">>> $NOW cadvisor"
     docker run --net="host" --volume=/:/rootfs:ro --volume=/var/run:/var/run:rw --volume=/sys:/sys:ro --volume=/var/lib/docker/:/var/lib/docker:ro --volume=/dev/disk/:/dev/disk:ro --publish=8080:8080 --detach=true --name=cadvisor google/cadvisor:latest

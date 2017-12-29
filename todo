@@ -1,19 +1,11 @@
-find out why some ssh256's are different when arriving at the shard
-= use the subject to hold the ingest filename
-    = on xqa-ing* use the subject branch
-        = see: http://activemq.apache.org/amqp.html
-= test this does and does not work: XQA_WRITE_FILE=1 python src/xqa/shard.py
-
-rebuild images + publish
-
-xqa-documentation
+test perf & extend to provide perf stats...
 = do a performance comparison (using extra data + multiple shards)
     = record results in a .xls
     = put results, in graph form, in performance.md
 
 ==================
 
-uin shard - how to show how many concurrent connections are active?
+in shard - how to show how many concurrent connections are active?
 
 ==================
 
@@ -70,6 +62,11 @@ Caused by: java.io.IOException: Transport closed due to the peer exceeding our r
     at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
     ... 3 more
 
+==================
+
+= use the subject to hold the ingest filename
+    = on xqa-ing* use the subject branch
+        = see: http://activemq.apache.org/amqp.html
 
 ==================
 

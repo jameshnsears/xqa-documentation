@@ -31,7 +31,7 @@ function start_ingest() {
     SRCROOT=$HOME/GIT_REPOS
     export PYTHONPATH=$SRCROOT/xqa-ingest/src:$PYTHONPATH
     INGESTER=$SRCROOT/xqa-ingest/src/xqa/ingester.py
-    python $INGESTER -p $SRCROOT/xqa-test-data > $LOGFOLDER/ingester.log
+    python $INGESTER -p $SRCROOT/xqa-test-data > $LOGFOLDER/xqa-ingester.log
     sleep 90
 }
 

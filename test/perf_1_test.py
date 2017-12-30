@@ -21,17 +21,17 @@ def _populate_list_from_file(fpath):
 
 @pytest.fixture
 def ingester_log():
-    return _populate_list_from_file('%s/xqa-ingester.log' % os.getenv('LOGFOLDER', default="/tmp"))
+    return _populate_list_from_file('%s/xqa-ingester.log' % os.getenv('LOGFOLDER', default="/home/jsears/tmp"))
 
 
 @pytest.fixture
 def ingest_balancer_log():
-    return _populate_list_from_file('%s/xqa-ingest-balancer.log' % os.getenv('LOGFOLDER', default="/tmp"))
+    return _populate_list_from_file('%s/xqa-ingest-balancer.log' % os.getenv('LOGFOLDER', default="/home/jsears/tmp"))
 
 
 @pytest.fixture
 def shard_log():
-    return _populate_list_from_file('%s/xqa-shard-1.log' % os.getenv('LOGFOLDER', default="/tmp"))
+    return _populate_list_from_file('%s/xqa-shard-1.log' % os.getenv('LOGFOLDER', default="/home/jsears/tmp"))
 
 
 def _correlation_id_dict(correlation_id, log_list):

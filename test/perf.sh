@@ -5,10 +5,10 @@ function start_group_static() {
     NOW=`date --rfc-3339='ns'`
     echo ">>> $NOW start_static_group $1"
     docker volume create xqa-message-broker
-    docker run -d --net="host" --name="xqa-message-broker" -p 127.0.0.1:1099:1099 -p 127.0.0.1:5672:5672 -p 127.0.0.1:8161:8161 -p 127.0.0.1:61616:61616 jameshnsears/xqa-message-broker
+    docker run -d --net="host" --name="xqa-message-broker" -p 127.0.0.1:1099:1099 -p 127.0.0.1:5672:5672 -p 127.0.0.1:8161:8161 -p 127.0.0.1:61616:61616 xqa-message-broker
     sleep 10
 
-    docker run -d --net="host" --name="xqa-ingest-balancer" jameshnsears/xqa-ingest-balancer
+    docker run -d --net="host" --name="xqa-ingest-balancer" xqa-ingest-balancer
 }
 
 function start_group_dynamic() {
@@ -18,7 +18,7 @@ function start_group_dynamic() {
 
     for ((i=1; i<=$1; i++))
     do
-        docker run -d --net="host" --name="xqa-shard-${i}" jameshnsears/xqa-shard
+        docker run -d --net="host" --name="xqa-shard-${i}" xqa-shard
     done
 
     sleep 5

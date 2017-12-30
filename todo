@@ -1,19 +1,12 @@
-./publish.sh
+utf-8 problem:
 
-then perf_1_test.
+problem repeatable from docker env. (shard * ingest-balancer running in containers):
+192a0c3918e308c1374d57256b183045393c1cf9053a8614e9d7bb24b8261358 v. 192a0c3918e308c1374d57256b183045393c1cf9053a8614e9d7bb24b8261358 v. 751265e0c775cac8c16309cd865fc08978462ebb8eab0306c1a8b0a4737e25d2
+gvimdiff /home/jsears/GIT_REPOS/xqa-test-data/nicn_nwp_078_17101111_0195.xml /home/jsears/tmp/30068955-f3b1-4b42-ad1e-9e30df4ef32a.751265e0c775cac8c16309cd865fc08978462ebb8eab0306c1a8b0a4737e25d2
 
+---
 
-utf-8 problem
-= unicode © ok in shard to shard tests
-= unicode © ok in ingest-balancer to ingest-balancer tests
-
-nicn_nwp_078_17101111_0195.xml
-=http://www.utf8-chartable.de/unicode-utf8-table.pl?start=128&number=128&utf8=string-literal&unicodeinhtml=hex
-    =\xc2\xa9
-
-192a0c3918e308c1374d57256b183045393c1cf9053a8614e9d7bb24b8261358 :-)
-
-======
+if I shard + ingest_balancer from cli then it works!!!
 
 export PYTHONPATH=$HOME/GIT_REPOS/xqa-shard/src:$PYTHONPATH
 XQA_WRITE_FOLDER=$HOME/tmp python $HOME/GIT_REPOS/xqa-shard/src/xqa/shard.py > $HOME/tmp/xqa-shard-1.log
@@ -32,12 +25,29 @@ python $HOME/GIT_REPOS/xqa-ingest/src/xqa/ingester.py -p $HOME/tmp > $HOME/tmp/x
 export LOGFOLDER=$HOME/tmp
 pytest /home/jsears/GIT_REPOS/xqa-documentation/test/perf_1_test.py
 
+---
 
-cli to eclipse shard incoming frame:
-[0x2ee1a00]:0 <- @transfer(20) [handle=2, delivery-id=1, delivery-tag=b"\x00", message-format=0] (115933) "\x00Sp\xc0\x02\x01A\x00Sr\xc1)\x04\xa3\x0ex-opt-jms-destQ\x00\xa3\x12x-opt-jms-msg-typeQ\x03\x00Ss\xd0\x00\x00\x00\xa6\x00\x00\x00\x0a\xa1/ID:8406417f-420c-4fba-a12f-7390f1c3079e:1:1:1-1@\xa1!queue://xqa.shard.insert.98a82c64@@\xa1$f2188b6b-fe3b-4838-a4eb-58eb56152344\xa3\x18application/octet-stream@@\x83\x00\x00\x01`\xa3\x85\xf7\x1c\x00Su\xb0\x00\x01\xc3\xf2<issue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="V:\Production\NICN\Schema\INPUT issue.xsd" ID="078" contentType="Newspaper" contentProvider="3">\x0a\x09<metadatainfo>\x0a\x09\x09<newspaperID>078</newspaperID>\x0a\x09\x09<ocr>62.44</ocr>\x0a\x09\x09<language ocr="English" primary="Y">English</language>\x0a\x09\x09<sourceLibrary>\x0a\x09\x09\x09<libraryName>Bodleian Libraries</libraryName>\x0a\x09\x09\x09<libraryLocation>Oxford, United Kingdom</libraryLocation>\x0a\x09\x09\x09<libraryShelfmark>Nich. newsp. 17C</libraryShelfmark>\x0a\x09\x09\x09<copyrightStatement>? Bodleian Libraries, University of Oxford</copyr"... (truncated)
+if I run shard as container, but ingest-balancer from cli then it works!!!
 
-eclipse to eclipse shard incoming frame:
-[0x2310b90]:0 <- @transfer(20) [handle=2, delivery-id=1, delivery-tag=b"\x00", message-format=0] (116093) "\x00Sp\xc0\x02\x01A\x00Sr\xc1)\x04\xa3\x0ex-opt-jms-destQ\x00\xa3\x12x-opt-jms-msg-typeQ\x03\x00Ss\xd0\x00\x00\x00\xa6\x00\x00\x00\x0a\xa1/ID:6924d0d8-a1a0-4823-bc26-cae824f42a2c:1:1:1-1@\xa1!queue://xqa.shard.insert.1d2c7ef8@@\xa1$8cdbe6d9-d47c-42e4-9cd4-1f05aa38570d\xa3\x18application/octet-stream@@\x83\x00\x00\x01`\xa3\x8d\xa0\xbc\x00Su\xb0\x00\x01\xc4\x92<issue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="V:\Production\NICN\Schema\INPUT issue.xsd" ID="078" contentType="Newspaper" contentProvider="3">\x0a\x09<metadatainfo>\x0a\x09\x09<newspaperID>078</newspaperID>\x0a\x09\x09<ocr>62.44</ocr>\x0a\x09\x09<language ocr="English" primary="Y">English</language>\x0a\x09\x09<sourceLibrary>\x0a\x09\x09\x09<libraryName>Bodleian Libraries</libraryName>\x0a\x09\x09\x09<libraryLocation>Oxford, United Kingdom</libraryLocation>\x0a\x09\x09\x09<libraryShelfmark>Nich. newsp. 17C</libraryShelfmark>\x0a\x09\x09\x09<copyrightStatement>\xc2\xa9 Bodleian Libraries, University of Oxford"... (truncated)
+docker run -d --net="host" jameshnsears/xqa-shard
+
+---
+
+PROBLEM is the ingest-balancer being run in a container(as ingest-balancer works just fine from ide)
+
+cd /home/jsears/GIT_REPOS/xqa-ingest-balancer
+mvn package -DskipTests
+
+docker run -d --net="host" xqa-shard
+
+---
+
+docker run -d --net="host" xqa-ingest-balancer
+
+cd /home/jsears/GIT_REPOS/xqa-ingest-balancer
+docker-compose -p "dev" build
+docker-compose -p "dev" up -d
+
 
 
 ==================

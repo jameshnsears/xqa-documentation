@@ -1,7 +1,7 @@
 source perf.sh
 
 export LOGFOLDER=$HOME/tmp
-export SHARDINSTANCES=4
+export SHARDINSTANCES=1
 
 rm_existing_containers_and_volumes
 

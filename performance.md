@@ -1,25 +1,26 @@
 # Performance
-This section compares the performance of BaseX (file system) v. BaseX (in-memory) v. XQA (n shards, in-memory).
+This section documents the scalability of XQA.
 
-The test involves running /test/perf_test.sh with an appropriate SHARDINSTANCES value.
+The test involves running [test/perf_test.sh](test/perf_test.sh) with an appropriate SHARDINSTANCES value.
 
 Each test run includes:
 * a tear down of the containers - creating a clean environemnt.
-* a test, based on sha256 + correlecton_id values, to ensure all data has passed end to end (ingest to shard).
+* a test, based on sha256 + correllaton_id values, to ensure all data (UTF-8) has passed end to end (ingest to shard) successfully.
 
-The test includes a check
+Data points are take from uniform positions in the resulting log files and timings produced from [test/results/stats.py](test/results/stats.py)
 
 ## 1. Environment
 * CentOS 7 VM, running on a SSD with 8GB of RAM.
-* using xqa-test-data
+* using xqa-test-data.
+* Host + Guest OS's in an idle state.
 
 ## 2. Results
+### 2.1. Test A
+* Three test runs: 1 shard; 2 shards; 4 shard.
+* 6 ingest-balancer threads.
 
-## 2.1. One shard
-* SHARDINSTANCES=1
+![Test A](test/results/A.png)
 
-## 2.2. Two shards
-* SHARDINSTANCES=2
-
-## 2.3. Four shard
-* SHARDINSTANCES=4
+### 2.2. Test B
+* Three test runs: 1 shard; 2 shards; 4 shard.
+* 3 ingest-balancer threads.

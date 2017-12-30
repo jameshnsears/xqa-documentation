@@ -4,7 +4,7 @@
 XQA is a **proof of concept** project that combines various open-source technologies to provide a lightweight, highly scalable XML database.
 
 ## 2. High Level Design
-At the heart of the design is a message broker. Container based microservices leverage the broker to ingest and evenly distribute XML across in-memory database shards.
+At the heart of the design is a message broker. Container based microservices leverage the broker to ingest and "evenly" distribute XML across in-memory database shards.
 
 ![High Level Design](uml/high-level-design-sequence-diagram.jpg)
 
@@ -13,6 +13,7 @@ At the heart of the design is a message broker. Container based microservices le
     * [Apache Qpid Proton](https://qpid.apache.org/proton/) - Qpid JMS; Qpid Proton Python.
 * [BaseX.](http://basex.org/)
 * [Docker CE](https://docs.docker.com/engine/) & [Docker Compose](https://docs.docker.com/compose/).
+    * UTF-8 handling.
 * Java 8.
     * [Maven](https://maven.apache.org/).
 * Linux - [Debian Stretch](https://www.debian.org/releases/); [CentOS 7](https://wiki.centos.org/Download).
@@ -62,13 +63,11 @@ Visit the [performance](performance.md) page to see how the XQA implementation c
 
 ## 9. Limitations
 Remember: XQA is **proof of concept** that means it's not production ready...
-* XQA is built with BaseX and Qpid Pronton / JMS, whatever limitations they have, then so does XQA.
-* Services need to be started in sequential order:
+* XQA is built with BaseX and Qpid Proton / JMS, whatever limitations they have, then so does XQA.
+* Containers need to be started in sequential order:
     1. xqa-message-broker
     2. xqa-shard
     3. xqa-ingest-balancer
-    4. xqa-ingest
 * Security is not implemented - i.e. default username and passwords are used for UI components & SSL / SASL is not used.
 * Transactions are not implemented.
 * Shard memory is measured, but not managed - i.e. you can run out of RAM.
-

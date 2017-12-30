@@ -1,7 +1,5 @@
-test perf & extend to provide perf stats...
-= do a performance comparison (using extra data + multiple shards)
-    = record results in a .xls
-    = put results, in graph form, in performance.md
+= record results in a .xls
+= put results, in graph form, in performance.md
 
 ==================
 

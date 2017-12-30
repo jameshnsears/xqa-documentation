@@ -21,17 +21,17 @@ def _populate_list_from_file(fpath):
 
 @pytest.fixture
 def ingester_log():
-    return _populate_list_from_file('%s/xqa-ingester.log' % os.getenv('LOGFOLDER', default="/home/jsears/tmp"))
+    return _populate_list_from_file('%s/xqa-ingester.log' % os.getenv('LOGFOLDER'))
 
 
 @pytest.fixture
 def ingest_balancer_log():
-    return _populate_list_from_file('%s/xqa-ingest-balancer.log' % os.getenv('LOGFOLDER', default="/home/jsears/tmp"))
+    return _populate_list_from_file('%s/%s-xqa-ingest-balancer.log' % (os.getenv('LOGFOLDER'), os.getenv('SHARDINSTANCES')))
 
 
 @pytest.fixture
 def shard_log():
-    return _populate_list_from_file('%s/xqa-shard-1.log' % os.getenv('LOGFOLDER', default="/home/jsears/tmp"))
+    return _populate_list_from_file('%s/%s-xqa-shard-1.log' % (os.getenv('LOGFOLDER'), os.getenv('SHARDINSTANCES')))
 
 
 def _correlation_id_dict(correlation_id, log_list):
@@ -51,6 +51,5 @@ def test_check_sha256_consistency(ingester_log, ingest_balancer_log, shard_log):
             assert ingest['sha256'] == ingest_balancer['sha256']
             assert ingest['sha256'] == shard['sha256']
         except AssertionError as e:
-            print('%s v. %s v. %s' % (ingest['sha256'], ingest_balancer['sha256'], shard['sha256']))
-            print('gvimdiff %s %s/%s.%s' % (ingest['file'], os.getenv('LOGFOLDER', default="/tmp"), ingest_correlation_id, shard['sha256']))
+            print('%s: %s v. %s v. %s' % (ingest['file'], ingest['sha256'], ingest_balancer['sha256'], shard['sha256']))
             raise e

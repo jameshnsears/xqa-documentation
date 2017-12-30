@@ -70,3 +70,5 @@ Remember: XQA is **proof of concept** that means it's not production ready...
     4. xqa-ingest
 * Security is not implemented - i.e. default username and passwords are used for UI components & SSL / SASL is not used.
 * Transactions are not implemented.
+* Shard memory is measured, but not managed - i.e. you can run out of RAM.
+

@@ -48,4 +48,4 @@ script:
   - docker logs xqa-shard-1 > xqa-shard-1.log
   - cat xqa-shard-1.log
 
-  - grep 6bdba013502e0235897469dfe5afcf39068ed0955a0f10539a9c3f9095a81e56 xqa-shard-1.log
+  - grep "\"size\":\"40\"" xqa-shard-1.log

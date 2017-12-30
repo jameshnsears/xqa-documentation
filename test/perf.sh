@@ -39,10 +39,10 @@ function capture_group_logs() {
     echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
     export NOW=`date --rfc-3339='ns'`
     echo ">>> $NOW capture_group_logs $1"
-    docker logs xqa-ingest-balancer > $LOGFOLDER/xqa-ingest-balancer.log
+    docker logs xqa-ingest-balancer > $LOGFOLDER/${1}-xqa-ingest-balancer.log
 
     for ((i=1; i<=$1; i++))
     do
-        docker logs xqa-shard-${i} > $LOGFOLDER/xqa-shard-${i}.log
+        docker logs xqa-shard-${i} > $LOGFOLDER/${1}-xqa-shard-${i}.log
     done
 }

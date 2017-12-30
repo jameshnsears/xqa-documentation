@@ -8,21 +8,21 @@ XQA was built using:
 * [PyCharm](https://www.jetbrains.com/pycharm) Community Edition
 
 ## 2. Development
-* You'll need at least 4GB of RAM to develop and much more if you want multiple shards.
-* The most important service is to have the xqa-message-broker up and running - without it you'll be unable to start up any of the other microservices.
+* You'll need at least 4GB of RAM to develop and more if you want multiple shards.
+* The most important service is to have the xqa-message-broker up and running - without it you'll be unable to start up any of the other services / containers.
 * Once the broker is running, simply develop along the usual GitHub [Pull Request](https://help.github.com/articles/about-pull-requests) process. Take into account that the .travis.yml files are tied to the master branches.
-* The software uses Qpid libraries, which are AMQP 1.0 compliant - meaning only AMQP 1.0 compliant message brokers will work with the XQA software. This also means, for example, that pure JMS clients will not be interoperable with the XQA, AMQP, queues.
+* The software uses Qpid libraries, which are AMQP 1.0 compliant - meaning only AMQP 1.0 compliant message brokers will work with the XQA software. This also means, for example, that pure JMS / Spring Boot clients will not be fully interoperable with the XQA, AMQP, destinations.
 
 ## 3. Building Images / Starting Containers / Publishing Images To [hub.docker.com](http://hub.docker.com)
 * see the bash shell scripts in [xqa-documentation/bin](https://github.com/jameshnsears/xqa-documentation/tree/master/bin).
 * you will need [Maven](https://maven.apache.org/) to be installed and in your path to successfully run build.sh
 
 ## 4. Message Broker Destinations
-### Queues
+### 4.1. Queues
 * xqa.ingest
-* xqa.shard.insert.<UUID>
+* xqa.shard.insert.UUID - each shard has a unique insert queue.
 
-### Topics
+### 4.2. Topics
 * xqa.cmd.stop
 * xqa.shard.size
 * xqa.shard.xquery

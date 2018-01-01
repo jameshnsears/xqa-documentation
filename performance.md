@@ -18,14 +18,8 @@ Data points are take from uniform positions in the resulting log files and timin
 Tagged @ 201801011133.
 
 ### 2.1. Test A
-* Three test runs: 1 shard; 2 shards; 4 shards.
-* 6 ingest-balancer threads.
-
 ![Test A](test/results/A.png)
 
 ### 2.2. Test B
-* Three test runs: 1 shard; 2 shards; 4 shards.
-* 3 ingest-balancer threads.
-
 ![Test B](test/results/B.png)
 

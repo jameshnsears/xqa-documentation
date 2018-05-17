@@ -1,0 +1,20 @@
+archive logs from each shard & ingest-balancer run, to see how entries distributed
+= plot graphs
+	= storage_size
+
+change secondaryTimeout value to 3s
+
+rm fron any repo the dependency on having a running xqa-message-broker?
+
+
+defect...
+2018-05-10 15:04:19,998      INFO --- [          MainThread]:            save_e2e_stats, 100: pool_size=5, shards=7; ingest_count=40; ingest_size=80056356; time_ingest=25; time_ingest_balancer=30; time_shard=12839
+2018-05-10 15:04:19,999      INFO --- [          MainThread]:                  make_png,  84: /home/jsears/GIT_REPOS/xqa-perf/test_results/5_7.png
+2018-05-10 15:04:19,999      INFO --- [          MainThread]:                  make_png,  99: (5, 1, 40, 80056356, 18, 52, 73)
+2018-05-10 15:04:19,999      INFO --- [          MainThread]:                  make_png,  99: (5, 2, 40, 80056356, 26, 44, 70)
+2018-05-10 15:04:19,999      INFO --- [          MainThread]:                  make_png,  99: (5, 3, 40, 80056356, 28, 38, 66)
+2018-05-10 15:04:19,999      INFO --- [          MainThread]:                  make_png,  99: (5, 4, 40, 80056356, 24, 30, 60)
+2018-05-10 15:04:19,999      INFO --- [          MainThread]:                  make_png,  99: (5, 5, 40, 80056356, 25, 30, 58)
+2018-05-10 15:04:20,000      INFO --- [          MainThread]:                  make_png,  99: (5, 6, 40, 80056356, 25, 30, 58)
+2018-05-10 15:04:20,000      INFO --- [          MainThread]:                  make_png,  99: (5, 7, 40, 80056356, 25, 30, 12839)
+

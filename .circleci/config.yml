@@ -1,59 +1,11 @@
 #
 # 1. in debian:stretch build images; publish to docker-hub.
-# 2. in vm: run use published docker-hub images to build containers to test single share end to end integration.
+# 2. in vm: use published docker-hub images to build containers to test single shard end to end integration.
 #
 
 version: 2
 
 jobs:
-  "xqa-commons-qpid-jms":
-    docker:
-      - image: debian:stretch
-    steps:
-      - run: apt-get update
-      - run: apt upgrade -y
-      - run: apt-get install -y openjdk-8-jdk git curl
-      - run: curl http://mirror.ox.ac.uk/sites/rsync.apache.org/maven/maven-3/3.5.3/binaries/apache-maven-3.5.3-bin.tar.gz | tar xz
-
-      - run: git clone https://github.com/jameshnsears/xqa-commons-qpid-jms.git
-
-      - restore_cache:
-          key: xqa-commons-qpid-jms-{{ checksum "xqa-commons-qpid-jms/pom.xml" }}
-
-# Unable to use mvn as this container can't talk to xqa-message-broker, as it's running on the "remote" machine!
-#
-#      - run: |
-#          set -x
-#          curl -L https://github.com/docker/compose/releases/download/1.17.1/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
-#          chmod +x /usr/bin/docker-compose
-#
-#      - setup_remote_docker
-#
-#      - run: |
-#          cd xqa-commons-qpid-jms
-#          docker-compose -p "dev" up -d xqa-message-broker
-#
-#      - run:
-#          command: |
-#            export PATH=/root/project/apache-maven-3.5.3/bin:$PATH
-#            cd xqa-commons-qpid-jms
-#            mvn clean compile test
-#            mvn jacoco:report coveralls:report
-
-      - run:
-          command: |
-            set -x
-            export PATH=/root/project/apache-maven-3.5.3/bin:$PATH
-            cd xqa-commons-qpid-jms
-            mvn package -DskipTests
-
-      - save_cache:
-          paths:
-            - ~/.m2
-          key: xqa-commons-qpid-jms-{{ checksum "xqa-commons-qpid-jms/pom.xml" }}
-
-######################################################
-
   "xqa-db":
     docker:
       - image: debian:stretch
@@ -223,6 +175,19 @@ jobs:
           chmod +x /usr/bin/docker-compose
 
       - setup_remote_docker
+
+# Unable to use mvn as this container can't talk to xqa-message-broker, as it's running on the "remote" machine!
+#
+#      - run: |
+#          cd xqa-ingest
+#          docker-compose -p "dev" up -d xqa-message-broker
+#
+#      - run:
+#          command: |
+#            export PATH=/root/project/apache-maven-3.5.3/bin:$PATH
+#            cd xqa-ingest
+#            mvn clean compile test
+#            mvn jacoco:report coveralls:report
 
       - run:
           command: |
@@ -568,7 +533,6 @@ workflows:
   version: 2
   commit:
     jobs:
-      - "xqa-commons-qpid-jms"
       - "xqa-db"
       - "xqa-db-amqp"
       - "xqa-elk"
@@ -581,7 +545,6 @@ workflows:
 
       - "e2e":
           requires:
-            - "xqa-commons-qpid-jms"
             - "xqa-db"
             - "xqa-db-amqp"
             - "xqa-elk"
@@ -601,7 +564,6 @@ workflows:
               only:
                 - master
     jobs:
-      - "xqa-commons-qpid-jms"
       - "xqa-db"
       - "xqa-db-amqp"
       - "xqa-elk"
@@ -614,7 +576,6 @@ workflows:
 
       - "e2e":
           requires:
-            - "xqa-commons-qpid-jms"
             - "xqa-db"
             - "xqa-db-amqp"
             - "xqa-elk"

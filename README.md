@@ -2,7 +2,7 @@
 ## 1. Introduction
 XQA is a **work in progress** project that improves the scalability of [BaseX](http://basex.org/) - an XML Database.
 
-Visit [xqa-perf](https://github.com/jameshnsears/xqa-perf) to read about scalability improvements achieved (so far).
+Visit [xqa-perf](https://github.com/jameshnsears/xqa-perf) to read about measured scalability improvements achieved (so far).
 
 Installation apt / yum dependencies are listed in [Build Prerequisites](https://github.com/jameshnsears/xqa-documentation/blob/master/BUILD-PREREQUISITES.md).
 
@@ -58,7 +58,7 @@ To speed some travis builds, each service is also packaged in a seperate contain
 * [xqa-test-data](https://github.com/jameshnsears/xqa-test-data) - sample XML files.
 
 ## 4. Technologies
-* [ActiveMQ](http://activemq.apache.org/) - AMQP 1.0
+* [ActiveMQ](http://activemq.apache.org/)
 * [Angular](https://angular.io/)
 * [BaseX](http://basex.org/)
 * [Docker CE](https://docs.docker.com/engine/) & [Docker Compose](https://docs.docker.com/compose/)
@@ -75,7 +75,7 @@ To speed some travis builds, each service is also packaged in a seperate contain
     * [Debian Stretch](https://www.debian.org/releases/)
 * [PostgreSQL 10.1](https://www.postgresql.org/)
 * [Python 3.5+](https://www.python.org/)
-    * [Apache Qpid Proton](https://qpid.apache.org/proton/)7
+    * [Apache Qpid Proton](https://qpid.apache.org/proton/)
 
 ## 5. Limitations
 Remember: XQA is **work in progress**...
@@ -84,7 +84,4 @@ Remember: XQA is **work in progress**...
 * Transactions not implemented.
 
 ## 6. Current Status
-The current stage of development is:
-* implementing materialised XQuery functionality.
-* addressing the known limitations as well as working through the [issues](https://github.com/jameshnsears/xqa-documentation/issues) in GitHub.
-* incorporating ELK fully.
+For current status refer to the [issue board](https://github.com/jameshnsears/xqa-documentation/projects/1) in GitHub.

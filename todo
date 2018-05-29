@@ -3,8 +3,12 @@ archive logs from each shard & ingest-balancer run, to see how entries distribut
 	= storage_size
 
 change secondaryTimeout value to 3s
+= but also have a retry, in case we get:
+2018-05-18 07:29:05.882      WARN --- [    InserterThread-1]:               getSizeResponses, 103: 28277123-9f4d-4fc4-9508-a30f331fde0c: END: shardSizeResponses=0; subject=/xml/eapb_mon_14537E_007_002.xml
+2018-05-18 07:29:05.915      WARN --- [    InserterThread-0]:               getSizeResponses, 103: 910d1bdd-4523-4289-b825-32c23aa2918f: END: shardSizeResponses=0; subject=/xml/eapb_nwp_14599E_002_011_022.xml
 
-rm fron any repo the dependency on having a running xqa-message-broker?
+eventually rm fron any repo the dependency on having a running xqa-message-broker?
+= as makes testing in circleci slower / more painful
 
 
 defect...

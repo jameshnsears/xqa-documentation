@@ -35,7 +35,7 @@ su -
 yum install -y yum-utils device-mapper-persistent-data lvm2
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 yum update
-yum install -y docker-ce java-1.8.0-openjdk-devel git curl
+yum install -y docker-ce java-1.8.0-openjdk-devel git curl curl-devel expat-devel gettext-devel openssl-devel zlib-devel
 
 curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
@@ -94,6 +94,7 @@ exit  # from root
 export XQA_BUILD=$HOME/xqa/build
 mkdir -p $XQA_BUILD
 cd $XQA_BUILD
+# see below...
 ```
 
 #### 1.3.2. Debian 9; Ubuntu 18.04

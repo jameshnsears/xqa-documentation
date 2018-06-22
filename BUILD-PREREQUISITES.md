@@ -1,7 +1,7 @@
 # Build Prerequisites
-This document lists the tools, and installation commands, used to build & test the containers for: Debian 9; CentOS 7; Ubuntu 18.04
+This document lists the tools, and installation commands, used to build & test the containers for: Debian 9 / Ubuntu 18.04; CentOS 7
 
-## 1. installation commands
+## 1. Installation commands
 ### 1.1. Docker CE; docker-compose; openjdk-8-jdk; git
 #### 1.1.1. Debian 9
 ```
@@ -121,7 +121,8 @@ export PATH=$HOME/xqa/bin/Python-$XQA_PY/bin:$PATH
 pip3 install --upgrade pip
 ```
 
-## 2. Building & Test the containers
+## 2. Containers
+### 2.1. Build
 ```
 export XQA_GIT_REPOS=$HOME/xqa/GIT_REPOS
 mkdir -p $XQA_GIT_REPOS
@@ -133,7 +134,7 @@ cd $XQA_GIT_REPOS/xqa-perf/bin
 tail -f build.log
 ```
 
-### 2.1. Indicative Output (after build completed)
+### 2.1.1. Indicative output after build completed
 ```
 docker images
 
@@ -160,7 +161,7 @@ docker.elastic.co/logstash/logstash             5.6.2               0a28dae3fd86
 docker.elastic.co/elasticsearch/elasticsearch   5.6.2               59b11c02b218        7 months ago        657MB
 ```
 
-### 2.2. Indicative Output (after e2e.sh run)
+### 2.2. Test
 ```
 export XQA_GIT_REPOS=$HOME/xqa/GIT_REPOS
 cd $XQA_GIT_REPOS

@@ -6,25 +6,25 @@
 ![High Level Design](uml/high-level-design-sequence-diagram.jpg)
 
 ## 2. Key Features
-* easy to deploy & validate scalability improvements
-    * end to end integration tests for [Travis](https://github.com/jameshnsears/xqa-perf/blob/master/.travis.yml) and [Circle CI](https://github.com/jameshnsears/xqa-documentation/blob/master/.circleci/config.yml).
-* service transparency
+* easy to deploy & validate scalability improvements via end to end integration tests for [Travis](https://github.com/jameshnsears/xqa-perf/blob/master/.travis.yml) and [Circle CI](https://github.com/jameshnsears/xqa-documentation/blob/master/.circleci/config.yml).
+* transparency
+    * plenty of container console logging.
     * JSON instrumentation sent to a PostgreSQL instance.
-    * console logging.
 * high unit test code coverage.
-* simple UI / REST API - to execute XQuery.
+* simple UI.
 * completely open-source.
 
 ## 3. Core Technologies
-* [ActiveMQ](http://activemq.apache.org/)
+* AMQP / [ActiveMQ](http://activemq.apache.org/)
 * [Angular](https://angular.io/)
-* [Docker CE](https://docs.docker.com/engine/) & [Docker Compose](https://docs.docker.com/compose/)
-* Java 8
+* Docker CE & Docker Compose
+* Java
+    * Maven importable projects.
     * [Dropwizard](http://www.dropwizard.io/)
     * [Qpid JMS](https://qpid.apache.org/components/jms/index.html)
 * PostgreSQL
-* Python 3
-    * [Apache Qpid Proton](https://qpid.apache.org/proton/)
+* Python
+    * [Qpid Proton](https://qpid.apache.org/proton/)
 * Ubuntu 18.04
 
 ## 3. Topography
@@ -44,7 +44,7 @@ Each microservice:
 
 * [![Build Status](https://travis-ci.org/jameshnsears/xqa-ingest.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-ingest) [![Coverage Status](https://coveralls.io/repos/github/jameshnsears/xqa-ingest/badge.svg?branch=master)](https://coveralls.io/github/jameshnsears/xqa-ingest?branch=master) [xqa-ingest](https://github.com/jameshnsears/xqa-ingest) - loads XML files into XQA.
 
-* [![Build Status](https://travis-ci.org/jameshnsears/xqa-ingest-balancer.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-ingest-balancer) [![Coverage Status](https://coveralls.io/repos/github/jameshnsears/xqa-ingest-balancer/badge.svg?branch=master)](https://coveralls.io/github/jameshnsears/xqa-ingest-balancer?branch=master) [xqa-ingest-balancer](https://github.com/jameshnsears/xqa-ingest-balancer) - "evenly" distributes XML / XQuery across one or more BaseX instances.
+* [![Build Status](https://travis-ci.org/jameshnsears/xqa-ingest-balancer.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-ingest-balancer) [![Coverage Status](https://coveralls.io/repos/github/jameshnsears/xqa-ingest-balancer/badge.svg?branch=master)](https://coveralls.io/github/jameshnsears/xqa-ingest-balancer?branch=master) [xqa-ingest-balancer](https://github.com/jameshnsears/xqa-ingest-balancer) - "evenly" distributes XML / XQuery across XQA.
 
 * [![Build Status](https://travis-ci.org/jameshnsears/xqa-message-broker.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-message-broker) [xqa-message-broker](https://github.com/jameshnsears/xqa-message-broker) - AMQP message broker - ActiveMQ.
 

@@ -1,7 +1,7 @@
 # XQA - XML Quality Assurance [![CircleCI](https://circleci.com/gh/jameshnsears/xqa-documentation.svg?style=svg)](https://circleci.com/gh/jameshnsears/xqa-documentation)
 ## 1. Introduction
 * XQA is a suite of Docker based Microservices that improves the scalability of [BaseX](http://basex.org/) - an XML database engine.
-* Instead of loading XML files into a single BaseX engine, XQA distributes each XML file - via an AMQP message broker - across one of multiple BaseX engines.
+* Instead of loading XML files into a single BaseX engine, XQA distributes them - via an AMQP message broker - across multiple BaseX engines.
 * XQA ships with a simple web based UI that allows XQuery and Audit queries.
 
 ## 2. High Level Design
@@ -10,7 +10,7 @@
 ## 3. Key Features
 * easy to deploy:
     * each Microservice runs in a Docker container.
-    * end to end integration tests for [Travis](https://github.com/jameshnsears/xqa-perf/blob/master/.travis.yml) and [Circle CI](https://github.com/jameshnsears/xqa-documentation/blob/master/.circleci/config.yml) included.
+    * end to end integration tests for [Travis](https://github.com/jameshnsears/xqa-perf/blob/master/.travis.yml) and [Circle CI](https://github.com/jameshnsears/xqa-documentation/blob/master/.circleci/config.yml) are included.
 * transparency:
     * container console logging.
     * JSON instrumentation sent to a PostgreSQL instance.
@@ -19,10 +19,11 @@
 * completely open-source.
 
 ## 4. Technologies Used
-* AMQP 1.0:
-    * [ActiveMQ](http://activemq.apache.org/) 5.15.7
+* AMQP 1.0 compatible message broker:
+    * [ActiveMQ 5.15.7](http://activemq.apache.org/)
 * [Angular](https://angular.io/)
 * Docker CE & Docker Compose
+	* 
 * Java 11:
     * [Dropwizard](http://www.dropwizard.io/)
     * Maven.
@@ -35,7 +36,7 @@
     * [Qpid Proton](https://qpid.apache.org/proton/)
 * Ubuntu 18.04
 
-## 5. Microservices
+## 5. The Microservices
 Each Microservice:
 * lives in a separate GitHub repository.
 * contains build instructions in a README file.
@@ -67,7 +68,7 @@ Each Microservice:
 * [xqa-test-data](https://github.com/jameshnsears/xqa-test-data) - test data - XML files - used by tests.
 
 ## 6. Limitations
-* Too ease development, on a single workstation, BaseX instances store data in RAM.
+* BaseX instances are configured to store data in RAM.
 
 ## 7. Current Status
 * For current status refer to the [issue board](https://github.com/jameshnsears/xqa-documentation/projects/1) in GitHub.

@@ -1,54 +1,7 @@
 # Build Prerequisites
-This document lists the tools, and installation commands, used to build & test the containers for: Debian 9 / Ubuntu 18.04; CentOS 7
+This document lists the tools, and installation commands, used to build & test the containers for Ubuntu 18.04.
 
 ## 1. Installation commands
-### 1.1. Docker CE; docker-compose; openjdk-8-jdk; git
-#### 1.1.1. Debian 9
-```
-su -
-
-apt update
-apt upgrade -y
-
-apt-get -y install apt-transport-https ca-certificates curl gnupg2 software-properties-common
-curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
-add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
-apt-get update
-apt-get -y install docker-ce openjdk-8-jdk git curl wget
-
-curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
-
-# assuming your normal id is jsears :-)
-usermod -aG docker jsears
-
-systemctl start docker
-systemctl enable docker
-
-shutdown -r now
-```
-
-#### 1.1.2. CentOS 7
-```
-su -
-
-yum install -y yum-utils device-mapper-persistent-data lvm2
-yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-yum update
-yum install -y docker-ce java-1.8.0-openjdk-devel git curl curl-devel expat-devel gettext-devel openssl-devel zlib-devel
-
-curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
-
-usermod -aG docker jsears
-
-systemctl start docker
-systemctl enable docker
-
-shutdown -r now
-```
-
-#### 1.1.3. Ubuntu 18.04
 ```
 sudo su -
 
@@ -82,22 +35,6 @@ echo "export PATH=$HOME/xqa/bin/apache-maven-3.5.3/bin:$HOME/xqa/bin/node-v8.11.
 ```
 
 ### 1.3. Python 3.6
-#### 1.3.1. CentOS 7
-```
-su - 
-
-yum groupinstall -y development
-yum install -y zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel expat-devel
-
-exit  # from root
-
-export XQA_BUILD=$HOME/xqa/build
-mkdir -p $XQA_BUILD
-cd $XQA_BUILD
-# see below...
-```
-
-#### 1.3.2. Debian 9; Ubuntu 18.04
 ```
 sudo su -
 

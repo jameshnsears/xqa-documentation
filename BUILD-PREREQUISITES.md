@@ -1,18 +1,25 @@
 # Build Prerequisites
 This document lists the tools, and installation commands, used to build & test the containers for Ubuntu 18.04.
 
-## 1. Installation commands
+===
+
+eclipse docker extension - click on dockerfile
+
+https://hub.docker.com/r/_/ubuntu/
+
+docker pull ubuntu:bionic
+docker images
+docker run -it ubuntu:bionic /bin/bash
+
+
+## 1. Docker CE
 ```
 sudo su -
-
 apt update
-apt install docker.io docker-compose openjdk-8-jdk git curl wget
-
+apt install docker.io docker-compose openjdk-11-jdk git curl wget
 usermod -aG docker jsears
-
 systemctl start docker
 systemctl enable docker
-
 shutdown -r now
 ```
 

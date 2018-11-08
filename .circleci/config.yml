@@ -113,48 +113,6 @@ jobs:
 
 ######################################################
 
-  "xqa-elk":
-    docker:
-      - image: debian:stretch
-    steps:
-      - run: apt-get update
-      - run: apt upgrade -y
-      - run: apt-get install -y git curl
-
-      - run: git clone https://github.com/jameshnsears/xqa-elk.git
-
-      - run: |
-          set -x
-          curl -L https://github.com/docker/compose/releases/download/1.17.1/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
-          chmod +x /usr/bin/docker-compose
-
-      - setup_remote_docker
-
-      - run:
-          command: |
-            set -x
-            VER="17.03.0-ce"
-            curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$VER.tgz
-            tar -xz -C /tmp -f /tmp/docker-$VER.tgz
-            mv /tmp/docker/* /usr/bin
-
-      - run: |
-          set -x
-          cd xqa-elk
-          docker-compose -p "dev" build --force-rm
-
-      - run: |
-          docker images
-          docker login -u $DOCKER_USER -p $DOCKER_PASS
-          docker tag xqa-elk-elasticsearch jameshnsears/xqa-elk-elasticsearch
-          docker tag xqa-elk-kibana jameshnsears/xqa-elk-kibana
-          docker tag xqa-elk-logstash jameshnsears/xqa-elk-logstash
-          docker push jameshnsears/xqa-elk-elasticsearch
-          docker push jameshnsears/xqa-elk-kibana
-          docker push jameshnsears/xqa-elk-logstash
-
-######################################################
-
   "xqa-ingest":
     docker:
       - image: debian:stretch
@@ -535,7 +493,6 @@ workflows:
     jobs:
       - "xqa-db"
       - "xqa-db-amqp"
-      - "xqa-elk"
       - "xqa-ingest"
       - "xqa-ingest-balancer"
       - "xqa-message-broker"
@@ -547,7 +504,6 @@ workflows:
           requires:
             - "xqa-db"
             - "xqa-db-amqp"
-            - "xqa-elk"
             - "xqa-ingest"
             - "xqa-ingest-balancer"
             - "xqa-message-broker"
@@ -566,7 +522,6 @@ workflows:
     jobs:
       - "xqa-db"
       - "xqa-db-amqp"
-      - "xqa-elk"
       - "xqa-ingest"
       - "xqa-ingest-balancer"
       - "xqa-message-broker"
@@ -578,7 +533,6 @@ workflows:
           requires:
             - "xqa-db"
             - "xqa-db-amqp"
-            - "xqa-elk"
             - "xqa-ingest"
             - "xqa-ingest-balancer"
             - "xqa-message-broker"

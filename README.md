@@ -23,7 +23,6 @@
     * [ActiveMQ 5.15.7](http://activemq.apache.org/)
 * [Angular](https://angular.io/)
 * Docker CE & Docker Compose
-	* 
 * Java 11:
     * [Dropwizard](http://www.dropwizard.io/)
     * Maven.
@@ -35,6 +34,8 @@
     * [pytest](https://docs.pytest.org/en/latest/)
     * [Qpid Proton](https://qpid.apache.org/proton/)
 * Ubuntu 18.04
+
+For build / developer instructions see [build prerequisites](BUILD-PREREQUISITES.md)
 
 ## 5. The Microservices
 Each Microservice:
@@ -65,7 +66,7 @@ Each Microservice:
 
 * [![Build Status](https://travis-ci.org/jameshnsears/xqa-perf.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-perf) [xqa-perf](https://github.com/jameshnsears/xqa-perf) - end to end integration tests.
 
-* [xqa-test-data](https://github.com/jameshnsears/xqa-test-data) - test data - XML files - used by tests.
+* [xqa-test-data](https://github.com/jameshnsears/xqa-test-data) - test data - XML files - used by XQA.
 
 ## 6. Limitations
 * BaseX instances are configured to store data in RAM.

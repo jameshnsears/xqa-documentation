@@ -268,9 +268,7 @@ jobs:
           docker images
           docker login -u $DOCKER_USER -p $DOCKER_PASS
           docker tag xqa-message-broker jameshnsears/xqa-message-broker
-          docker tag xqa-message-broker-filebeat jameshnsears/xqa-message-broker-filebeat
           docker push jameshnsears/xqa-message-broker
-          docker push jameshnsears/xqa-message-broker-filebeat
 
 ######################################################
 

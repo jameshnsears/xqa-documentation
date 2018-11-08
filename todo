@@ -2,6 +2,8 @@ archive logs from each shard & ingest-balancer run, to see how entries distribut
 = plot graphs
 	= storage_size
 
+--
+
 change secondaryTimeout value to 3s
 = but also have a retry, in case we get:
 2018-05-18 07:29:05.882      WARN --- [    InserterThread-1]:               getSizeResponses, 103: 28277123-9f4d-4fc4-9508-a30f331fde0c: END: shardSizeResponses=0; subject=/xml/eapb_mon_14537E_007_002.xml
@@ -10,6 +12,7 @@ change secondaryTimeout value to 3s
 eventually rm fron any repo the dependency on having a running xqa-message-broker?
 = as makes testing in circleci slower / more painful
 
+--
 
 defect...
 2018-05-10 15:04:19,998      INFO --- [          MainThread]:            save_e2e_stats, 100: pool_size=5, shards=7; ingest_count=40; ingest_size=80056356; time_ingest=25; time_ingest_balancer=30; time_shard=12839
@@ -22,3 +25,11 @@ defect...
 2018-05-10 15:04:20,000      INFO --- [          MainThread]:                  make_png,  99: (5, 6, 40, 80056356, 25, 30, 58)
 2018-05-10 15:04:20,000      INFO --- [          MainThread]:                  make_png,  99: (5, 7, 40, 80056356, 25, 30, 12839)
 
+--
+
+make sure BUILD-PREREQUISTES works in VM
+= xqa-query-ui
+
+in build script I get lots of "mkdir cannot create dir '/tmp/xqa': File exists'"
+
+move off debian containers

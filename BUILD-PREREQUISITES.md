@@ -19,9 +19,9 @@ systemctl enable docker
 shutdown -r now
 ```
 
-## 3. git; Java; Pip; Maven; NodeJS
+## 3. git; Java; Python; Maven; Node
 ```
-sudo apt install git openjdk-11-jdk python3-pip maven nodejs npm
+sudo apt install git openjdk-11-jdk python3-dev python3-pip python3-distutils maven nodejs npm
 ```
 
 ## 4. Build XQA Containers

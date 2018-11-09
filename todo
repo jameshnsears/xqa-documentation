@@ -36,4 +36,6 @@ make sure BUILD-PREREQUISTES works in VM
 
 in build script I get lots of "mkdir cannot create dir '/tmp/xqa': File exists'"
 
-move off debian containers
+in xqa-perf change # of cores 
+- from logical to physical
+= say running notively Ubuntu 18.04 with SSD

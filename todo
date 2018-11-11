@@ -32,10 +32,12 @@ in xqa-db-xmqp
 
 make sure BUILD-PREREQUISTES works in VM
 = xqa-query-ui
-= do I need to do all of :sudo apt install git openjdk-11-jdk python3-dev python3-pip python3-distutils maven nodejs npm ????
+= do I need to do all of :sudo apt install git openjdk-11-jre python3-dev python3-pip python3-distutils maven nodejs npm ????
 = test it 100% from start to finish
 
 in build script I get lots of "mkdir cannot create dir '/tmp/xqa': File exists'"
+
+update circle ci files with correct software
 
 in xqa-perf change # of cores 
 - from logical to physical

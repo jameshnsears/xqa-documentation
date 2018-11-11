@@ -119,7 +119,7 @@ jobs:
     steps:
       - run: apt-get update
       - run: apt upgrade -y
-      - run: apt-get install -y openjdk-8-jdk git curl
+      - run: apt-get install -y openjdk-11-jre git curl
       - run: curl http://mirror.ox.ac.uk/sites/rsync.apache.org/maven/maven-3/3.5.3/binaries/apache-maven-3.5.3-bin.tar.gz | tar xz
 
       - run: git clone https://github.com/jameshnsears/xqa-ingest.git
@@ -186,7 +186,7 @@ jobs:
     steps:
       - run: apt-get update
       - run: apt upgrade -y
-      - run: apt-get install -y openjdk-8-jdk git curl
+      - run: apt-get install -y openjdk-11-jre git curl
       - run: curl http://mirror.ox.ac.uk/sites/rsync.apache.org/maven/maven-3/3.5.3/binaries/apache-maven-3.5.3-bin.tar.gz | tar xz
 
       - run: git clone https://github.com/jameshnsears/xqa-ingest-balancer.git
@@ -278,7 +278,7 @@ jobs:
     steps:
       - run: apt-get update
       - run: apt upgrade -y
-      - run: apt-get install -y openjdk-8-jdk git curl
+      - run: apt-get install -y openjdk-11-jre git curl
       - run: curl http://mirror.ox.ac.uk/sites/rsync.apache.org/maven/maven-3/3.5.3/binaries/apache-maven-3.5.3-bin.tar.gz | tar xz
 
       - run: git clone https://github.com/jameshnsears/xqa-query-balancer.git

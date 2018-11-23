@@ -29,10 +29,7 @@
 * Python 3.6: [lxml](https://lxml.de/); [Matplotlib](https://matplotlib.org/); [pytest](https://docs.pytest.org/en/latest/); [Qpid Proton](https://qpid.apache.org/proton/)
 * Ubuntu 18.04
 
-## 5. Microservices
-Each Microservice:
-* lives in a separate GitHub repository.
-
+## 5. Docker Microservices
 ![microservices](uml/xqa-documentation/microservices.jpg)
 
 | travis-ci.org | coveralls.io | GitHub repo. | Description |

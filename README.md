@@ -7,13 +7,13 @@
 ![High Level Design](uml/xqa-documentation/high-level-design.jpg)
 
 ## 3. Key Features
-* Proven scalability & performance improvements - matplotlib graphs in [xqa-perf](https://github.com/jameshnsears/xqa-perf) for:
+* Proven scalability & performance improvements - graphs in [xqa-perf](https://github.com/jameshnsears/xqa-perf) covering:
     * timing statistics.
     * shard item distribution.
 * Easy to deploy / extend:
-    * add extra BaseX engines easily, they self register themselves.
     * each Microservice runs in a Docker container.
     * end to end integration tests for [Travis](https://github.com/jameshnsears/xqa-perf/blob/master/.travis.yml) and [Circle CI](https://github.com/jameshnsears/xqa-documentation/blob/master/.circleci/config.yml) included.
+    * add extra BaseX engines easily, they self register themselves.
 * Transparency:
     * container console logging.
     * JSON instrumentation sent to a PostgreSQL instance.
@@ -32,11 +32,9 @@
 ## 5. Microservices
 Each Microservice:
 * lives in a separate GitHub repository.
-* has a .travis.yml file - demonstrating usage / deployment / coverage.
 
 ![microservices](uml/xqa-documentation/microservices.jpg)
 
-## 5.1. GitHub repositories
 | travis-ci.org | coveralls.io | GitHub repo. | Description |
 | ------------- | ------------- | ------------- | ------------- |
 | [![Build Status](https://travis-ci.org/jameshnsears/xqa-commons-qpid-jms.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-commons-qpid-jms) | [![Coverage Status](https://coveralls.io/repos/github/jameshnsears/xqa-commons-qpid-jms/badge.svg?branch=master)](https://coveralls.io/github/jameshnsears/xqa-commons-qpid-jms?branch=master) | [xqa-commons-qpid-jms](https://github.com/jameshnsears/xqa-commons-qpid-jms) | a Maven Central shared library. |
@@ -51,10 +49,10 @@ Each Microservice:
 | [![Build Status](https://travis-ci.org/jameshnsears/xqa-perf.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-perf) | N/A | [xqa-perf](https://github.com/jameshnsears/xqa-perf) | end to end integration tests, with Matplotlib graphs. |
 | N/A | N/A | [xqa-test-data](https://github.com/jameshnsears/xqa-test-data) | a collection of XML files used by XQA. |
 
-## 6. Limitatons
+## 5. Limitatons
 Currently, XQA is a proof of concept project. It achieves what it set out to prove, but should not be considered ready for production. Reasons for this include:
 * BaseX instances are configured to store data in RAM.
 * there is minimal security between microservices. 
 
-## 7. Current Status
+## 6. Current Status
 * Refer to the GitHub [issue board](https://github.com/jameshnsears/xqa-documentation/projects/1).

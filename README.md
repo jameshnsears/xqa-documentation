@@ -11,13 +11,13 @@
 * Easy to deploy / extend:
     * each Microservice runs in a Docker container.
     * end to end integration tests for [TravisCI](https://github.com/jameshnsears/xqa-perf/blob/master/.travis.yml) and [CircleCI](https://github.com/jameshnsears/xqa-documentation/blob/master/.circleci/config.yml) included.
-    * add extra BaseX engines easily, they self register themselves.
-* Proven scalability & performance improvements - graphs in [xqa-perf](https://github.com/jameshnsears/xqa-perf) covering:
+    * add extra BaseX engines easily - they self register.
+* Proven scalability & performance improvements - graphs in [xqa-perf](https://github.com/jameshnsears/xqa-perf) for:
     * timing statistics.
-    * shard item distribution.
+    * XML file distribution.
 * Transparency:
     * container console logging.
-    * JSON instrumentation sent to a PostgreSQL instance.
+    * JSON instrumentation sent to a central PostgreSQL instance.
 * High test coverage.
 * Completely open-source.
 

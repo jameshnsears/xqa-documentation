@@ -7,13 +7,13 @@
 ![High Level Design](uml/xqa-documentation/high-level-design.jpg)
 
 ## 3. Key Features
-* Proven scalability & performance improvements - graphs in [xqa-perf](https://github.com/jameshnsears/xqa-perf) covering:
-    * timing statistics.
-    * shard item distribution.
 * Easy to deploy / extend:
     * each Microservice runs in a Docker container.
     * end to end integration tests for [Travis](https://github.com/jameshnsears/xqa-perf/blob/master/.travis.yml) and [Circle CI](https://github.com/jameshnsears/xqa-documentation/blob/master/.circleci/config.yml) included.
     * add extra BaseX engines easily, they self register themselves.
+* Proven scalability & performance improvements - graphs in [xqa-perf](https://github.com/jameshnsears/xqa-perf) covering:
+    * timing statistics.
+    * shard item distribution.
 * Transparency:
     * container console logging.
     * JSON instrumentation sent to a PostgreSQL instance.
@@ -23,10 +23,10 @@
 ## 4. Interesting Technologies
 * [ActiveMQ 5.15.7](http://activemq.apache.org/)
 * [Angular](https://angular.io/)
-* Docker CE & Docker Compose
-* Java 11: [Dropwizard](http://www.dropwizard.io/); Maven; [Qpid JMS](https://qpid.apache.org/components/jms/index.html)
+* Docker CE & Docker Compose - containers can be build from GitHub source or downloaded from [hub.docker.com](https://hub.docker.com/)
+* Java 11 - [Dropwizard](http://www.dropwizard.io/); Maven; [Qpid JMS](https://qpid.apache.org/components/jms/index.html)
 * PostgreSQL 11
-* Python 3.6: [lxml](https://lxml.de/); [Matplotlib](https://matplotlib.org/); [pytest](https://docs.pytest.org/en/latest/); [Qpid Proton](https://qpid.apache.org/proton/)
+* Python 3.6 - [lxml](https://lxml.de/); [Matplotlib](https://matplotlib.org/); [pytest](https://docs.pytest.org/en/latest/); [Qpid Proton](https://qpid.apache.org/proton/)
 * Ubuntu 18.04
 
 ## 5. Docker Microservices

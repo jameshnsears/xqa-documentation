@@ -2,14 +2,14 @@
 ## 1. Introduction
 * XQA is a suite of Docker based Microservices that improves the scalability of [BaseX](http://basex.org/) - an XML database engine.
 * Instead of loading XML files into a single BaseX engine, XQA distributes them - via an AMQP message broker - across multiple BaseX engines.
-* XQuery can be easily run against the distributed XML files.
+* XQuery is easily run against the distributed XML files.
 
 ## 2. High Level Design
 ![High Level Design](uml/xqa-documentation/high-level-design.jpg)
 
 ## 3. Key Features
 * Easy to deploy / extend:
-    * each Microservice comes from a seperate GitHub repo and runs it its own Docker container
+    * each Microservice comes from a seperate GitHub repo. and runs in its own Docker container
     * end to end integration tests for [TravisCI](https://github.com/jameshnsears/xqa-perf/blob/master/.travis.yml) and [CircleCI](https://github.com/jameshnsears/xqa-documentation/blob/master/.circleci/config.yml) included.
     * add extra BaseX engines easily - they self register.
 * Proven scalability & performance improvements - graphs in [xqa-perf](https://github.com/jameshnsears/xqa-perf) for:

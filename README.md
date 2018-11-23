@@ -2,34 +2,32 @@
 ## 1. Introduction
 * XQA is a suite of Docker based Microservices that improves the scalability of [BaseX](http://basex.org/) - an XML database engine.
 * Instead of loading XML files into a single BaseX engine, XQA distributes them - via an AMQP message broker - across multiple BaseX engines.
-* Visit [xqa-perf](https://github.com/jameshnsears/xqa-perf) for performance improvement graphs.
 
 ## 2. High Level Design
 ![High Level Design](uml/xqa-documentation/high-level-design.jpg)
 
 ## 3. Key Features
-* Easy to deploy:
+* Proven scalability & performance improvements - matplotlib graphs in [xqa-perf](https://github.com/jameshnsears/xqa-perf) for:
+    * timing statistics.
+    * shard item distribution.
+* Easy to deploy / extend:
+    * add extra BaseX engines easily, they self register themselves.
     * each Microservice runs in a Docker container.
     * end to end integration tests for [Travis](https://github.com/jameshnsears/xqa-perf/blob/master/.travis.yml) and [Circle CI](https://github.com/jameshnsears/xqa-documentation/blob/master/.circleci/config.yml) included.
 * Transparency:
-    * Container console logging.
+    * container console logging.
     * JSON instrumentation sent to a PostgreSQL instance.
-* Performance validation & matplotlib graphs:
-    * Timing statistics.
-    * Shard item distribution.
 * High test coverage.
 * Completely open-source.
 
 ## 4. Interesting Technologies
-* ActiveMQ 5.15.7](http://activemq.apache.org/)
+* [ActiveMQ 5.15.7](http://activemq.apache.org/)
 * [Angular](https://angular.io/)
 * Docker CE & Docker Compose
 * Java 11: [Dropwizard](http://www.dropwizard.io/); Maven; [Qpid JMS](https://qpid.apache.org/components/jms/index.html)
 * PostgreSQL 11
 * Python 3.6: [lxml](https://lxml.de/); [Matplotlib](https://matplotlib.org/); [pytest](https://docs.pytest.org/en/latest/); [Qpid Proton](https://qpid.apache.org/proton/)
 * Ubuntu 18.04
-
-For build / developer instructions see [build prerequisites](BUILD-PREREQUISITES.md)
 
 ## 5. Microservices
 Each Microservice:
@@ -56,7 +54,7 @@ Each Microservice:
 ## 6. Limitatons
 Currently, XQA is a proof of concept project. It achieves what it set out to prove, but should not be considered ready for production. Reasons for this include:
 * BaseX instances are configured to store data in RAM.
-* There is minimal security between microservices. 
+* there is minimal security between microservices. 
 
 ## 7. Current Status
 * Refer to the GitHub [issue board](https://github.com/jameshnsears/xqa-documentation/projects/1).

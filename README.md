@@ -2,7 +2,8 @@
 ## 1. Introduction
 * XQA is a suite of Docker based Microservices that improves the scalability of [BaseX](http://basex.org/) - an XML database engine.
 * Instead of loading XML files into a single BaseX engine, XQA distributes them - via an AMQP message broker - across multiple BaseX engines.
-* XQA ships with a simple web based UI that allows XQuery and Audit queries.
+* Graphs showing scalability improvements achieved are in the [xqa-perf](https://github.com/jameshnsears/xqa-perf) project.
+* A simple web based UI that allows XQuery and Audit queries.
 
 ## 2. High Level Design
 ![High Level Design](uml/xqa-documentation/high-level-design.jpg)
@@ -48,13 +49,20 @@ Each Microservice:
 ## 5.1. GitHub repositories
 | travis-ci.org | coveralls.io | Description |
 | ------------- | ------------- | ------------- |
+| [![Build Status](https://travis-ci.org/jameshnsears/xqa-commons-qpid-jms.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-commons-qpid-jms) | [![Coverage Status](https://coveralls.io/repos/github/jameshnsears/xqa-commons-qpid-jms/badge.svg?branch=master)](https://coveralls.io/github/jameshnsears/xqa-commons-qpid-jms?branch=master) | [xqa-commons-qpid-jms](https://github.com/jameshnsears/xqa-commons-qpid-jms) - a Maven Central shared library. |
+| [![Build Status](https://travis-ci.org/jameshnsears/xqa-db.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-db) |  | [xqa-db](https://github.com/jameshnsears/xqa-db) - PostgreSQL. |
 | Content Cell | Content Cell | Content Cell |
 | Content Cell | Content Cell | Content Cell |
+| Content Cell | Content Cell | Content Cell |
+| Content Cell | Content Cell | Content Cell |
+| Content Cell | Content Cell | Content Cell |
+| Content Cell | Content Cell | Content Cell |
+| Content Cell | Content Cell | Content Cell |
+| Content Cell | Content Cell | Content Cell |
+| Content Cell | Content Cell | Content Cell |
 
 
-* [![Build Status](https://travis-ci.org/jameshnsears/xqa-commons-qpid-jms.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-commons-qpid-jms) [![Coverage Status](https://coveralls.io/repos/github/jameshnsears/xqa-commons-qpid-jms/badge.svg?branch=master)](https://coveralls.io/github/jameshnsears/xqa-commons-qpid-jms?branch=master) [xqa-commons-qpid-jms](https://github.com/jameshnsears/xqa-commons-qpid-jms) - a Maven Central shared library.
-
-* [![Build Status](https://travis-ci.org/jameshnsears/xqa-db.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-db) [xqa-db](https://github.com/jameshnsears/xqa-db) - PostgreSQL.
+*  
 
 * [![Build Status](https://travis-ci.org/jameshnsears/xqa-db-amqp.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-db-amqp) [![Coverage Status](https://coveralls.io/repos/github/jameshnsears/xqa-db-amqp/badge.svg?branch=master)](https://coveralls.io/github/jameshnsears/xqa-db-amqp?branch=master) [xqa-db-amqp](https://github.com/jameshnsears/xqa-db-amqp) - AMQP interface to PostgresSQL.
 

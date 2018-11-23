@@ -14,26 +14,19 @@
 * Transparency:
     * Container console logging.
     * JSON instrumentation sent to a PostgreSQL instance.
-* Validation & Matplotlib performance graphs:
+* Performance validation & matplotlib graphs:
     * Timing statistics.
     * Shard item distribution.
 * High test coverage.
 * Completely open-source.
 
 ## 4. Interesting Technologies
-* AMQP 1.0 compatible message broker: [ActiveMQ 5.15.7](http://activemq.apache.org/)
+* ActiveMQ 5.15.7](http://activemq.apache.org/)
 * [Angular](https://angular.io/)
 * Docker CE & Docker Compose
-* Java 11:
-    * [Dropwizard](http://www.dropwizard.io/)
-    * Maven
-    * [Qpid JMS](https://qpid.apache.org/components/jms/index.html)
+* Java 11: [Dropwizard](http://www.dropwizard.io/); Maven; [Qpid JMS](https://qpid.apache.org/components/jms/index.html)
 * PostgreSQL 11
-* Python 3.6:
-    * [lxml](https://lxml.de/)
-    * [Matplotlib](https://matplotlib.org/)
-    * [pytest](https://docs.pytest.org/en/latest/)
-    * [Qpid Proton](https://qpid.apache.org/proton/)
+* Python 3.6: [lxml](https://lxml.de/); [Matplotlib](https://matplotlib.org/); [pytest](https://docs.pytest.org/en/latest/); [Qpid Proton](https://qpid.apache.org/proton/)
 * Ubuntu 18.04
 
 For build / developer instructions see [build prerequisites](BUILD-PREREQUISITES.md)
@@ -55,15 +48,15 @@ Each Microservice:
 | [![Build Status](https://travis-ci.org/jameshnsears/xqa-ingest-balancer.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-ingest-balancer) | [![Coverage Status](https://coveralls.io/repos/github/jameshnsears/xqa-ingest-balancer/badge.svg?branch=master)](https://coveralls.io/github/jameshnsears/xqa-ingest-balancer?branch=master) | [xqa-ingest-balancer](https://github.com/jameshnsears/xqa-ingest-balancer) | distributes XML across XQA BaseX engine(s). |
 | [![Build Status](https://travis-ci.org/jameshnsears/xqa-message-broker.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-message-broker) | N/A | [xqa-message-broker](https://github.com/jameshnsears/xqa-message-broker) | ActiveMQ. |
 | [![Build Status](https://travis-ci.org/jameshnsears/xqa-shard.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-shard) | [![Coverage Status](https://coveralls.io/repos/github/jameshnsears/xqa-shard/badge.svg?branch=master)](https://coveralls.io/github/jameshnsears/xqa-shard?branch=master) | [xqa-shard](https://github.com/jameshnsears/xqa-shard) | BaseX engine with AMQP interface. |
-| [![Build Status](https://travis-ci.org/jameshnsears/xqa-query-balancer.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-query-balancer) | [![Coverage Status](https://coveralls.io/repos/github/jameshnsears/xqa-query-balancer/badge.svg?branch=master)](https://coveralls.io/github/jameshnsears/xqa-query-balancer?branch=master) | [xqa-query-balancer](https://github.com/jameshnsears/xqa-query-balancer) | REST API to query XQA. |
+| [![Build Status](https://travis-ci.org/jameshnsears/xqa-query-balancer.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-query-balancer) | [![Coverage Status](https://coveralls.io/repos/github/jameshnsears/xqa-query-balancer/badge.svg?branch=master)](https://coveralls.io/github/jameshnsears/xqa-query-balancer?branch=master) | [xqa-query-balancer](https://github.com/jameshnsears/xqa-query-balancer) | REST API interface. |
 | [![Build Status](https://travis-ci.org/jameshnsears/xqa-query-ui.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-query-ui) | [![Coverage Status](https://coveralls.io/repos/github/jameshnsears/xqa-query-ui/badge.svg?branch=master)](https://coveralls.io/github/jameshnsears/xqa-query-ui?branch=master) | [xqa-query-ui](https://github.com/jameshnsears/xqa-query-ui) | UI for querying XQA. |
 | [![Build Status](https://travis-ci.org/jameshnsears/xqa-perf.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-perf) | N/A | [xqa-perf](https://github.com/jameshnsears/xqa-perf) | end to end integration tests, with Matplotlib graphs. |
 | N/A | N/A | [xqa-test-data](https://github.com/jameshnsears/xqa-test-data) | a collection of XML files used by XQA. |
 
 ## 6. Limitatons
-At the moment XQA is a proof of concept project. It achieves what it set out to prove, but should not be considered ready for production. Reasons for this include:
+Currently, XQA is a proof of concept project. It achieves what it set out to prove, but should not be considered ready for production. Reasons for this include:
 * BaseX instances are configured to store data in RAM.
 * There is minimal security between microservices. 
 
 ## 7. Current Status
-* Refer to the [issue board](https://github.com/jameshnsears/xqa-documentation/projects/1) in GitHub.
+* Refer to the GitHub [issue board](https://github.com/jameshnsears/xqa-documentation/projects/1).

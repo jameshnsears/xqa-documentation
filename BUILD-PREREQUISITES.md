@@ -2,11 +2,11 @@
 This document lists the tools, and installation commands, used to build & test the containers for Ubuntu 18.04.
 
 ## 1. IDE's
-* Eclipse Java EE IDE for Web Developers. Version: 2018-09 (4.9.0)
+* Eclipse Java EE IDE for Web Developers. Version: 2018-09 (4.9.0)+
     * PyDev
-* IntelliJ IDEA. Version 2018.2.5
-* Pycharm. Version 2018.2.4
-* Visual Studio Code. Version 1.28.2
+* IntelliJ IDEA. Version 2018.2.5+
+* Pycharm. Version 2018.2.4+
+* Visual Studio Code. Version 1.28.2+
 
 ## 2. Docker CE & Docker Compose
 ```

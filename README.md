@@ -2,7 +2,7 @@
 ## 1. Introduction
 * XQA is a suite of Docker based Microservices that improves the scalability of [BaseX](http://basex.org/) - an XML database engine.
 * Instead of loading XML files into a single BaseX engine, XQA distributes them - via an AMQP message broker - across multiple BaseX engines.
-* XQuery is easily run against the distributed XML files.
+* XQuery can be easily run against the distributed XML files - either via a UI or REST API.
 
 ## 2. High Level Design
 ![High Level Design](uml/xqa-documentation/high-level-design.jpg)

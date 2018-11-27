@@ -1,5 +1,7 @@
 enable log level from "command" param
 
+if insert_thread_wait is too low, i.e. 750 then xqa-perf/dell/test_worst_case_scenario.py fail's
+
 --
 
 change secondaryTimeout value to 3s

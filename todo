@@ -1,6 +1,4 @@
-archive logs from each shard & ingest-balancer run, to see how entries distributed
-= plot graphs
-	= storage_size
+enable log level from "command" param
 
 --
 

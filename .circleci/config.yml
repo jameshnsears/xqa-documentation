@@ -34,7 +34,7 @@ jobs:
       - run: |
           set -x
           cd xqa-db
-          docker-compose -p "dev" build --force-rm
+          docker-compose build --force-rm
 
       - run: |
           docker images
@@ -103,7 +103,7 @@ jobs:
       - run: |
           set -x
           cd xqa-db-amqp
-          docker-compose -p "dev" build --force-rm
+          docker-compose build --force-rm
 
       - run: |
           docker images
@@ -138,7 +138,7 @@ jobs:
 #
 #      - run: |
 #          cd xqa-ingest
-#          docker-compose -p "dev" up -d xqa-message-broker
+#          docker-compose up -d xqa-message-broker
 #
 #      - run:
 #          command: |
@@ -170,7 +170,7 @@ jobs:
       - run: |
           set -x
           cd xqa-ingest
-          docker-compose -p "dev" build --force-rm
+          docker-compose build --force-rm
 
       - run: |
           docker images
@@ -224,7 +224,7 @@ jobs:
       - run: |
           set -x
           cd xqa-ingest-balancer
-          docker-compose -p "dev" build --force-rm
+          docker-compose build --force-rm
 
       - run: |
           docker images
@@ -262,7 +262,7 @@ jobs:
       - run: |
           set -x
           cd xqa-message-broker
-          docker-compose -p "dev" build --force-rm
+          docker-compose build --force-rm
 
       - run: |
           docker images
@@ -316,7 +316,7 @@ jobs:
       - run: |
           set -x
           cd xqa-query-balancer
-          docker-compose -p "dev" build --force-rm
+          docker-compose build --force-rm
 
       - run: |
           docker images
@@ -373,7 +373,7 @@ jobs:
       - run: |
           set -x
           cd xqa-query-ui
-          docker-compose -p "dev" build --force-rm
+          docker-compose build --force-rm
 
       - run: |
           docker images
@@ -442,7 +442,7 @@ jobs:
       - run: |
           set -x
           cd xqa-shard
-          docker-compose -p "dev" build --force-rm
+          docker-compose build --force-rm
 
       - run: |
           docker images

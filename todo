@@ -1,5 +1,7 @@
 enable log level from "command" param
 
+move java projects away from requiring docker-compose
+
 https://medium.com/criciumadev/its-time-migrating-to-java-11-5eb3868354f9
 
 problem is that xqa-ingest-balancer must be started after other processes started?

@@ -23,7 +23,9 @@ shutdown -r now
 TODO - check ALL these things in this file on clean vm
 
 ```
-sudo apt install git openjdk-11-jdk python3-dev python3-pip python3-distutils python3-tk maven nodejs npm postgresql-client
+sudo apt install git openjdk-11-jdk python3-dev python3-pip python3-distutils python3-tk maven nodejs npm postgresql-client ruby ruby-dev
+
+sudo gem install travis
 ```
 
 ## 4. Build XQA Containers

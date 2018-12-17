@@ -28,7 +28,7 @@
 * [Angular](https://angular.io/)
 * Docker CE & Docker Compose:
     * containers can be build from GitHub or pull'd from [hub.docker.com](https://hub.docker.com/)
-* [Java 11](https://jdk.java.net/11/):
+* Java 10:
     * [OkHttp](http://square.github.io/okhttp/)
     * [Dropwizard](http://www.dropwizard.io/)
     * [Qpid JMS](https://qpid.apache.org/components/jms/index.html)

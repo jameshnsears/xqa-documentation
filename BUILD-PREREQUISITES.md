@@ -2,11 +2,17 @@
 This document lists the tools, and installation commands, used to build & test the containers for Ubuntu 18.04.
 
 ## 1. IDE's
-* Eclipse Java EE IDE for Web Developers. Version: 2018-09 (4.9.0)+
+* Eclipse Java EE IDE for Web Developers.
     * PyDev
-* IntelliJ IDEA. Version 2018.2.5+
-* Pycharm. Version 2018.2.4+
-* Visual Studio Code. Version 1.28.2+
+* IntelliJ IDEA.
+* Pycharm.
+* Visual Studio Code.
+
+### 1.1. Useful IDE Extensions
+* PMD
+* SpotBugs
+* CheckStyle
+* Sonalint
 
 ## 2. Docker CE & Docker Compose
 ```
@@ -23,7 +29,7 @@ shutdown -r now
 TODO - check ALL these things in this file on clean vm
 
 ```
-sudo apt install git openjdk-11-jdk python3-dev python3-pip python3-distutils python3-tk maven nodejs npm postgresql-client ruby ruby-dev
+sudo apt install git openjdk-11-jdk python3-dev python3-pip python3-distutils python3-tk maven nodejs npm postgresql-client ruby ruby-dev socat
 
 sudo gem install travis
 ```
@@ -58,7 +64,7 @@ pip3 install -r requirements.txt
 XQA_TEST_DATA=$XQA_GIT_REPOS/xqa-test-data pytest -s
 ```
 
-### 5. Integration Test
+## 5. Integration Test
 ```
 export XQA_GIT_REPOS=$HOME/xqa/GIT_REPOS
 cd $XQA_GIT_REPOS
@@ -70,4 +76,13 @@ SHARDS=1 XQA_TEST_DATA=$XQA_GIT_REPOS/xqa-test-data ./e2e.sh
 # wait / docker logs <xqa-ingest | xqa-shard>
 
 docker logs xqa-shard | grep "size=40"
+```
+
+## 6. socat
+```
+sudo mv /var/run/docker.sock /var/run/hidden.socket
+
+sudo socat -t100 -x -v UNIX-LISTEN:/var/run/docker.sock,mode=777,reuseaddr,fork UNIX-CONNECT:/var/run/hidden.socket
+
+sudo mv /var/run/hidden.socket /var/run/docker.sock
 ```

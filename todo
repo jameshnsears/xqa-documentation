@@ -1,3 +1,5 @@
+rebuild all containers at jdk 10 level, so that work with xqa-perf
+
 write a java junit-docker-py utility?
 
 enable log level from "command" param

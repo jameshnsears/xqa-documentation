@@ -29,14 +29,14 @@
 * Docker CE & Docker Compose:
     * containers can be build from GitHub or pull'd from [hub.docker.com](https://hub.docker.com/)
 * [Java 11](https://jdk.java.net/11/):
+    * [OkHttp](http://square.github.io/okhttp/)
     * [Dropwizard](http://www.dropwizard.io/)
-    * OkHttp
     * [Qpid JMS](https://qpid.apache.org/components/jms/index.html)
 * PostgreSQL 11
 * Python 3.6:
+    * [pytest](https://docs.pytest.org/en/latest/)
     * [lxml](https://lxml.de/)
     * [Matplotlib](https://matplotlib.org/)
-    * [pytest](https://docs.pytest.org/en/latest/)
     * [Qpid Proton](https://qpid.apache.org/proton/)
 * Ubuntu 18.04
 

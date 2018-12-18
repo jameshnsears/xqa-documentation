@@ -1,18 +1,18 @@
 # XQA - XML Quality Assurance [![CircleCI](https://circleci.com/gh/jameshnsears/xqa-documentation.svg?style=svg)](https://circleci.com/gh/jameshnsears/xqa-documentation)
 ## 1. Introduction
-* XQA is a suite of Docker based Microservices that improves the scalability of [BaseX](http://basex.org/) - an XML database engine.
+* XQA is a suite of Docker based microservices that improves the scalability of [BaseX](http://basex.org/) - an XML database engine.
 * Instead of loading XML files into a single BaseX engine, XQA distributes them - via an AMQP message broker - across multiple BaseX engines (one XML file per engine).
-* XQuery can easily be run against the distributed XML files - using either a UI or REST API.
+* XQA ships with a simple UI, and REST API, that lets you eaily run XQuery against the distributed data.
 
 ## 2. High Level Design
 ![High Level Design](uml/xqa-documentation/high-level-design.jpg)
 
 ## 3. Key Features
 * Easy to deploy / extend:
-    * each Microservice runs in its own Docker container.
+    * each microservice runs in its own container.
     * end to end integration tests for [TravisCI](https://github.com/jameshnsears/xqa-perf/blob/master/.travis.yml) and [CircleCI](https://github.com/jameshnsears/xqa-documentation/blob/master/.circleci/config.yml) included.
-    * add extra BaseX engines easily - they self register.
-* Proven scalability & performance improvements - graphs in [xqa-perf](https://github.com/jameshnsears/xqa-perf) for:
+    * add extra BaseX engines easily - they self register against the AMQP message broker.
+* Proven scalability & performance improvements - graphs in [xqa-perf](https://github.com/jameshnsears/xqa-perf) show:
     * timing statistics.
     * XML file distribution.
 * Transparency:
@@ -21,9 +21,8 @@
 * High static analysis / test coverage:
     * [Coveralls](https://coveralls.io/)
     * [sonarcloud](https://sonarcloud.io/organizations/jameshnsears-github/projects)
-* Completely open-source.
 
-## 4. Interesting Technologies
+## 4. Open Source Technologies
 * [ActiveMQ 5.15.7](http://activemq.apache.org/)
 * [Angular](https://angular.io/)
 * Docker CE & Docker Compose:
@@ -58,7 +57,7 @@
 |  |  | [xqa-test-data](https://github.com/jameshnsears/xqa-test-data) |  | a collection of XML files used by XQA. |
 
 ## 5. Limitatons
-Currently, XQA is a proof of concept project. It achieves what it set out to prove, but should not be considered ready for production. Reasons for this include:
+XQA is a proof of concept project. It achieves what it set out to prove, but should not be considered ready for production. Reasons for this include:
 * BaseX instances are configured to store data in RAM.
 * there is minimal security between services. 
 

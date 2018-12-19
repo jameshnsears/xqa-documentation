@@ -19,7 +19,7 @@
     * container console logging.
     * JSON instrumentation sent to a central PostgreSQL instance.
 * High static analysis / test coverage:
-    * [Coveralls](https://coveralls.io/)
+    * [Coveralls](https://coveralls.io/github/jameshnsears/)
     * [Sonarcloud](https://sonarcloud.io/organizations/jameshnsears-github/projects)
     * [Codacy](https://app.codacy.com/)
 

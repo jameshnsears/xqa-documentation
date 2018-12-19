@@ -1,11 +1,10 @@
 rebuild all containers at jdk 10 level, so that work with xqa-perf
 
-https://scan.coverity.com/dashboard
-= as used by https://github.com/rh-messaging/cli-java
-
-write a java junit-docker-py utility?
+go through and tune xqa-perf paramaters + tidy up the readme
 
 enable log level from "command" param
+
+check my coverity results!
 
 sort out github tags so ubiform
 

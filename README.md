@@ -21,6 +21,8 @@
 * High static analysis / test coverage:
     * [Coveralls](https://coveralls.io/)
     * [sonarcloud](https://sonarcloud.io/organizations/jameshnsears-github/projects)
+    * [codacy](https://app.codacy.com/)
+    * [coverity](https://scan.coverity.com/)
 
 ## 4. Open Source Technologies
 * [ActiveMQ 5.15.7](http://activemq.apache.org/)

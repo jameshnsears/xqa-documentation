@@ -1,12 +1,24 @@
-rebuild all containers at jdk 10 level, so that work with xqa-perf
+work on junit-docker-http
+= sort out packagas in test folder
+= get it working standlone
+= then migrate across releavnt java projects
+
+create a radiator .md that shows all badges on one page
 
 go through and tune xqa-perf paramaters + tidy up the readme
 
-enable log level from "command" param
+xqa-ingest readme = uml link needs fixing
+
+enable log level from "command" param?
 
 check my coverity results!
 
-sort out github tags so ubiform
+do a travis for xqa-documeentation
+= build the containers from src (on cron) and push into docker hub
+
+sort out github tags so uniform
+
+sort out XQA-QUERY-UI
 
 move java projects away from requiring docker-compose
 
@@ -14,9 +26,13 @@ https://medium.com/criciumadev/its-time-migrating-to-java-11-5eb3868354f9
 
 problem is that xqa-ingest-balancer must be started after other processes started?
 
+fix brexit soundboard
+
+fix retired.xqa-shard-JMS
+
 --
 
-change secondaryTimeout value to 3s
+change secondaryTimeout value to 3s = tune the graphs!!
 = but also have a retry, in case we get:
 2018-05-18 07:29:05.882      WARN --- [    InserterThread-1]:               getSizeResponses, 103: 28277123-9f4d-4fc4-9508-a30f331fde0c: END: shardSizeResponses=0; subject=/xml/eapb_mon_14537E_007_002.xml
 2018-05-18 07:29:05.915      WARN --- [    InserterThread-0]:               getSizeResponses, 103: 910d1bdd-4523-4289-b825-32c23aa2918f: END: shardSizeResponses=0; subject=/xml/eapb_nwp_14599E_002_011_022.xml

@@ -420,18 +420,18 @@ jobs:
       - run: |
           set -x
           cd xqa-perf
-          docker-compose -p "prod" -f docker-compose.prod.yml up -d --scale xqa-shard=1
+          docker-compose -p "prod" -f docker-compose.yml up -d --scale xqa-shard=1
           docker images
           docker ps -a
 
       - run: |
           set -x
-          docker run -d --net="xqa" --name="prod_xqa-ingest" -v /home/circleci/project/xqa-test-data:/xml jameshnsears/xqa-ingest:latest -message_broker_host xqa-message-broker -path /xml
+          docker run -d --net="xqa" --name="xqa-ingest" -v /home/circleci/project/xqa-test-data:/xml jameshnsears/xqa-ingest:latest -message_broker_host xqa-message-broker -path /xml
 
       - run: sleep 180
-      - run: docker logs prod_xqa-ingest
-      - run: docker logs prod_xqa-shard
-      - run: docker logs prod_xqa-shard | grep "size=40"
+      - run: docker logs xqa-ingest
+      - run: docker logs xqa-shard
+      - run: docker logs xqa-shard | grep "size=40"
 
 ######################################################
 

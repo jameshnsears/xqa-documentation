@@ -1,0 +1,84 @@
+version: '3'
+
+services:
+  xqa-db:
+    image: jameshnsears/xqa-db:latest
+    container_name: xqa-db
+    volumes:
+      - "xqa-db:/var/lib/postgresql"
+    ports:
+      - "5432:5432"
+    networks:
+      - xqa
+
+  xqa-db-amqp:
+    image: jameshnsears/xqa-db-amqp:latest
+    container_name: xqa-db-amqp
+    command: ["-message_broker_host", "xqa-message-broker", "-storage_host", "xqa-db"]
+    networks:
+      - xqa
+    depends_on:
+      - xqa-db
+      - xqa-message-broker
+
+  xqa-ingest-balancer:
+    image: jameshnsears/xqa-ingest-balancer:latest
+    container_name: xqa-ingest-balancer
+    command: ["-message_broker_host", "xqa-message-broker", "-pool_size", "2", "-insert_thread_wait", "60000", "-insert_thread_secondary_wait", "1000"]
+    networks:
+      - xqa
+    depends_on:
+      - xqa-message-broker
+
+  xqa-message-broker:
+    image: jameshnsears/xqa-message-broker:latest
+    container_name: xqa-message-broker
+    ports:
+      - "1099:1099"
+      - "5672:5672"
+      - "8161:8161"
+      - "61616:61616"
+    volumes:
+      - "xqa-message-broker:/opt/apache-activemq-5.15.7/data"
+    networks:
+      - xqa
+
+  xqa-query-ui:
+    image: jameshnsears/xqa-query-ui:latest
+    container_name: xqa-query-ui
+    ports:
+      - "80:80"
+    networks:
+      - xqa
+    depends_on:
+      - xqa-query-balancer
+
+  xqa-query-balancer:
+    image: jameshnsears/xqa-query-balancer:latest
+    container_name: xqa-query-balancer
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    networks:
+      - xqa
+    depends_on:
+      - xqa-db
+      - xqa-message-broker
+
+  xqa-shard:
+    image: jameshnsears/xqa-shard:latest
+    container_name: xqa-shard
+    command: ["-message_broker_host", "xqa-message-broker"]
+    ports:
+      - 1984
+    networks:
+      - xqa
+    depends_on:
+      - xqa-message-broker
+
+volumes:
+  xqa-db:
+  xqa-message-broker:
+
+networks:
+  xqa:

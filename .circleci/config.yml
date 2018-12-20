@@ -419,8 +419,8 @@ jobs:
 
       - run: |
           set -x
-          cd xqa-perf
-          docker-compose -p "prod" -f docker-compose.yml up -d --scale xqa-shard=1
+          cd xqa-documentation
+          docker-compose -f docker-compose.yml up -d --scale xqa-shard=1
           docker images
           docker ps -a
 

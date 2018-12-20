@@ -3,8 +3,6 @@ work on junit-docker-http
 = get it working standlone
 = then migrate across releavnt java projects
 
-create a radiator .md that shows all badges on one page
-
 go through and tune xqa-perf paramaters + tidy up the readme
 
 xqa-ingest readme = uml link needs fixing

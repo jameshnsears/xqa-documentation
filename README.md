@@ -18,10 +18,7 @@
 * Transparency:
     * container console logging.
     * JSON instrumentation sent to a central PostgreSQL instance.
-* High static analysis / test coverage:
-    * [Coveralls](https://coveralls.io/github/jameshnsears/)
-    * [Sonarcloud](https://sonarcloud.io/organizations/jameshnsears-github/projects)
-    * [Codacy](https://app.codacy.com/)
+* [High static analysis / test coverage](QUALITY-RADIATOR.md).
 
 ## 4. Open Source Technologies
 * [ActiveMQ 5.15.7](http://activemq.apache.org/)
@@ -43,7 +40,7 @@
 ## 5. Microservices
 ![microservices](uml/xqa-documentation/microservices.jpg)
 
-| travis-ci.org | GitHub repo. | Lang. | Description |
+| travis-ci | GitHub repo. | Lang. | Description |
 | ------------- | ------------- | ------------- | ------------- |
 | [![Build Status](https://travis-ci.org/jameshnsears/xqa-commons-qpid-jms.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-commons-qpid-jms) | [xqa-commons-qpid-jms](https://github.com/jameshnsears/xqa-commons-qpid-jms) | Java | a Maven Central shared library. |
 | [![Build Status](https://travis-ci.org/jameshnsears/xqa-db.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-db) | [xqa-db](https://github.com/jameshnsears/xqa-db) | | PostgreSQL. |
@@ -51,10 +48,10 @@
 | [![Build Status](https://travis-ci.org/jameshnsears/xqa-ingest.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-ingest) | [xqa-ingest](https://github.com/jameshnsears/xqa-ingest) | Java | XML file loader. |
 | [![Build Status](https://travis-ci.org/jameshnsears/xqa-ingest-balancer.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-ingest-balancer) | [xqa-ingest-balancer](https://github.com/jameshnsears/xqa-ingest-balancer) | Java | distributes XML across XQA BaseX engine(s). |
 | [![Build Status](https://travis-ci.org/jameshnsears/xqa-message-broker.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-message-broker) | [xqa-message-broker](https://github.com/jameshnsears/xqa-message-broker) |  | ActiveMQ. |
-| [![Build Status](https://travis-ci.org/jameshnsears/xqa-shard.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-shard) | [xqa-shard](https://github.com/jameshnsears/xqa-shard) | Python | BaseX engine with AMQP interface. |
+| [![Build Status](https://travis-ci.org/jameshnsears/xqa-perf.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-perf) | [xqa-perf](https://github.com/jameshnsears/xqa-perf) | Python | end to end integration tests, with Matplotlib graphs. |
 | [![Build Status](https://travis-ci.org/jameshnsears/xqa-query-balancer.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-query-balancer) | [xqa-query-balancer](https://github.com/jameshnsears/xqa-query-balancer) | Java | REST API interface. |
 | [![Build Status](https://travis-ci.org/jameshnsears/xqa-query-ui.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-query-ui) | [xqa-query-ui](https://github.com/jameshnsears/xqa-query-ui) | Angular | UI for querying XQA. |
-| [![Build Status](https://travis-ci.org/jameshnsears/xqa-perf.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-perf) | [xqa-perf](https://github.com/jameshnsears/xqa-perf) | Python | end to end integration tests, with Matplotlib graphs. |
+| [![Build Status](https://travis-ci.org/jameshnsears/xqa-shard.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-shard) | [xqa-shard](https://github.com/jameshnsears/xqa-shard) | Python | BaseX engine with AMQP interface. |
 |  | [xqa-test-data](https://github.com/jameshnsears/xqa-test-data) |  | a collection of XML files used by XQA. |
 
 ## 5. Limitatons

@@ -1,3 +1,6 @@
+get everything to go green
+= circleci first!
+
 work on junit-docker-http
 = sort out packagas in test folder
 = get it working standlone
@@ -8,8 +11,6 @@ go through and tune xqa-perf paramaters + tidy up the readme
 xqa-ingest readme = uml link needs fixing
 
 enable log level from "command" param?
-
-check my coverity results!
 
 do a travis for xqa-documeentation
 = build the containers from src (on cron) and push into docker hub
@@ -27,6 +28,10 @@ problem is that xqa-ingest-balancer must be started after other processes starte
 fix brexit soundboard
 
 fix retired.xqa-shard-JMS
+
+in java projects rm modules that I do not need!?
+
+run on  k8s
 
 --
 

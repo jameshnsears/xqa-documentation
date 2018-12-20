@@ -51,7 +51,7 @@ jobs:
       - run: apt update
       - run: apt upgrade -y
       - run: apt remove cmake
-      - run: apt install -y git wget python3-pip python3-dev
+      - run: apt install -y git wget python3-pip python3-dev curl
       - run: apt install -y gcc cmake-curses-gui uuid-dev libssl-dev libsasl2-2 libsasl2-dev swig python-dev python3-dev ruby-dev libperl-dev
 
       - run: git clone https://github.com/jameshnsears/xqa-db-amqp.git
@@ -357,7 +357,7 @@ jobs:
       - run: apt update
       - run: apt upgrade -y
       - run: apt remove cmake
-      - run: apt install -y git wget python3-pip python3-dev
+      - run: apt install -y git wget python3-pip python3-dev curl
       - run: apt install -y gcc cmake-curses-gui uuid-dev libssl-dev libsasl2-2 libsasl2-dev swig python-dev python3-dev ruby-dev libperl-dev
 
       - run: git clone https://github.com/jameshnsears/xqa-shard.git

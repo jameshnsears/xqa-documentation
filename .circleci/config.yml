@@ -427,7 +427,7 @@ jobs:
 
       - run: |
           set -x
-          docker run -d --net="xqa-documentation_xqa" --name="xqa-ingest" -v /home/circleci/project/xqa-test-data:/xml jameshnsears/xqa-ingest:latest -message_broker_host xqa-message-broker -path /xml
+          docker run -d --net="xqadocumentation_xqa" --name="xqa-ingest" -v /home/circleci/project/xqa-test-data:/xml jameshnsears/xqa-ingest:latest -message_broker_host xqa-message-broker -path /xml
 
       - run: sleep 180
       - run: docker logs xqa-ingest

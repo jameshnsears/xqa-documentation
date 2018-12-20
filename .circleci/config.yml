@@ -421,12 +421,13 @@ jobs:
           set -x
           cd xqa-documentation
           docker-compose -f docker-compose.yml up -d --scale xqa-shard=1
+          docker network ls
           docker images
           docker ps -a
 
       - run: |
           set -x
-          docker run -d --net="xqa" --name="xqa-ingest" -v /home/circleci/project/xqa-test-data:/xml jameshnsears/xqa-ingest:latest -message_broker_host xqa-message-broker -path /xml
+          docker run -d --net="xqa-documentation_xqa" --name="xqa-ingest" -v /home/circleci/project/xqa-test-data:/xml jameshnsears/xqa-ingest:latest -message_broker_host xqa-message-broker -path /xml
 
       - run: sleep 180
       - run: docker logs xqa-ingest

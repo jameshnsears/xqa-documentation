@@ -6,6 +6,10 @@ work on junit-docker-http
 = get it working standlone
 = then migrate across releavnt java projects
 
+graphs for xquery request / respones
+
+re-run all the graphs - as some of the msi ones are wrong.
+
 go through and tune xqa-perf paramaters + tidy up the readme
 
 xqa-ingest readme = uml link needs fixing

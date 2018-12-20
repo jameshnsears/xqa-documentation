@@ -414,7 +414,7 @@ jobs:
 
       - run: |
           sudo apt install -y git
-          git clone https://github.com/jameshnsears/xqa-perf
+          git clone https://github.com/jameshnsears/xqa-documentation
           git clone https://github.com/jameshnsears/xqa-test-data
 
       - run: |

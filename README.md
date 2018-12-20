@@ -13,7 +13,7 @@
     * end to end integration tests for [TravisCI](https://github.com/jameshnsears/xqa-perf/blob/master/.travis.yml) and [CircleCI](https://github.com/jameshnsears/xqa-documentation/blob/master/.circleci/config.yml) included.
     * add extra BaseX engines easily - they self register against the AMQP message broker.
 * Proven scalability & performance improvements - graphs in [xqa-perf](https://github.com/jameshnsears/xqa-perf) show:
-    * timing statistics.
+    * ingest timing statistics.
     * XML file distribution.
 * Transparency:
     * container console logging.

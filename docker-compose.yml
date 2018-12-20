@@ -14,7 +14,7 @@ services:
   xqa-db-amqp:
     image: jameshnsears/xqa-db-amqp:latest
     container_name: xqa-db-amqp
-    command: ["-message_broker_host", "xqa-message-broker", "-storage_host", "xqa-db"]
+    command: ['-message_broker_host', 'xqa-message-broker', '-storage_host', 'xqa-db', '-storage_port', '5432']
     networks:
       - xqa
     depends_on:
@@ -47,7 +47,7 @@ services:
     image: jameshnsears/xqa-query-ui:latest
     container_name: xqa-query-ui
     ports:
-      - "80:80"
+      - "8888:80"
     networks:
       - xqa
     depends_on:
@@ -57,8 +57,8 @@ services:
     image: jameshnsears/xqa-query-balancer:latest
     container_name: xqa-query-balancer
     ports:
-      - "8080:8080"
-      - "8081:8081"
+      - "9090:8080"
+      - "9091:8081"
     networks:
       - xqa
     depends_on:

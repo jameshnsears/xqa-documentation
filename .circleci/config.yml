@@ -1,6 +1,6 @@
-#
-# 1. on ubuntu:bionic container(s) build xqa images & then publish to docker-hub.
-# 2. in vm: use published docker-hub images to build containers to test single shard end to end integration.
+0#
+# 1. on ubuntu:bionic containers build xqa images & then publish to docker-hub.
+# 2. in vm: use published docker-hub images to test single shard end to end integration.
 #
 
 version: 2
@@ -10,15 +10,15 @@ jobs:
     docker:
       - image: ubuntu:bionic
     steps:
-      - run: apt-get update
+      - run: apt update
       - run: apt upgrade -y
-      - run: apt-get install -y git curl
+      - run: apt install -y git curl
 
       - run: git clone https://github.com/jameshnsears/xqa-db.git
 
       - run: |
           set -x
-          curl -L https://github.com/docker/compose/releases/download/1.17.1/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
+          curl -L https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
           chmod +x /usr/bin/docker-compose
 
       - setup_remote_docker
@@ -26,7 +26,7 @@ jobs:
       - run:
           command: |
             set -x
-            VER="17.03.0-ce"
+            VER="18.06.1-ce"
             curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$VER.tgz
             tar -xz -C /tmp -f /tmp/docker-$VER.tgz
             mv /tmp/docker/* /usr/bin
@@ -48,24 +48,10 @@ jobs:
     docker:
       - image: ubuntu:bionic
     steps:
-      - run: apt-get update
+      - run: apt update
       - run: apt upgrade -y
-      - run: apt-get remove cmake
-      - run: apt-get install -y git wget curl
-
-      # python 3.6.5
-      - run: |
-          set -x
-          apt install -y libssl-dev zlib1g-dev libncurses5-dev libncursesw5-dev libreadline-dev libsqlite3-dev libgdbm-dev libdb5.3-dev libbz2-dev libexpat1-dev liblzma-dev tk-dev
-          XQA_PY=3.6.5
-          wget --no-check-certificate https://www.python.org/ftp/python/$XQA_PY/Python-$XQA_PY.tar.xz && tar xf Python-$XQA_PY.tar.xz && rm Python-$XQA_PY.tar.xz
-          mkdir -p /usr/local/bin/Python-$XQA_PY
-          cd Python-$XQA_PY
-          ./configure --prefix=/usr/local/bin/Python-$XQA_PY
-          make -j4 install
-          PATH=/usr/local/bin/Python-$XQA_PY/bin:$PATH pip3 install --upgrade pip
-
-      # requirements.txt
+      - run: apt remove cmake
+      - run: apt install -y git wget python3-pip python3-dev
       - run: apt install -y gcc cmake-curses-gui uuid-dev libssl-dev libsasl2-2 libsasl2-dev swig python-dev python3-dev ruby-dev libperl-dev
 
       - run: git clone https://github.com/jameshnsears/xqa-db-amqp.git
@@ -75,7 +61,7 @@ jobs:
 
       - run: |
           set -x
-          curl -L https://github.com/docker/compose/releases/download/1.17.1/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
+          curl -L https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
           chmod +x /usr/bin/docker-compose
 
       - setup_remote_docker
@@ -95,7 +81,7 @@ jobs:
       - run:
           command: |
             set -x
-            VER="17.03.0-ce"
+            VER="18.06.1-ce"
             curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$VER.tgz
             tar -xz -C /tmp -f /tmp/docker-$VER.tgz
             mv /tmp/docker/* /usr/bin
@@ -117,10 +103,9 @@ jobs:
     docker:
       - image: ubuntu:bionic
     steps:
-      - run: apt-get update
+      - run: apt update
       - run: apt upgrade -y
-      - run: apt-get install -y openjdk-11-jre git curl
-      - run: curl http://mirror.ox.ac.uk/sites/rsync.apache.org/maven/maven-3/3.5.3/binaries/apache-maven-3.5.3-bin.tar.gz | tar xz
+      - run: apt install -y openjdk-11-jre git curl maven
 
       - run: git clone https://github.com/jameshnsears/xqa-ingest.git
 
@@ -129,28 +114,14 @@ jobs:
 
       - run: |
           set -x
-          curl -L https://github.com/docker/compose/releases/download/1.17.1/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
+          curl -L https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
           chmod +x /usr/bin/docker-compose
 
       - setup_remote_docker
 
-# Unable to use mvn as this container can't talk to xqa-message-broker, as it's running on the "remote" machine!
-#
-#      - run: |
-#          cd xqa-ingest
-#          docker-compose up -d xqa-message-broker
-#
-#      - run:
-#          command: |
-#            export PATH=/root/project/apache-maven-3.5.3/bin:$PATH
-#            cd xqa-ingest
-#            mvn clean compile test
-#            mvn jacoco:report coveralls:report
-
       - run:
           command: |
             set -x
-            export PATH=/root/project/apache-maven-3.5.3/bin:$PATH
             cd xqa-ingest
             mvn package -DskipTests
 
@@ -162,7 +133,7 @@ jobs:
       - run:
           command: |
             set -x
-            VER="17.03.0-ce"
+            VER="18.06.1-ce"
             curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$VER.tgz
             tar -xz -C /tmp -f /tmp/docker-$VER.tgz
             mv /tmp/docker/* /usr/bin
@@ -184,10 +155,9 @@ jobs:
     docker:
       - image: ubuntu:bionic
     steps:
-      - run: apt-get update
+      - run: apt update
       - run: apt upgrade -y
-      - run: apt-get install -y openjdk-11-jre git curl
-      - run: curl http://mirror.ox.ac.uk/sites/rsync.apache.org/maven/maven-3/3.5.3/binaries/apache-maven-3.5.3-bin.tar.gz | tar xz
+      - run: apt install -y openjdk-11-jre git curl maven
 
       - run: git clone https://github.com/jameshnsears/xqa-ingest-balancer.git
 
@@ -196,7 +166,7 @@ jobs:
 
       - run: |
           set -x
-          curl -L https://github.com/docker/compose/releases/download/1.17.1/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
+          curl -L https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
           chmod +x /usr/bin/docker-compose
 
       - setup_remote_docker
@@ -204,7 +174,6 @@ jobs:
       - run:
           command: |
             set -x
-            export PATH=/root/project/apache-maven-3.5.3/bin:$PATH
             cd xqa-ingest-balancer
             mvn package -DskipTests
 
@@ -216,7 +185,7 @@ jobs:
       - run:
           command: |
             set -x
-            VER="17.03.0-ce"
+            VER="18.06.1-ce"
             curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$VER.tgz
             tar -xz -C /tmp -f /tmp/docker-$VER.tgz
             mv /tmp/docker/* /usr/bin
@@ -238,15 +207,15 @@ jobs:
     docker:
       - image: ubuntu:bionic
     steps:
-      - run: apt-get update
+      - run: apt update
       - run: apt upgrade -y
-      - run: apt-get install -y git curl
+      - run: apt install -y git curl
 
       - run: git clone https://github.com/jameshnsears/xqa-message-broker.git
 
       - run: |
           set -x
-          curl -L https://github.com/docker/compose/releases/download/1.17.1/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
+          curl -L https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
           chmod +x /usr/bin/docker-compose
 
       - setup_remote_docker
@@ -254,7 +223,7 @@ jobs:
       - run:
           command: |
             set -x
-            VER="17.03.0-ce"
+            VER="18.06.1-ce"
             curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$VER.tgz
             tar -xz -C /tmp -f /tmp/docker-$VER.tgz
             mv /tmp/docker/* /usr/bin
@@ -276,10 +245,9 @@ jobs:
     docker:
       - image: ubuntu:bionic
     steps:
-      - run: apt-get update
+      - run: apt update
       - run: apt upgrade -y
-      - run: apt-get install -y openjdk-11-jre git curl
-      - run: curl http://mirror.ox.ac.uk/sites/rsync.apache.org/maven/maven-3/3.5.3/binaries/apache-maven-3.5.3-bin.tar.gz | tar xz
+      - run: apt install -y openjdk-11-jre git curl maven
 
       - run: git clone https://github.com/jameshnsears/xqa-query-balancer.git
 
@@ -288,7 +256,7 @@ jobs:
 
       - run: |
           set -x
-          curl -L https://github.com/docker/compose/releases/download/1.17.1/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
+          curl -L https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
           chmod +x /usr/bin/docker-compose
 
       - setup_remote_docker
@@ -296,7 +264,6 @@ jobs:
       - run:
           command: |
             set -x
-            export PATH=/root/project/apache-maven-3.5.3/bin:$PATH
             cd xqa-query-balancer
             mvn package -DskipTests
 
@@ -308,7 +275,7 @@ jobs:
       - run:
           command: |
             set -x
-            VER="17.03.0-ce"
+            VER="18.06.1-ce"
             curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$VER.tgz
             tar -xz -C /tmp -f /tmp/docker-$VER.tgz
             mv /tmp/docker/* /usr/bin
@@ -330,9 +297,9 @@ jobs:
     docker:
       - image: ubuntu:bionic
     steps:
-      - run: apt-get update
+      - run: apt update
       - run: apt upgrade -y
-        run: apt-get install -y git wget curl xz-utils sudo
+        run: apt install -y git wget curl xz-utils sudo
 
       - run: |
           set -x
@@ -344,7 +311,7 @@ jobs:
 
       - run: |
           set -x
-          curl -L https://github.com/docker/compose/releases/download/1.17.1/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
+          curl -L https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
           chmod +x /usr/bin/docker-compose
 
       - setup_remote_docker
@@ -352,7 +319,7 @@ jobs:
       - run:
           command: |
             set -x
-            VER="17.03.0-ce"
+            VER="18.06.1-ce"
             curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$VER.tgz
             tar -xz -C /tmp -f /tmp/docker-$VER.tgz
             mv /tmp/docker/* /usr/bin
@@ -387,24 +354,10 @@ jobs:
     docker:
       - image: ubuntu:bionic
     steps:
-      - run: apt-get update
+      - run: apt update
       - run: apt upgrade -y
-      - run: apt-get remove cmake
-      - run: apt-get install -y git wget curl
-
-      # python 3.6.5
-      - run: |
-          set -x
-          apt install -y libssl-dev zlib1g-dev libncurses5-dev libncursesw5-dev libreadline-dev libsqlite3-dev libgdbm-dev libdb5.3-dev libbz2-dev libexpat1-dev liblzma-dev tk-dev
-          XQA_PY=3.6.5
-          wget --no-check-certificate https://www.python.org/ftp/python/$XQA_PY/Python-$XQA_PY.tar.xz && tar xf Python-$XQA_PY.tar.xz && rm Python-$XQA_PY.tar.xz
-          mkdir -p /usr/local/bin/Python-$XQA_PY
-          cd Python-$XQA_PY
-          ./configure --prefix=/usr/local/bin/Python-$XQA_PY
-          make -j4 install
-          PATH=/usr/local/bin/Python-$XQA_PY/bin:$PATH pip3 install --upgrade pip
-
-      # requirements.txt
+      - run: apt remove cmake
+      - run: apt install -y git wget python3-pip python3-dev
       - run: apt install -y gcc cmake-curses-gui uuid-dev libssl-dev libsasl2-2 libsasl2-dev swig python-dev python3-dev ruby-dev libperl-dev
 
       - run: git clone https://github.com/jameshnsears/xqa-shard.git
@@ -414,7 +367,7 @@ jobs:
 
       - run: |
           set -x
-          curl -L https://github.com/docker/compose/releases/download/1.17.1/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
+          curl -L https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
           chmod +x /usr/bin/docker-compose
 
       - setup_remote_docker
@@ -434,7 +387,7 @@ jobs:
       - run:
           command: |
             set -x
-            VER="17.03.0-ce"
+            VER="18.06.1-ce"
             curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$VER.tgz
             tar -xz -C /tmp -f /tmp/docker-$VER.tgz
             mv /tmp/docker/* /usr/bin
@@ -473,15 +426,12 @@ jobs:
 
       - run: |
           set -x
-          docker run -d --net="prod_xqa" --name="prod_xqa-ingest_1" -v /home/circleci/project/xqa-test-data:/xml jameshnsears/xqa-ingest:latest -message_broker_host xqa-message-broker -path /xml
+          docker run -d --net="xqa" --name="prod_xqa-ingest" -v /home/circleci/project/xqa-test-data:/xml jameshnsears/xqa-ingest:latest -message_broker_host xqa-message-broker -path /xml
 
       - run: sleep 180
-
-      - run: docker logs prod_xqa-ingest_1
-
-      - run: docker logs prod_xqa-shard_1
-
-      - run: docker logs prod_xqa-shard_1 | grep "size=40"
+      - run: docker logs prod_xqa-ingest
+      - run: docker logs prod_xqa-shard
+      - run: docker logs prod_xqa-shard | grep "size=40"
 
 ######################################################
 

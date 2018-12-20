@@ -1,4 +1,4 @@
-0#
+#
 # 1. on ubuntu:bionic containers build xqa images & then publish to docker-hub.
 # 2. in vm: use published docker-hub images to test single shard end to end integration.
 #

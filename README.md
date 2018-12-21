@@ -1,8 +1,8 @@
 # XQA - XML Quality Assurance [![CircleCI](https://circleci.com/gh/jameshnsears/xqa-documentation.svg?style=svg)](https://circleci.com/gh/jameshnsears/xqa-documentation)
 ## 1. Introduction
 * XQA is a suite of Docker based microservices that improves the scalability of [BaseX](http://basex.org/) - an XML database engine.
-* Instead of loading XML files into a single BaseX engine, XQA distributes them - via an AMQP message broker - across multiple BaseX engines (one XML file per engine).
-* XQA ships with a simple UI, and REST API, that lets you eaily run XQuery against the distributed data.
+* Instead of loading each XML file into a single BaseX engine, XQA distributes them - via an AMQP message broker - across multiple BaseX engines.
+* XQA ships with a simple UI that lets you easily run XQuery against the distributed data.
 
 ## 2. High Level Design
 ![High Level Design](uml/xqa-documentation/high-level-design.jpg)
@@ -10,31 +10,23 @@
 ## 3. Key Features
 * Easy to deploy / extend:
     * each microservice runs in its own container.
-    * end to end integration tests for [TravisCI](https://github.com/jameshnsears/xqa-perf/blob/master/.travis.yml) and [CircleCI](https://github.com/jameshnsears/xqa-documentation/blob/master/.circleci/config.yml) included.
     * add extra BaseX engines easily - they self register against the AMQP message broker.
+    * end to end integration tests for [TravisCI](https://github.com/jameshnsears/xqa-perf/blob/master/.travis.yml) and [CircleCI](https://github.com/jameshnsears/xqa-documentation/blob/master/.circleci/config.yml) included.
 * Proven scalability & performance improvements - graphs in [xqa-perf](https://github.com/jameshnsears/xqa-perf) show:
     * ingest timing statistics.
     * XML file distribution.
 * Transparency:
     * container console logging.
-    * JSON instrumentation sent to a central PostgreSQL instance.
-* [High static analysis / test coverage](QUALITY-RADIATOR.md).
+    * JSON instrumentation sent to a central PstgreSQL instance.
+* [Continious Integration; extensive static analysis & test coverage](QUALITY-RADIATOR.md).
 
 ## 4. Open Source Technologies
 * [ActiveMQ 5.15.7](http://activemq.apache.org/)
 * [Angular](https://angular.io/)
-* Docker CE & Docker Compose:
-    * containers can be build from GitHub or pull'd from [hub.docker.com](https://hub.docker.com/)
-* Java 10:
-    * [OkHttp](http://square.github.io/okhttp/)
-    * [Dropwizard](http://www.dropwizard.io/)
-    * [Qpid JMS](https://qpid.apache.org/components/jms/index.html)
+* Docker - containers can be build from GitHub or pull'd from [hub.docker.com](https://hub.docker.com/).
+* Java 10
 * PostgreSQL 11
-* Python 3.6:
-    * [pytest](https://docs.pytest.org/en/latest/)
-    * [lxml](https://lxml.de/)
-    * [Matplotlib](https://matplotlib.org/)
-    * [Qpid Proton](https://qpid.apache.org/proton/)
+* Python 3.6
 * Ubuntu 18.04
 
 ## 5. Microservices

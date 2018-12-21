@@ -1,6 +1,10 @@
-get everything to go green
-= circleci first!
+work on junit-docker-http
+= sort out packagas in test folder
+= get it working standlone
+= then migrate across releavnt java projec
 
+make sure python projects are using latest requirements values
++ that all python projects using pytest-docker-py
 
 in xqa-ingest-broker, when it fails and goes back to the original queue - make sure that subject kept!
 = write a test for this
@@ -46,10 +50,7 @@ TypeError: must be str, not NoneType
 
 
 
-work on junit-docker-http
-= sort out packagas in test folder
-= get it working standlone
-= then migrate across releavnt java projects
+
 
 graphs for xquery request / respones
 

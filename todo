@@ -3,6 +3,7 @@ get everything to go green
 
 
 in xqa-ingest-broker, when it fails and goes back to the original queue - make sure that subject kept!
+= write a test for this
 2018-12-21 10:58:29,960.960      INFO --- [    1]        storage_service.py:                   storage_add,  89: size=39; memory_percent=0.968852
 2018-12-21 10:58:30,825.825      INFO --- [    1]                  shard.py:                       _insert, 104: > creation_time=1545389910.822; correlation_id=43b0a64f-4b8a-4749-aa11-51106160b652; address=queue://xqa.shard.insert.d7338732; reply_to=None; subject=None; digest(body)=701ddaf8543f528e8ddc86cedfb09f7c09299a7e2c5edd10fb220bfb004e538e
 2018-12-21 10:58:30,827.827     DEBUG --- [    1]        storage_service.py:                   storage_add,  85: START

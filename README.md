@@ -11,14 +11,13 @@
 * Easy to deploy / extend:
     * each microservice runs in its own container.
     * add extra BaseX engines easily - they self register against the AMQP message broker.
-    * end to end integration tests for [TravisCI](https://github.com/jameshnsears/xqa-perf/blob/master/.travis.yml) and [CircleCI](https://github.com/jameshnsears/xqa-documentation/blob/master/.circleci/config.yml) included.
 * Proven scalability & performance improvements - graphs in [xqa-perf](https://github.com/jameshnsears/xqa-perf) show:
     * ingest timing statistics.
     * XML file distribution.
 * Transparency:
     * container console logging.
     * JSON instrumentation sent to a central PstgreSQL instance.
-* [Continious Integration; extensive static analysis & test coverage](QUALITY-RADIATOR.md).
+* Visible [Continious Integration; extensive static analysis & high test coverage](QUALITY-RADIATOR.md).
 
 ## 4. Open Source Technologies
 * [ActiveMQ 5.15.7](http://activemq.apache.org/)

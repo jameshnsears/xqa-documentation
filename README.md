@@ -17,7 +17,7 @@
 * Transparency:
     * container console logging.
     * JSON instrumentation sent to a central PstgreSQL instance.
-* Visible [Continious Integration; extensive static analysis & high test coverage](QUALITY-RADIATOR.md).
+* [Continious Integration; extensive static analysis & high test coverage](QUALITY-RADIATOR.md).
 
 ## 4. Open Source Technologies
 * [ActiveMQ 5.15.7](http://activemq.apache.org/)
@@ -43,7 +43,7 @@
 | [![Build Status](https://travis-ci.org/jameshnsears/xqa-query-balancer.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-query-balancer) | [xqa-query-balancer](https://github.com/jameshnsears/xqa-query-balancer) | REST API interface. |
 | [![Build Status](https://travis-ci.org/jameshnsears/xqa-query-ui.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-query-ui) | [xqa-query-ui](https://github.com/jameshnsears/xqa-query-ui) | UI for querying XQA. |
 | [![Build Status](https://travis-ci.org/jameshnsears/xqa-shard.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-shard) | [xqa-shard](https://github.com/jameshnsears/xqa-shard) | BaseX engine with AMQP interface. |
-|  | [xqa-test-data](https://github.com/jameshnsears/xqa-test-data) | a collection of XML files used by XQA. |
+| | [xqa-test-data](https://github.com/jameshnsears/xqa-test-data) | a collection of XML files used by XQA. |
 
 ## 5. Limitatons
 XQA is a proof of concept project. It achieves what it set out to prove, but should not be considered ready for production. Reasons for this include:

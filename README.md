@@ -17,7 +17,7 @@
 * Transparency:
     * container console logging.
     * JSON instrumentation sent to a central PstgreSQL instance.
-* [Continious Integration; extensive static analysis & high test coverage](QUALITY-RADIATOR.md).
+* [Continuous Integration; extensive static analysis & high test coverage](QUALITY-RADIATOR.md).
 
 ## 4. Open Source Technologies
 * [ActiveMQ 5.15.7](http://activemq.apache.org/)

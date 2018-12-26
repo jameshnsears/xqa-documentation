@@ -1,7 +1,5 @@
-work on junit-docker-http
-= sort out packagas in test folder
-= get it working standlone
-= then migrate across releavnt java project
+migrate junit-docker-http aross releavnt java project
+= except for xqa-query-balancer
 
 improve coverage
 

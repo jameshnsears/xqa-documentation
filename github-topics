@@ -7,7 +7,7 @@ dropwizard
 gson
 java
 json
-junit-extension
+junit
 matplotlib
 okhttp
 postgresql
@@ -15,5 +15,4 @@ primeng
 qpid-jms
 qpid-proton
 rest
-unix-socker
 xml

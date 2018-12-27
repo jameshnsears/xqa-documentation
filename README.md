@@ -20,9 +20,9 @@
 * [Continuous Integration; extensive static analysis & high test coverage](QUALITY-RADIATOR.md).
 
 ## 4. Open Source Technologies
-* [ActiveMQ 5.15.7](http://activemq.apache.org/)
-* [Angular](https://angular.io/)
-* Docker - containers can be build from GitHub or pull'd from [hub.docker.com](https://hub.docker.com/).
+* ActiveMQ
+* Angular
+* Docker - containers can be built from GitHub or pull'd from [hub.docker.com](https://hub.docker.com/).
 * Java 10
 * PostgreSQL 11
 * Python 3.6

@@ -38,7 +38,7 @@ sudo apt install git openjdk-11-jdk python3-dev python3-pip python3-distutils py
 sudo gem install travis
 ```
 
-## 4. Build XQA Containers
+## 4. Build Containers from source
 ```
 cd 
 
@@ -47,7 +47,7 @@ git clone https://github.com/jameshnsears/xqa-perf
 xqa-perf/bin/build-images.sh
 ```
 
-### 4.1. End 2 End Test
+### 4.1. End 2 End Test of Containers
 ```
 git clone https://github.com/jameshnsears/xqa-test-data
 
@@ -65,7 +65,7 @@ sleep 180
 docker logs xqa-shard | grep "size=40"
 ```
 
-## 6. socat
+## 5. socat
 ```
 sudo mv /var/run/docker.sock /var/run/hidden.socket
 

@@ -1,64 +1,20 @@
+xqa-ingest readme 
+= uml link needs fixing
+= fix other uml
+
 migrate junit-docker-http aross releavnt java project
 = except for xqa-query-balancer
 
-improve coverage
-
-make sure python projects are using latest requirements values
-+ that all python projects using pytest-docker-py
-
-in xqa-ingest-broker, when it fails and goes back to the original queue - make sure that subject kept!
-= write a test for this
-2018-12-21 10:58:29,960.960      INFO --- [    1]        storage_service.py:                   storage_add,  89: size=39; memory_percent=0.968852
-2018-12-21 10:58:30,825.825      INFO --- [    1]                  shard.py:                       _insert, 104: > creation_time=1545389910.822; correlation_id=43b0a64f-4b8a-4749-aa11-51106160b652; address=queue://xqa.shard.insert.d7338732; reply_to=None; subject=None; digest(body)=701ddaf8543f528e8ddc86cedfb09f7c09299a7e2c5edd10fb220bfb004e538e
-2018-12-21 10:58:30,827.827     DEBUG --- [    1]        storage_service.py:                   storage_add,  85: START
-Traceback (most recent call last):
-  File "xqa/shard.py", line 187, in <module>
-    Container(Shard()).run()
-  File "/opt/xqa-shard/.local/lib/python3.6/site-packages/proton/_reactor.py", line 180, in run
-    while self.process(): pass
-  File "/opt/xqa-shard/.local/lib/python3.6/site-packages/proton/_reactor.py", line 206, in process
-    self._check_errors()
-  File "/opt/xqa-shard/.local/lib/python3.6/site-packages/proton/_reactor.py", line 202, in _check_errors
-    _compat.raise_(exc, value, tb)
-  File "/opt/xqa-shard/.local/lib/python3.6/site-packages/proton/_compat.py", line 50, in raise_
-    raise v.with_traceback(tb)
-  File "/opt/xqa-shard/.local/lib/python3.6/site-packages/proton/_reactor_impl.py", line 133, in dispatch
-    ev.dispatch(self.handler)
-  File "/opt/xqa-shard/.local/lib/python3.6/site-packages/proton/_events.py", line 254, in dispatch
-    self.dispatch(h, type)
-  File "/opt/xqa-shard/.local/lib/python3.6/site-packages/proton/_events.py", line 251, in dispatch
-    result = _dispatch(handler, type.method, self)
-  File "/opt/xqa-shard/.local/lib/python3.6/site-packages/proton/_events.py", line 113, in _dispatch
-    return m(*args)
-  File "/opt/xqa-shard/.local/lib/python3.6/site-packages/proton/_handlers.py", line 187, in on_delivery
-    self.on_message(event)
-  File "/opt/xqa-shard/.local/lib/python3.6/site-packages/proton/_handlers.py", line 209, in on_message
-    _dispatch(self.delegate, 'on_message', event)
-  File "/opt/xqa-shard/.local/lib/python3.6/site-packages/proton/_events.py", line 113, in _dispatch
-    return m(*args)
-  File "xqa/shard.py", line 61, in on_message
-    self._insert(event)
-  File "xqa/shard.py", line 113, in _insert
-    self._storage_service.storage_add(event.message.body.decode('utf-8'), event.message.subject)
-  File "/opt/xqa-shard/xqa/storage/storage_service.py", line 86, in storage_add
-    self._session.add(subject, xml)
-  File "/opt/xqa-shard/org/basex/examples/api/BaseXClient.py", line 161, in add
-    self.__send_input(9, path, content)
-  File "/opt/xqa-shard/org/basex/examples/api/BaseXClient.py", line 197, in __send_input
-    self.__swrapper.sendall(chr(code) + arg + chr(0) + content + chr(0))
-TypeError: must be str, not NoneType
-
-
-
-
+get xqa-query-ui and then xqa-query-balancer working then
+make sure they are built OK and running in BUILD-PREREQUISITES.md
++
+improve coverage in xqa-query-*
 
 graphs for xquery request / respones
 
 re-run all the graphs - as some of the msi ones are wrong.
 
 go through and tune xqa-perf paramaters + tidy up the readme
-
-xqa-ingest readme = uml link needs fixing
 
 enable log level from "command" param?
 
@@ -69,17 +25,11 @@ sort out github tags so uniform
 
 sort out XQA-QUERY-UI
 
-move java projects away from requiring docker-compose
-
 https://medium.com/criciumadev/its-time-migrating-to-java-11-5eb3868354f9
 
 problem is that xqa-ingest-balancer must be started after other processes started?
 
-fix brexit soundboard
-
 fix retired.xqa-shard-JMS
-
-in java projects rm modules that I do not need!?
 
 run on  k8s
 
@@ -95,30 +45,9 @@ eventually rm fron any repo the dependency on having a running xqa-message-broke
 
 --
 
-defect...
-2018-05-10 15:04:19,998      INFO --- [          MainThread]:            save_e2e_stats, 100: pool_size=5, shards=7; ingest_count=40; ingest_size=80056356; time_ingest=25; time_ingest_balancer=30; time_shard=12839
-2018-05-10 15:04:19,999      INFO --- [          MainThread]:                  make_png,  84: /home/jsears/GIT_REPOS/xqa-perf/test_results/5_7.png
-2018-05-10 15:04:19,999      INFO --- [          MainThread]:                  make_png,  99: (5, 1, 40, 80056356, 18, 52, 73)
-2018-05-10 15:04:19,999      INFO --- [          MainThread]:                  make_png,  99: (5, 2, 40, 80056356, 26, 44, 70)
-2018-05-10 15:04:19,999      INFO --- [          MainThread]:                  make_png,  99: (5, 3, 40, 80056356, 28, 38, 66)
-2018-05-10 15:04:19,999      INFO --- [          MainThread]:                  make_png,  99: (5, 4, 40, 80056356, 24, 30, 60)
-2018-05-10 15:04:19,999      INFO --- [          MainThread]:                  make_png,  99: (5, 5, 40, 80056356, 25, 30, 58)
-2018-05-10 15:04:20,000      INFO --- [          MainThread]:                  make_png,  99: (5, 6, 40, 80056356, 25, 30, 58)
-2018-05-10 15:04:20,000      INFO --- [          MainThread]:                  make_png,  99: (5, 7, 40, 80056356, 25, 30, 12839)
-
---
-
-make sure BUILD-PREREQUISTES works in VM
 = xqa-query-ui
 = do I need to do all of :sudo apt install git openjdk-11-jre python3-dev python3-pip python3-distutils maven nodejs npm ????
-= test it 100% from start to finish
 
 in build script I get lots of "mkdir cannot create dir '/tmp/xqa': File exists'"
-
-update circle ci files with correct software
-
-in xqa-perf change # of cores 
-- from logical to physical
-= say running notively Ubuntu 18.04 with SSD
 
 make sure no contianer_name_1 _1's around!

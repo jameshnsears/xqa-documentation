@@ -17,65 +17,50 @@ This document lists the tools, and installation commands, used to build & test t
 ## 2. Docker CE & Docker Compose
 ```
 sudo su -
+
 apt update
+
 apt install docker.io docker-compose curl wget
-usermod -aG docker xqa  # assuming xqa is user that installed Ubuntu
+
+usermod -aG docker jsears # devloper account
+
 systemctl start docker
+
 systemctl enable docker
+
 shutdown -r now
 ```
 
-## 3. git; Java; Python; Maven; Node
-TODO - check ALL these things in this file on clean vm
-
+## 3. git; Java; Python; Maven; Node; etc... 
 ```
 sudo apt install git openjdk-11-jdk python3-dev python3-pip python3-distutils python3-tk maven nodejs npm postgresql-client ruby ruby-dev socat
 
 sudo gem install travis
-
-npm install remark-lint
 ```
 
 ## 4. Build XQA Containers
 ```
-XQA_GIT_REPOS=$HOME/GIT_REPOS
-mkdir -p $XQA_GIT_REPOS
-cd $XQA_GIT_REPOS
+cd 
 
 git clone https://github.com/jameshnsears/xqa-perf
-cd $XQA_GIT_REPOS/xqa-perf/bin
-./build.sh &> build.log &
-tail -f build.log
+
+xqa-perf/bin/build-images.sh
 ```
 
-Indicative output after build completed:
+### 4.1. End 2 End Test
 ```
-docker images
-
-```
-
-## 4.Unit Test 
-```
-export DEVPATH=$HOME/xqa/GIT_REPOS
-export PYTHONPATH=$DEVPATH/xqa-perf/src:$DEVPATH/xqa-perf/test:$PYTHONPATH
-export PATH=$DEVPATH/xqa-perf/bin:$PATH
-cd $DEVPATH/xqa-perf
-
-pip3 install -r requirements.txt
-
-XQA_TEST_DATA=$XQA_GIT_REPOS/xqa-test-data pytest -s
-```
-
-## 5. Integration Test
-```
-export XQA_GIT_REPOS=$HOME/xqa/GIT_REPOS
-cd $XQA_GIT_REPOS
 git clone https://github.com/jameshnsears/xqa-test-data
 
-cd $XQA_GIT_REPOS/xqa-perf/bin
-SHARDS=1 XQA_TEST_DATA=$XQA_GIT_REPOS/xqa-test-data ./e2e.sh
+git clone https://github.com/jameshnsears/xqa-documentation
 
-# wait / docker logs <xqa-ingest | xqa-shard>
+sed -i 's/jameshnsears\///g' xqa-documentation/docker-compose.yml
+
+docker-compose -f xqa-documentation/docker-compose.yml up -d --scale xqa-shard=1
+
+docker run -d --net="xqadocumentation_xqa" --name="xqa-ingest" -v ~/xqa-test-data:/xml xqa-ingest:latest 
+-message_broker_host xqa-message-broker -path /xml
+
+sleep 180
 
 docker logs xqa-shard | grep "size=40"
 ```

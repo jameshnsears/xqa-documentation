@@ -1,18 +1,22 @@
-xqa-ingest readme 
-= uml link needs fixing
-= fix other uml
+prune issues in xqa-documentation
 
-migrate junit-docker-http aross releavnt java project
-= except for xqa-query-balancer
+make sure xqa-query-ui and xqa-query-balancer documentation / nedpoints all aligned
 
 get xqa-query-ui and then xqa-query-balancer working then
 make sure they are built OK and running in BUILD-PREREQUISITES.md
 +
 improve coverage in xqa-query-*
 
-graphs for xquery request / respones
+= xqa-query-ui
+= do I need to do all of :sudo apt install git openjdk-11-jre python3-dev python3-pip python3-distutils maven nodejs npm ????
++
+in build script I get lots of "mkdir cannot create dir '/tmp/xqa': File exists'"
 
-re-run all the graphs - as some of the msi ones are wrong.
+make sure xqa-query-ui and xqa-query-balancer endpoints correctly documented on xqa-query-ui uml
+
+graphs for xquery request / responses
+
+re-run all the graphs - as some of the msi ones are wrong?
 
 go through and tune xqa-perf paramaters + tidy up the readme
 
@@ -29,25 +33,14 @@ https://medium.com/criciumadev/its-time-migrating-to-java-11-5eb3868354f9
 
 problem is that xqa-ingest-balancer must be started after other processes started?
 
-fix retired.xqa-shard-JMS
-
 run on  k8s
 
---
+fix retired.xqa-shard-JMS
+
 
 change secondaryTimeout value to 3s = tune the graphs!!
 = but also have a retry, in case we get:
 2018-05-18 07:29:05.882      WARN --- [    InserterThread-1]:               getSizeResponses, 103: 28277123-9f4d-4fc4-9508-a30f331fde0c: END: shardSizeResponses=0; subject=/xml/eapb_mon_14537E_007_002.xml
 2018-05-18 07:29:05.915      WARN --- [    InserterThread-0]:               getSizeResponses, 103: 910d1bdd-4523-4289-b825-32c23aa2918f: END: shardSizeResponses=0; subject=/xml/eapb_nwp_14599E_002_011_022.xml
-
-eventually rm fron any repo the dependency on having a running xqa-message-broker?
-= as makes testing in circleci slower / more painful
-
---
-
-= xqa-query-ui
-= do I need to do all of :sudo apt install git openjdk-11-jre python3-dev python3-pip python3-distutils maven nodejs npm ????
-
-in build script I get lots of "mkdir cannot create dir '/tmp/xqa': File exists'"
 
 make sure no contianer_name_1 _1's around!

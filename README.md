@@ -5,7 +5,7 @@
 * XQA ships with a simple UI that lets you easily run XQuery against the distributed data.
 
 ## 2. High Level Design
-![High Level Design](uml/xqa-documentation/high-level-design.jpg)
+![High Level Design](uml/high-level-design.jpg)
 
 ## 3. Key Features
 * Easy to deploy / extend:
@@ -29,7 +29,7 @@
 * Ubuntu 18.04
 
 ## 5. Microservices
-![microservices](uml/xqa-documentation/microservices.jpg)
+![microservices](uml/microservices.jpg)
 
 | travis-ci | GitHub repo. | Description |
 | ------------- | ------------- | ------------- |

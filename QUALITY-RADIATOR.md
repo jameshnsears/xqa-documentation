@@ -1,6 +1,6 @@
 # Quality Radiator
 * includes repo's that XQA is dependent upon.
-* circleci is used to build and push containers to [hub.docker.com](https://hub.docker.com/u/jameshnsears)
+* circleci is used, via push and cron, to parallel build and push containers to [hub.docker.com](https://hub.docker.com/u/jameshnsears)
 
 | GitHub repo. |  Lang. | travis-ci | circleci | coveralls | sonarcloud | codacy |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |

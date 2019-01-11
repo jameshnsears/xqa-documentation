@@ -6,6 +6,7 @@ docker-engine
 dropwizard
 gson
 java
+jackson
 json
 junit
 matplotlib

@@ -9,8 +9,6 @@ in xqa-perf create graphs for xquery request / responses?
 re-run all the graphs - as some of the msi ones are wrong?
 +
 go through and tune xqa-perf paramaters + tidy up the readme
-+
-in build script I get lots of "mkdir cannot create dir '/tmp/xqa': File exists'" - fix this!
 
 problem is that xqa-ingest-balancer must be started after other processes started?
 

@@ -2,16 +2,20 @@ work on xqa-query-ui
 
 make sure everything builds in new VM via instructions BUILD-PREREQUISITES.md
 
+
 prune issues in xqa-documentation
 
 in xqa-perf create graphs for xquery request / responses?
-
++
 re-run all the graphs - as some of the msi ones are wrong?
 +
-go through and tune xqa-perf paramaters + tidy up the readme
+go through and tune xqa-perf paramaters + tidy up the readme on how to do this
 
 problem is that xqa-ingest-balancer must be started after other processes started?
 
 run on  k8s
 
 fix retired.xqa-shard-JMS
+
+have it so that there is a build script in each xqa-project and that xqa-perf
+script and .cricleci goes into each xqa-* folder and calls each build.sh?

@@ -1,9 +1,9 @@
 # Build Prerequisites
-This document lists the tools, and installation commands, used to build & test the containers for Ubuntu 18.04.
+This document lists the tools, and installation commands, used to build & test XQA for Ubuntu 18.04.
 
 ## 1. IDE's
 * Eclipse Java EE IDE for Web Developers.
-    * PyDev
+    * PyDev.
 * IntelliJ IDEA.
 * Pycharm.
 * Visual Studio Code.
@@ -33,9 +33,11 @@ shutdown -r now
 
 ## 3. git; Java; Python; Maven; Node; etc... 
 ```
-sudo apt install git openjdk-11-jdk python3-dev python3-pip python3-distutils python3-tk maven nodejs npm postgresql-client ruby ruby-dev socat
+sudo su -
 
-sudo gem install travis
+apt install git openjdk-11-jdk python3-dev python3-pip python3-distutils python3-tk maven nodejs npm postgresql-client ruby ruby-dev socat
+
+gem install travis
 ```
 
 ## 4. Build Containers from source

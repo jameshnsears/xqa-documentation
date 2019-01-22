@@ -48,7 +48,8 @@
 ## 5. Limitatons
 XQA is a proof of concept project. It achieves what it set out to prove, but should not be considered ready for production. Reasons for this include:
 * BaseX instances are configured to store data in RAM.
-* there is minimal security between services. 
+* there is minimal security between services.
+* lack of "bullet proofing" - i.e. what happens if xqa-message-broker disappears?
 
 ## 6. Current Status
 * Refer to the GitHub [issue board](https://github.com/jameshnsears/xqa-documentation/projects/1).

@@ -14,10 +14,10 @@
 * Proven scalability & performance improvements - graphs in [xqa-perf](https://github.com/jameshnsears/xqa-perf) show:
     * ingest timing statistics.
     * XML file distribution.
+* [Continuous Integration; extensive static analysis & high test coverage](QUALITY-RADIATOR.md).
 * Transparency:
     * container console logging.
     * JSON instrumentation sent to a central PstgreSQL instance.
-* [Continuous Integration; extensive static analysis & high test coverage](QUALITY-RADIATOR.md).
 
 ## 4. Open Source Technologies
 * ActiveMQ
@@ -46,7 +46,7 @@
 | | [xqa-test-data](https://github.com/jameshnsears/xqa-test-data) | a collection of XML files used by XQA. |
 
 ## 5. Limitatons
-XQA is a proof of concept project. It achieves what it set out to prove, but should not be considered ready for production. Reasons for this include:
+XQA is a proof of concept project. It [scratched an itch](https://en.wikipedia.org/wiki/The_Cathedral_and_the_Bazaar) and achieved what it set out to prove, but should not be considered ready for production. Reasons for this include:
 * there is minimal security between services.
 * lack of "bullet proofing" - i.e. what happens if xqa-message-broker disappears?
 

@@ -431,6 +431,7 @@ jobs:
       - run: sleep 180
       - run: docker logs xqa-ingest
       - run: docker logs xqa-ingest-balancer
+      - run: docker logs xqa-message-broker
       - run: docker logs xqa-shard
       - run: docker logs xqa-shard | grep "size=40"
 

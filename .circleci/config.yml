@@ -424,6 +424,10 @@ jobs:
           docker images
           docker ps -a
 
+      - run: docker logs xqa-ingest-balancer
+      - run: docker logs xqa-message-broker
+      - run: docker logs xqa-shard
+
       - run: |
           set -x
           docker run -d --net="xqadocumentation_xqa" --name="xqa-ingest" -v /home/circleci/project/xqa-test-data:/xml jameshnsears/xqa-ingest:latest -message_broker_host xqa-message-broker -path /xml

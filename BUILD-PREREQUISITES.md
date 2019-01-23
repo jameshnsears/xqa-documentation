@@ -49,7 +49,7 @@ git clone https://github.com/jameshnsears/xqa-perf
 xqa-perf/bin/build-images.sh
 ```
 
-### 4.1. End 2 End Test of Containers
+### 4.1. e2e Test of Containers
 ```
 git clone https://github.com/jameshnsears/xqa-test-data
 

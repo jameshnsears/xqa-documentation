@@ -1,17 +1,12 @@
-use jmeter to test RS in xqa-query-balancer
+use jmeter in xqa-query-balancer .travis file
+
 = ftp://ftp.mirrorservice.org/sites/ftp.apache.org/jmeter/binaries/apache-jmeter-5.0.tgz
 /home/jsears/bin/apache-jmeter-5.0/bin
 
-jmeter -n –t test.jmx -l testresults.jtl
+export HEAP="-Xms1g -Xmx1g -XX:MaxMetaspaceSize=256m"
 
-
-Don't use GUI mode for load testing !, only for Test creation and Test debugging.
-For load testing, use NON GUI Mode:
-   jmeter -n -t [jmx file] -l [results file] -e -o [Path to web report folder]
-& increase Java Heap to meet your test requirements:
-   Modify current env variable HEAP="-Xms1g -Xmx1g -XX:MaxMetaspaceSize=256m" in the jmeter batch file
-Check : https://jmeter.apache.org/usermanual/best-practices.html
-
+jmeter -n -t jmeter-test-plan.jmx -l jmeter-test-plan.jtl
+grep "Test failed" jmeter-test-plan.jtl
 
 test everything with valgrind
 

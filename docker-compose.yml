@@ -43,6 +43,21 @@ services:
     networks:
       - xqa
 
+  xqa-query-balancer:
+    image: jameshnsears/xqa-query-balancer:latest
+    container_name: xqa-query-balancer
+    environment:
+      - shardResponseTimeout=10000
+      - shardResponseSecondaryTimeout=5000
+    ports:
+      - "9090:9090"
+      - "9091:9091"
+    networks:
+      - xqa
+    depends_on:
+      - xqa-db
+      - xqa-message-broker
+
   xqa-query-ui:
     image: jameshnsears/xqa-query-ui:latest
     container_name: xqa-query-ui
@@ -53,22 +68,9 @@ services:
     depends_on:
       - xqa-query-balancer
 
-  xqa-query-balancer:
-    image: jameshnsears/xqa-query-balancer:latest
-    container_name: xqa-query-balancer
-    ports:
-      - "9090:8080"
-      - "9091:8081"
-    networks:
-      - xqa
-    depends_on:
-      - xqa-db
-      - xqa-message-broker
-
   xqa-shard:
     image: jameshnsears/xqa-shard:latest
-    container_name: xqa-shard
-    command: ["-message_broker_host", "xqa-message-broker"]
+    command: ["-message_broker_host", "xqa-message-broker", "-storage_mainmem"]
     ports:
       - 1984
     networks:

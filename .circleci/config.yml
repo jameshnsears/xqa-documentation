@@ -492,18 +492,19 @@ workflows:
   version: 2
   commit:
     jobs:
-      - "xqa-db"
-      - "xqa-db-amqp"
-      - "xqa-ingest"
-      - "xqa-ingest-balancer"
-      - "xqa-message-broker"
       - "xqa_query-balancer"
-      - "xqa-query-ui"
-      - "xqa-shard"
 
       - "jmeter":
           requires:
             - "xqa-query-balancer"
+        
+      - "xqa-db":
+      - "xqa-db-amqp"
+      - "xqa-ingest"
+      - "xqa-ingest-balancer"
+      - "xqa-message-broker"
+      - "xqa-query-ui"
+      - "xqa-shard"
 
       - "e2e":
           requires:
@@ -526,19 +527,20 @@ workflows:
               only:
                 - master
     jobs:
+      - "xqa_query-balancer"
+
+      - "jmeter":
+          requires:
+            - "xqa-query-balancer"
+
       - "xqa-db"
       - "xqa-db-amqp"
       - "xqa-ingest"
       - "xqa-ingest-balancer"
       - "xqa-message-broker"
-      - "xqa-query-balancer"
       - "jmeter"
       - "xqa-query-ui"
       - "xqa-shard"
-
-      - "jmeter":
-          requires:
-            - "xqa-query-balancer"
 
       - "e2e":
           requires:

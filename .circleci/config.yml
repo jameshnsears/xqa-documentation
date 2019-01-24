@@ -383,25 +383,27 @@ jobs:
           docker-compose -f docker-compose.yml up -d xqa-message-broker xqa-db xqa-db-amqp xqa-ingest-balancer xqa-query-balancer
           docker-compose -f docker-compose.yml up -d --scale xqa-shard=2
 
-      - run: sleep 30
+      - run: sleep 15
 
       - run: docker logs xqa-message-broker
       - run: docker logs xqa-ingest-balancer
       - run: docker logs xqa-query-balancer
-      - run:  |
-          set -x
-          cd xqa-documentation
-          docker-compose -f docker-compose.yml logs xqa-shard
 
       - run: |
           set -x
-          pwd
-          ls
-          docker run -d --net="xqadocumentation_xqa" --name="xqa-ingest" -v xqa-test-data:/xml jameshnsears/xqa-ingest:latest -message_broker_host xqa-message-broker -path /xml
+          docker pull jameshnsears/xqa-ingest:latest
+          docker run -d --net="xqadocumentation_xqa" --name="xqa-ingest" -v /home/circleci/project/xqa-test-data:/xml jameshnsears/xqa-ingest:latest -message_broker_host xqa-message-broker -path /xml
 
       - run: |
           set -x
           docker ps -a
+
+      - run: sleep 45
+
+      - run:  |
+          set -x
+          cd xqa-documentation
+          docker-compose -f docker-compose.yml logs xqa-shard
 
       - run:
           command: |

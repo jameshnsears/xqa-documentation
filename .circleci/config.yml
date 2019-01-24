@@ -492,7 +492,7 @@ workflows:
   version: 2
   commit:
     jobs:
-      - "xqa_query-balancer"
+      - "xqa-query-balancer"
 
       - "jmeter":
           requires:
@@ -513,7 +513,6 @@ workflows:
             - "xqa-ingest"
             - "xqa-ingest-balancer"
             - "xqa-message-broker"
-            - "xqa-query-balancer"
             - "jmeter"
             - "xqa-query-ui"
             - "xqa-shard"
@@ -527,7 +526,7 @@ workflows:
               only:
                 - master
     jobs:
-      - "xqa_query-balancer"
+      - "xqa-query-balancer"
 
       - "jmeter":
           requires:
@@ -549,7 +548,6 @@ workflows:
             - "xqa-ingest"
             - "xqa-ingest-balancer"
             - "xqa-message-broker"
-            - "xqa-query-balancer"
             - "jmeter"
             - "xqa-query-ui"
             - "xqa-shard"

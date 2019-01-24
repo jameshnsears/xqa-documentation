@@ -427,7 +427,7 @@ jobs:
       - run: docker logs xqa-message-broker
       - run: docker logs xqa-ingest-balancer
       - run: docker logs xqa-query-balancer
-      - run: docker-compose logs xqa-shard
+      - run: docker-compose -f docker-compose.yml logs xqa-shard
 
       - run: |
           set -x

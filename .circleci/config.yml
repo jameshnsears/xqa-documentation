@@ -498,7 +498,7 @@ workflows:
           requires:
             - "xqa-query-balancer"
         
-      - "xqa-db":
+      - "xqa-db"
       - "xqa-db-amqp"
       - "xqa-ingest"
       - "xqa-ingest-balancer"

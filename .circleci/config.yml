@@ -498,10 +498,12 @@ workflows:
       - "xqa-ingest-balancer"
       - "xqa-message-broker"
       - "xqa-query-balancer"
-          requires:
-            - "jmeter"
       - "xqa-query-ui"
       - "xqa-shard"
+
+      - "jmeter"
+          requires:
+            - "xqa-query-balancer"
 
       - "e2e":
           requires:
@@ -511,8 +513,6 @@ workflows:
             - "xqa-ingest-balancer"
             - "xqa-message-broker"
             - "xqa-query-balancer"
-                requires:
-                  - "jmeter"
             - "xqa-query-ui"
             - "xqa-shard"
 
@@ -531,10 +531,12 @@ workflows:
       - "xqa-ingest-balancer"
       - "xqa-message-broker"
       - "xqa-query-balancer"
-          requires:
-            - "jmeter"
       - "xqa-query-ui"
       - "xqa-shard"
+
+      - "jmeter"
+          requires:
+            - "xqa-query-balancer"
 
       - "e2e":
           requires:
@@ -544,7 +546,5 @@ workflows:
             - "xqa-ingest-balancer"
             - "xqa-message-broker"
             - "xqa-query-balancer"
-                requires:
-                - "jmeter"
             - "xqa-query-ui"
             - "xqa-shard"

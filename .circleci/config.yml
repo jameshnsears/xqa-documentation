@@ -408,7 +408,7 @@ jobs:
     steps:
       - run: apt update
       - run: apt upgrade -y
-      - run: apt install git 
+      - run: apt install -y git 
 
       - run: git clone https://github.com/jameshnsears/xqa-query-balancer.git
 
@@ -497,7 +497,7 @@ workflows:
       - "xqa-ingest"
       - "xqa-ingest-balancer"
       - "xqa-message-broker"
-      - "jmeter"
+      - "xqa_query-balancer"
       - "xqa-query-ui"
       - "xqa-shard"
 
@@ -512,6 +512,7 @@ workflows:
             - "xqa-ingest"
             - "xqa-ingest-balancer"
             - "xqa-message-broker"
+            - "xqa-query-balancer"
             - "jmeter"
             - "xqa-query-ui"
             - "xqa-shard"
@@ -530,6 +531,7 @@ workflows:
       - "xqa-ingest"
       - "xqa-ingest-balancer"
       - "xqa-message-broker"
+      - "xqa-query-balancer"
       - "jmeter"
       - "xqa-query-ui"
       - "xqa-shard"
@@ -545,6 +547,7 @@ workflows:
             - "xqa-ingest"
             - "xqa-ingest-balancer"
             - "xqa-message-broker"
+            - "xqa-query-balancer"
             - "jmeter"
             - "xqa-query-ui"
             - "xqa-shard"

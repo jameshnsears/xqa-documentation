@@ -1,16 +1,9 @@
-use jmeter in xqa-query-balancer .travis file
-
-= ftp://ftp.mirrorservice.org/sites/ftp.apache.org/jmeter/binaries/apache-jmeter-5.0.tgz
-/home/jsears/bin/apache-jmeter-5.0/bin
-
-export HEAP="-Xms1g -Xmx1g -XX:MaxMetaspaceSize=256m"
-
-jmeter -n -t jmeter-test-plan.jmx -l jmeter-test-plan.jtl
-grep "Test failed" jmeter-test-plan.jtl
-
-test everything with valgrind
-
-----
+get an azure pipeline to work, that builds all my apps each night
+- using tmp
+    - for brexitsoundboard
+    - for xqa
+    - junit-docker-http
+    - pytest-docker-py
 
 work on xqa-query-ui
 

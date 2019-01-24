@@ -56,9 +56,6 @@ jobs:
 
       - run: git clone https://github.com/jameshnsears/xqa-db-amqp.git
 
-      - restore_cache:
-          key: xqa-db-amqp-{{ checksum "xqa-db-amqp/requirements.txt" }}
-
       - run: |
           set -x
           curl -L https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
@@ -72,11 +69,6 @@ jobs:
             cd xqa-db-amqp
             XQA_PY=3.6.5
             PATH=/usr/local/bin/Python-$XQA_PY/bin:$PATH pip3 install -r requirements.txt
-
-      - save_cache:
-          paths:
-            - ~/.m2
-          key: xqa-db-amqp-{{ checksum "xqa-db-amqp/requirements.txt" }}
 
       - run:
           command: |
@@ -109,9 +101,6 @@ jobs:
 
       - run: git clone https://github.com/jameshnsears/xqa-ingest.git
 
-      - restore_cache:
-          key: xqa-ingest-{{ checksum "xqa-ingest/pom.xml" }}
-
       - run: |
           set -x
           curl -L https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
@@ -124,11 +113,6 @@ jobs:
             set -x
             cd xqa-ingest
             mvn package -DskipTests
-
-      - save_cache:
-          paths:
-            - ~/.m2
-          key: xqa-ingest-{{ checksum "xqa-ingest/pom.xml" }}
 
       - run:
           command: |
@@ -161,9 +145,6 @@ jobs:
 
       - run: git clone https://github.com/jameshnsears/xqa-ingest-balancer.git
 
-      - restore_cache:
-          key: xqa-ingest-balancer-{{ checksum "xqa-ingest-balancer/pom.xml" }}
-
       - run: |
           set -x
           curl -L https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
@@ -176,11 +157,6 @@ jobs:
             set -x
             cd xqa-ingest-balancer
             mvn package -DskipTests
-
-      - save_cache:
-          paths:
-            - ~/.m2
-          key: xqa-ingest-balancer-{{ checksum "xqa-ingest-balancer/pom.xml" }}
 
       - run:
           command: |
@@ -251,9 +227,6 @@ jobs:
 
       - run: git clone https://github.com/jameshnsears/xqa-query-balancer.git
 
-      - restore_cache:
-          key: xqa-query-balancer-{{ checksum "xqa-query-balancer/pom.xml" }}
-
       - run: |
           set -x
           curl -L https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
@@ -266,11 +239,6 @@ jobs:
             set -x
             cd xqa-query-balancer
             mvn package -DskipTests
-
-      - save_cache:
-          paths:
-            - ~/.m2
-          key: xqa-query-balancer-{{ checksum "xqa-query-balancer/pom.xml" }}
 
       - run:
           command: |
@@ -359,9 +327,6 @@ jobs:
 
       - run: git clone https://github.com/jameshnsears/xqa-shard.git
 
-      - restore_cache:
-          key: xqa-shard-{{ checksum "xqa-shard/requirements.txt" }}
-
       - run: |
           set -x
           curl -L https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
@@ -375,11 +340,6 @@ jobs:
             cd xqa-shard
             XQA_PY=3.6.5
             PATH=/usr/local/bin/Python-$XQA_PY/bin:$PATH pip3 install -r requirements.txt
-
-      - save_cache:
-          paths:
-            - ~/.m2
-          key: xqa-shard-{{ checksum "xqa-shard/requirements.txt" }}
 
       - run:
           command: |
@@ -405,7 +365,7 @@ jobs:
   "e2e, with jmeter":
     machine:
       image: circleci/classic:latest
-      docker_layer_caching: true 
+
     steps:
       - run: |
           docker --version
@@ -452,7 +412,6 @@ jobs:
       - run: 
           command: |
             set -x
-            cd xqa-documentation
             export HEAP="-Xms1g -Xmx1g -XX:MaxMetaspaceSize=256m"
             apache-jmeter-5.0/bin/jmeter -n -t jmeter-test-plan.jmx -l jmeter-test-plan.jtl
             bash -c 'if [[ `grep "Test failed" jmeter-test-plan.jtl` ]]; then >&2 cat jmeter-test-plan.jtl; exit 1; fi'

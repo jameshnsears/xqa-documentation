@@ -402,6 +402,52 @@ jobs:
 
 ######################################################
 
+  "jmeter-xqa-query-balancer":
+    docker:
+      - image: ubuntu:bionic
+    steps:
+      - run: apt update
+      - run: apt upgrade -y
+
+      - run: git clone https://github.com/jameshnsears/xqa-query-balancer.git
+
+      - run: |
+          set -x
+          curl -L https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
+          chmod +x /usr/bin/docker-compose
+
+      - setup_remote_docker
+
+
+      - run:
+          command: |
+            set -x
+            VER="18.06.1-ce"
+            curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$VER.tgz
+            tar -xz -C /tmp -f /tmp/docker-$VER.tgz
+            mv /tmp/docker/* /usr/bin
+    
+      - run:
+          command: |
+            set -x
+            wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.0.tgz
+            tar -xzf apache-jmeter-5.0.tgz
+
+      - run: 
+          command: |
+            set -x
+            cd xqa-query-balancer
+            ./start.sh
+
+      - run: 
+          command: |
+            set -x
+            export HEAP="-Xms1g -Xmx1g -XX:MaxMetaspaceSize=256m"
+            ../apache-jmeter-5.0/bin/jmeter -n -t jmeter-test-plan.jmx -l jmeter-test-plan.jtl
+            bash -c 'if [[ `grep "Test failed" jmeter-test-plan.jtl` ]]; then >&2 cat jmeter-test-plan.jtl; exit 1; fi'
+
+######################################################
+
   "e2e":
     machine:
       image: circleci/classic:latest
@@ -453,6 +499,7 @@ workflows:
       - "xqa-query-balancer"
       - "xqa-query-ui"
       - "xqa-shard"
+      - "jmeter-xqa-query-balancer"
 
       - "e2e":
           requires:
@@ -464,6 +511,7 @@ workflows:
             - "xqa-query-balancer"
             - "xqa-query-ui"
             - "xqa-shard"
+            - "jmeter-xqa-query-balancer"
 
   nightly:
     triggers:
@@ -482,6 +530,7 @@ workflows:
       - "xqa-query-balancer"
       - "xqa-query-ui"
       - "xqa-shard"
+      - "jmeter-xqa-query-balancer"
 
       - "e2e":
           requires:
@@ -493,3 +542,4 @@ workflows:
             - "xqa-query-balancer"
             - "xqa-query-ui"
             - "xqa-shard"
+            - "jmeter-xqa-query-balancer"

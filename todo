@@ -1,6 +1,3 @@
-moq qa-query-balancer across to circleci
-= so that jmeter can be tessed seperately?
-
 get an azure pipeline to work, that builds all my apps each night
 - using tmp
     - for brexitsoundboard

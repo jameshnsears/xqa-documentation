@@ -47,8 +47,8 @@
 
 ## 5. Limitatons
 XQA is a proof of concept project. It [scratched an itch](https://en.wikipedia.org/wiki/The_Cathedral_and_the_Bazaar) and achieved what it set out to prove, but should not be considered ready for production. Reasons for this include:
-* lack of "bullet proofing" - i.e. what happens if xqa-message-broker disappears?
-* optimising the responses of the xqa-query-balancer for xquery searches, so that data from all shards is always returned but as fast as possible.
+* lack of "bullet proofing" - i.e. what happens if xqa-message-broker(s) disappear? There is retry code, but how to cope with orderly shutdowns?
+* better optimise the responses of the xqa-query-balancer for xquery searches, so that data from all shards is always returned but as fast as possible.
 * there is minimal security between services.
 
 ## 6. Current Status

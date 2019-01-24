@@ -3,7 +3,7 @@
 * [xqa-documentation](https://github.com/jameshnsears/xqa-documentation)  uses a daily cron to:
     * build containers from source.
     * push containers to [hub.docker.com/u/jameshnsears](https://hub.docker.com/u/jameshnsears).
-    * end to end integration testing.
+    * perform end to end integration testing.
 
 | GitHub |  lang. | CI | coveralls | sonarcloud | codacy |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |

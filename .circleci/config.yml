@@ -497,11 +497,11 @@ workflows:
       - "xqa-ingest"
       - "xqa-ingest-balancer"
       - "xqa-message-broker"
-      - "xqa-query-balancer"
+      - "jmeter"
       - "xqa-query-ui"
       - "xqa-shard"
 
-      - "jmeter"
+      - "jmeter":
           requires:
             - "xqa-query-balancer"
 
@@ -512,7 +512,7 @@ workflows:
             - "xqa-ingest"
             - "xqa-ingest-balancer"
             - "xqa-message-broker"
-            - "xqa-query-balancer"
+            - "jmeter"
             - "xqa-query-ui"
             - "xqa-shard"
 
@@ -530,11 +530,11 @@ workflows:
       - "xqa-ingest"
       - "xqa-ingest-balancer"
       - "xqa-message-broker"
-      - "xqa-query-balancer"
+      - "jmeter"
       - "xqa-query-ui"
       - "xqa-shard"
 
-      - "jmeter"
+      - "jmeter":
           requires:
             - "xqa-query-balancer"
 
@@ -545,6 +545,6 @@ workflows:
             - "xqa-ingest"
             - "xqa-ingest-balancer"
             - "xqa-message-broker"
-            - "xqa-query-balancer"
+            - "jmeter"
             - "xqa-query-ui"
             - "xqa-shard"

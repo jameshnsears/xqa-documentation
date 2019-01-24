@@ -422,9 +422,12 @@ jobs:
           docker-compose -f docker-compose.yml up -d xqa-message-broker xqa-db xqa-db-amqp xqa-ingest-balancer xqa-query-balancer
           docker-compose -f docker-compose.yml up -d --scale xqa-shard=2
 
+      - run: sleep 30
+
       - run: docker logs xqa-message-broker
       - run: docker logs xqa-ingest-balancer
       - run: docker logs xqa-query-balancer
+      - run: docker-compose logs xqa-shard
 
       - run: |
           set -x
@@ -434,19 +437,13 @@ jobs:
           set -x
           docker ps -a
 
-      - run: 
-          command: |
-            set -x
-            cd xqa-query-balancer
-            ./start.sh
-
       - run:
           command: |
             set -x
             wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.0.tgz
             tar -xzf apache-jmeter-5.0.tgz
 
-      - run: sleep 180
+      - run: sleep 120
 
       - run: 
           command: |

@@ -402,12 +402,13 @@ jobs:
 
 ######################################################
 
-  "jmeter-xqa-query-balancer":
+  "jmeter":
     docker:
       - image: ubuntu:bionic
     steps:
       - run: apt update
       - run: apt upgrade -y
+      - run: apt install git 
 
       - run: git clone https://github.com/jameshnsears/xqa-query-balancer.git
 
@@ -497,9 +498,10 @@ workflows:
       - "xqa-ingest-balancer"
       - "xqa-message-broker"
       - "xqa-query-balancer"
+          requires:
+            - "jmeter"
       - "xqa-query-ui"
       - "xqa-shard"
-      - "jmeter-xqa-query-balancer"
 
       - "e2e":
           requires:
@@ -509,9 +511,10 @@ workflows:
             - "xqa-ingest-balancer"
             - "xqa-message-broker"
             - "xqa-query-balancer"
+                requires:
+                  - "jmeter"
             - "xqa-query-ui"
             - "xqa-shard"
-            - "jmeter-xqa-query-balancer"
 
   nightly:
     triggers:
@@ -528,9 +531,10 @@ workflows:
       - "xqa-ingest-balancer"
       - "xqa-message-broker"
       - "xqa-query-balancer"
+          requires:
+            - "jmeter"
       - "xqa-query-ui"
       - "xqa-shard"
-      - "jmeter-xqa-query-balancer"
 
       - "e2e":
           requires:
@@ -540,6 +544,7 @@ workflows:
             - "xqa-ingest-balancer"
             - "xqa-message-broker"
             - "xqa-query-balancer"
+                requires:
+                - "jmeter"
             - "xqa-query-ui"
             - "xqa-shard"
-            - "jmeter-xqa-query-balancer"

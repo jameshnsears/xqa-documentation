@@ -47,7 +47,7 @@ services:
     image: jameshnsears/xqa-query-balancer:latest
     container_name: xqa-query-balancer
     environment:
-      - shardResponseTimeout=10000
+      - shardResponseTimeout=30000
       - shardResponseSecondaryTimeout=5000
     ports:
       - "9090:9090"

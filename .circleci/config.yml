@@ -400,6 +400,7 @@ jobs:
 
       - run: sleep 30
 
+      - run: docker logs xqa-ingest
       - run:  |
           set -x
           cd xqa-documentation
@@ -412,7 +413,6 @@ jobs:
             wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.0.tgz
             tar -xzf apache-jmeter-5.0.tgz
 
-      - run: docker logs xqa-ingest
       - run:  |
           set -x
           cd xqa-documentation
@@ -433,25 +433,25 @@ workflows:
     jobs:
         - "e2e, with jmeter"
 
-    #   - "xqa-db"
-    #   - "xqa-db-amqp"
-    #   - "xqa-ingest"
-    #   - "xqa-ingest-balancer"
-    #   - "xqa-message-broker"
-    #   - "xqa-query-balancer"
-    #   - "xqa-query-ui"
-    #   - "xqa-shard"
+        - "xqa-db"
+        - "xqa-db-amqp"
+        - "xqa-ingest"
+        - "xqa-ingest-balancer"
+        - "xqa-message-broker"
+        - "xqa-query-balancer"
+        - "xqa-query-ui"
+        - "xqa-shard"
 
-    #   - "e2e, with jmeter":
-    #       requires:
-    #         - "xqa-db"
-    #         - "xqa-db-amqp"
-    #         - "xqa-ingest"
-    #         - "xqa-ingest-balancer"
-    #         - "xqa-message-broker"
-    #         - "xqa-query-balancer"
-    #         - "xqa-query-ui"
-    #         - "xqa-shard"
+        - "e2e, with jmeter":
+            requires:
+                - "xqa-db"
+                - "xqa-db-amqp"
+                - "xqa-ingest"
+                - "xqa-ingest-balancer"
+                - "xqa-message-broker"
+                - "xqa-query-balancer"
+                - "xqa-query-ui"
+                - "xqa-shard"
 
   nightly:
     triggers:

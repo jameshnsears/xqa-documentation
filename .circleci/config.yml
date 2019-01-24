@@ -402,7 +402,7 @@ jobs:
 
 ######################################################
 
-  "e2e":
+  "e2e, with jmeter":
     machine:
       image: circleci/classic:latest
       docker_layer_caching: true 
@@ -421,14 +421,18 @@ jobs:
           cd xqa-documentation
           docker-compose -f docker-compose.yml up -d xqa-message-broker xqa-db xqa-db-amqp xqa-ingest-balancer xqa-query-balancer
           docker-compose -f docker-compose.yml up -d --scale xqa-shard=2
-          docker network ls
-          docker run -d --net="xqa-query-balancer_xqa" --name="xqa-ingest" -v $HOME/GIT_REPOS/xqa-test-data:/xml jameshnsears/xqa-ingest:latest -message_broker_host xqa-message-broker -path /xml
-          docker images
-          docker ps -a
 
       - run: docker logs xqa-message-broker
       - run: docker logs xqa-ingest-balancer
       - run: docker logs xqa-query-balancer
+
+      - run: |
+          set -x
+          docker run -d --net="xqadocumentation_xqa" --name="xqa-ingest" -v $HOME/GIT_REPOS/xqa-test-data:/xml jameshnsears/xqa-ingest:latest -message_broker_host xqa-message-broker -path /xml
+
+      - run: |
+          set -x
+          docker ps -a
 
       - run: 
           command: |
@@ -462,25 +466,27 @@ workflows:
   version: 2
   commit:
     jobs:
-      - "xqa-db"
-      - "xqa-db-amqp"
-      - "xqa-ingest"
-      - "xqa-ingest-balancer"
-      - "xqa-message-broker"
-      - "xqa-query-balancer"
-      - "xqa-query-ui"
-      - "xqa-shard"
+        - "e2e, with jmeter"
 
-      - "e2e":
-          requires:
-            - "xqa-db"
-            - "xqa-db-amqp"
-            - "xqa-ingest"
-            - "xqa-ingest-balancer"
-            - "xqa-message-broker"
-            - "xqa-query-balancer"
-            - "xqa-query-ui"
-            - "xqa-shard"
+    #   - "xqa-db"
+    #   - "xqa-db-amqp"
+    #   - "xqa-ingest"
+    #   - "xqa-ingest-balancer"
+    #   - "xqa-message-broker"
+    #   - "xqa-query-balancer"
+    #   - "xqa-query-ui"
+    #   - "xqa-shard"
+
+    #   - "e2e, with jmeter":
+    #       requires:
+    #         - "xqa-db"
+    #         - "xqa-db-amqp"
+    #         - "xqa-ingest"
+    #         - "xqa-ingest-balancer"
+    #         - "xqa-message-broker"
+    #         - "xqa-query-balancer"
+    #         - "xqa-query-ui"
+    #         - "xqa-shard"
 
   nightly:
     triggers:
@@ -500,7 +506,7 @@ workflows:
       - "xqa-query-ui"
       - "xqa-shard"
 
-      - "e2e":
+      - "e2e, with jmeter":
           requires:
             - "xqa-db"
             - "xqa-db-amqp"

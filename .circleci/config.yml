@@ -398,7 +398,7 @@ jobs:
           set -x
           docker ps -a
 
-      - run: sleep 45
+      - run: sleep 30
 
       - run:  |
           set -x
@@ -412,10 +412,7 @@ jobs:
             wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.0.tgz
             tar -xzf apache-jmeter-5.0.tgz
 
-      - run: sleep 60
-
       - run: docker logs xqa-ingest
-      - run: docker logs xqa-ingest-balancer
       - run:  |
           set -x
           cd xqa-documentation
@@ -427,8 +424,6 @@ jobs:
             cd xqa-query-balancer
             apache-jmeter-5.0/bin/jmeter -n -t jmeter-test-plan.jmx -l jmeter-test-plan.jtl
             bash -c 'if [[ `grep "Test failed" jmeter-test-plan.jtl` ]]; then >&2 cat jmeter-test-plan.jtl; exit 1; fi'
-
-      - run: docker logs xqa-query-balancer
 
 ######################################################
 

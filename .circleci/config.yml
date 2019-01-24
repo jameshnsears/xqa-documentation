@@ -395,7 +395,9 @@ jobs:
 
       - run: |
           set -x
-          docker run -d --net="xqadocumentation_xqa" --name="xqa-ingest" -v $HOME/xqa-test-data:/xml jameshnsears/xqa-ingest:latest -message_broker_host xqa-message-broker -path /xml
+          pwd
+          ls
+          docker run -d --net="xqadocumentation_xqa" --name="xqa-ingest" -v xqa-test-data:/xml jameshnsears/xqa-ingest:latest -message_broker_host xqa-message-broker -path /xml
 
       - run: |
           set -x
@@ -407,6 +409,8 @@ jobs:
             cd xqa-query-balancer
             wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.0.tgz
             tar -xzf apache-jmeter-5.0.tgz
+
+      - run: sleep 60
 
       - run: docker logs xqa-ingest
       - run: docker logs xqa-ingest-balancer

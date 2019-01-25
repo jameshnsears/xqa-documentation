@@ -398,13 +398,9 @@ jobs:
           set -x
           docker ps -a
 
-      - run: sleep 30
+      - run: sleep 15
 
       - run: docker logs xqa-ingest
-      - run:  |
-          set -x
-          cd xqa-documentation
-          docker-compose -f docker-compose.yml logs xqa-shard
 
       - run:
           command: |

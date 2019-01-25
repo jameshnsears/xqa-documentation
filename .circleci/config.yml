@@ -391,6 +391,12 @@ jobs:
 
       - run: |
           set -x
+          cd /home/circleci/project/xqa-test-data
+          rm D* E* I* n* P* S* cho_m* cho_r* cho_s* cho_w* eapb_*
+          ls
+
+      - run: |
+          set -x
           docker pull jameshnsears/xqa-ingest:latest
           docker run -d --net="xqadocumentation_xqa" --name="xqa-ingest" -v /home/circleci/project/xqa-test-data:/xml jameshnsears/xqa-ingest:latest -message_broker_host xqa-message-broker -path /xml
 

@@ -2,7 +2,7 @@
 ## 1. Introduction
 * XQA is a suite of Docker based microservices that improves the scalability of [BaseX](http://basex.org/) - an XML database engine.
 * Instead of loading each XML file into a single BaseX engine, XQA distributes them - via an AMQP message broker - across multiple BaseX engines.
-* XQA ships with a simple UI that lets you easily run XQuery against the distributed data.
+* XQA ships with a simple UI, and REST API, which lets you run XQuery against the distributed data.
 
 ## 2. High Level Design
 ![High Level Design](uml/high-level-design.jpg)
@@ -14,7 +14,7 @@
 * Proven scalability & performance improvements - graphs in [xqa-perf](https://github.com/jameshnsears/xqa-perf) show:
     * ingest timing statistics.
     * XML file distribution.
-* [Continuous Integration; extensive static analysis & high test coverage](QUALITY-RADIATOR.md).
+* [Quality Radiatior](QUALITY-RADIATOR.md) for CI; static analysis; coverage.
 * Transparency:
     * container console logging.
     * JSON instrumentation sent to a central PstgreSQL instance.
@@ -23,7 +23,7 @@
 * ActiveMQ
 * Angular
 * Docker - containers can be built from GitHub or pull'd from [hub.docker.com](https://hub.docker.com/).
-* Java 10
+* Java 10/11.
 * PostgreSQL 11
 * Python 3.6
 * Ubuntu 18.04
@@ -31,7 +31,7 @@
 ## 5. Microservices
 ![microservices](uml/microservices.jpg)
 
-| travis-ci | GitHub repo. | Description |
+| CI | GitHub | |
 | ------------- | ------------- | ------------- |
 | [![Build Status](https://travis-ci.org/jameshnsears/xqa-commons-qpid-jms.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-commons-qpid-jms) | [xqa-commons-qpid-jms](https://github.com/jameshnsears/xqa-commons-qpid-jms) | a Maven Central shared library. |
 | [![Build Status](https://travis-ci.org/jameshnsears/xqa-db.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-db) | [xqa-db](https://github.com/jameshnsears/xqa-db) | PostgreSQL. |
@@ -46,10 +46,4 @@
 | | [xqa-test-data](https://github.com/jameshnsears/xqa-test-data) | a collection of XML files used by XQA. |
 
 ## 5. Limitatons
-XQA is a proof of concept project. It [scratched an itch](https://en.wikipedia.org/wiki/The_Cathedral_and_the_Bazaar) and achieved what it set out to prove, but should not be considered ready for production. Reasons for this include:
-* lack of "bullet proofing" - i.e. what happens if xqa-message-broker(s) disappear? There is retry code, but how to cope with orderly shutdowns?
-* better optimise the responses of the xqa-query-balancer for xquery searches, so that data from all shards is always returned but as fast as possible.
-* there is minimal security between services.
-
-## 6. Current Status
-* Refer to the GitHub [issue board](https://github.com/jameshnsears/xqa-documentation/projects/1).
+XQA is a proof of concept project. It [scratched an itch](https://en.wikipedia.org/wiki/The_Cathedral_and_the_Bazaar) and achieved what it set out to prove, but it should not be considered ready for production. Refer to the GitHub [issue board](https://github.com/jameshnsears/xqa-documentation/projects/1) for outstanding issues.

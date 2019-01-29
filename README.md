@@ -45,5 +45,5 @@
 | [![Build Status](https://travis-ci.org/jameshnsears/xqa-shard.svg?branch=master)](https://travis-ci.org/jameshnsears/xqa-shard) | [xqa-shard](https://github.com/jameshnsears/xqa-shard) | BaseX engine with AMQP interface. |
 | | [xqa-test-data](https://github.com/jameshnsears/xqa-test-data) | a collection of XML files used by XQA. |
 
-## 5. Limitatons
+## 6. Limitatons
 XQA is a proof of concept project. It [scratched an itch](https://en.wikipedia.org/wiki/The_Cathedral_and_the_Bazaar) and achieved what it set out to prove, but it should not be considered ready for production. Refer to the GitHub [issue board](https://github.com/jameshnsears/xqa-documentation/projects/1) for outstanding issues.

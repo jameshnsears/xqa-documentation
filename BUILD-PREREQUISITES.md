@@ -20,7 +20,7 @@ sudo su -
 
 apt update
 
-apt install docker.io docker-compose curl wget
+apt install -y docker.io docker-compose curl wget
 
 usermod -aG docker jsears # devloper account
 
@@ -35,36 +35,20 @@ shutdown -r now
 ```
 sudo su -
 
-apt install git openjdk-11-jdk python3-dev python3-pip python3-distutils python3-tk maven nodejs npm postgresql-client ruby ruby-dev socat
+apt install -y git openjdk-11-jdk python3-dev python3-pip python3-distutils python3-tk maven nodejs npm postgresql-client ruby ruby-dev socat
 
 gem install travis
 ```
 
 ## 4. Build Containers from source
 ```
-cd 
+cd # as developer account
 
 git clone https://github.com/jameshnsears/xqa-perf
 
 xqa-perf/bin/build-images.sh
-```
 
-### 4.1. e2e Test of Containers
-```
-git clone https://github.com/jameshnsears/xqa-test-data
-
-git clone https://github.com/jameshnsears/xqa-documentation
-
-sed -i 's/jameshnsears\///g' xqa-documentation/docker-compose.yml
-
-docker-compose -f xqa-documentation/docker-compose.yml up -d --scale xqa-shard=1
-
-docker run -d --net="xqadocumentation_xqa" --name="xqa-ingest" -v ~/xqa-test-data:/xml xqa-ingest:latest 
--message_broker_host xqa-message-broker -path /xml
-
-sleep 180
-
-docker logs xqa-shard | grep "size=40"
+xqa-perf/bin/tag-images.sh
 ```
 
 ## 5. socat

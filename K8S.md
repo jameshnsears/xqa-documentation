@@ -27,9 +27,9 @@ microk8s.kubectl -n kube-system describe secret kubernetes-dashboard-token-95bt2
 
 ## 3. Push XQA containers to local container registry
 ```
-xqa-documentaton/bin/tag-k8s.sh
+xqa-documentaton/k8s/bin/tag-k8s.sh
 
-xqa-documentaton/bin/push-k8s.sh
+xqa-documentaton/k8s/bin/push-k8s.sh
 ```
 
 ### 3.1. List local container registry
@@ -41,14 +41,17 @@ curl -X GET http://127.0.0.1:32000/v2/v2/xqa-db/tags/list
 
 ## 4. Deploy XQA to K8S
 ```
-cd xqa-documentation
+cd xqa-documentation/k8s
 
-microk8s.kubectl create -f deployment.yml
+microk8s.kubectl create -f deployment_xqa-db.yml
+microk8s.kubectl create -f deployment_xqa-message-broker.yml
 
 microk8s.kubectl get deployments
 microk8s.kubectl describe deployments
 
-microk8s.kubectl delete -f deployment.yml
+microk8s.kubectl delete -f deployment_xqa-db.yml
+microk8s.kubectl delete -f deployment_xqa-message-broker.yml
+
 ```
 
 ## 5. Teardown
@@ -57,3 +60,6 @@ sudo microk8s.reset
 
 sudo microk8s.stop
 ```
+
+https://kubernetes.io/docs/concepts/services-networking/service/
+https://cloud.google.com/python/tutorials/bookshelf-on-kubernetes-engine

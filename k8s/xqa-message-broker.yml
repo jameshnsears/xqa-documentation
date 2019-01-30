@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xqa-message-broker
+  labels:
+    app: xqa
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: xqa
+        tier: message-broker
+    spec:
+      containers:
+      - name: xqa-message-broker
+        image: localhost:32000/xqa-message-broker:latest
+        ports:
+        - containerPort: 5672
+        - containerPort: 8161
+      restartPolicy: Always

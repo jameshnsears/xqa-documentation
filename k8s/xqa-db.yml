@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: xqa
+  name: xqa-db
+  labels:
+    app: xqa
 spec:
-  selector:
-    matchLabels:
-      app: xqa
   replicas: 2
   template:
     metadata:
       labels:
         app: xqa
+        tier: db
     spec:
       containers:
       - name: xqa-db

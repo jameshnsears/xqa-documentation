@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: xqa-frontend
+  labels:
+    app: xqa
+    tier: frontend
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: http-server
+  selector:
+    app: xqa
+    tier: frontend

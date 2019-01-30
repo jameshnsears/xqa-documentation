@@ -1,5 +1,7 @@
 # Build Prerequisites
-This document lists the tools, and installation commands, used to build & test XQA for Ubuntu 18.04.
+This document lists the tools, and installation commands, used to build XQA for Ubuntu 18.04.
+
+See each repo's CI files for testing instructions.
 
 ## 1. IDE's
 * Eclipse Java EE IDE for Web Developers.
@@ -14,7 +16,7 @@ This document lists the tools, and installation commands, used to build & test X
 * CheckStyle
 * Sonalint
 
-## 2. Docker CE & Docker Compose
+## 2. Install Docker CE & Docker Compose
 ```
 sudo su -
 
@@ -31,7 +33,7 @@ systemctl enable docker
 shutdown -r now
 ```
 
-## 3. git; Java; Python; Maven; Node; etc... 
+## 3. Install toolchain
 ```
 sudo su -
 
@@ -51,7 +53,7 @@ xqa-perf/bin/build-images.sh
 xqa-perf/bin/tag-images.sh
 ```
 
-## 5. socat
+## 5. socat - useful for observing docker.
 ```
 sudo mv /var/run/docker.sock /var/run/hidden.socket
 

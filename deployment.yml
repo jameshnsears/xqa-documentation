@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xqa
+spec:
+  selector:
+    matchLabels:
+      app: xqa
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: xqa
+    spec:
+      containers:
+      - name: xqa-db
+        image: localhost:32000/xqa-db:latest
+        ports:
+        - containerPort: 5432
+      restartPolicy: Always

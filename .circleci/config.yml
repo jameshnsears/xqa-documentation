@@ -298,6 +298,7 @@ jobs:
             cd xqa-query-ui
             export PATH=/root/project/node-v8.10.0-linux-x64/bin:$PATH
             sudo env "PATH=$PATH" npm install
+            sudo env "PATH=$PATH" npm install typescript@">=3.1.1 <3.3"
 
             export PATH=/root/project/xqa-query-ui/node_modules/@angular/cli/bin:$PATH
             ng build --prod --build-optimizer

@@ -14,7 +14,6 @@ microk8s.enable dashboard registry istio
 ```
 wget https://storage.googleapis.com/kubernetes-helm/helm-v2.12.3-linux-amd64.tar.gz
 ```
-
 * extract and place binaries into PATH
 
 ## 2. Start microk8s
@@ -22,6 +21,11 @@ wget https://storage.googleapis.com/kubernetes-helm/helm-v2.12.3-linux-amd64.tar
 sudo microk8s.start
 
 microk8s.status
+```
+
+### 2.1. enable firewall
+```
+sudo ufw default allow routed
 ```
 
 ## 3. View Dashboard
@@ -62,9 +66,15 @@ cd xqa-documentaton/k8s
 
 kubectl create -f xqa-00-db.yml
 
-kubectl --namespace=xqa get pods
+# kubectl --namespace=xqa get deployments
+# kubectl --namespace=xqa describe deployment
+# kubectl --namespace=xqa get pods
+# kubectl get services
 
-psql -h 10.152.183.211 -p 5432 -U xqa -d xqa
+# kubectl --namespace=xqa describe services
+kubectl --namespace=xqa get svc xqa-db-service
+
+psql -h 10.152.183.146 -p 5432 -U xqa -d xqa
 select * from events;
 
 ```
@@ -72,6 +82,8 @@ select * from events;
 
 ### 5.3. Cleanup
 ```
+kubectl delete -f xqa-00-db.yml
+
 kubectl delete namespace xqa
 ```
 
@@ -80,6 +92,8 @@ kubectl delete namespace xqa
 sudo microk8s.reset
 
 sudo microk8s.stop
+
+sudo snap remove microk8s
 
 snap unalias kubectl
 ```

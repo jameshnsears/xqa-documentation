@@ -1,9 +1,27 @@
 apiVersion: v1
+kind: Service
+metadata:
+  name: xqa-db-service
+  namespace: xqa
+  labels:
+    run: xqa-db
+spec:
+  ports:
+  - name: xqa-db
+    protocol: TCP
+    port: 5432
+    targetPort: 5432
+  selector:
+    run: xqa-db
+  clusterIP: None
+---
+apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: xqa-db-pv-volume
+  name: xqa-db-pv
+  namespace: xqa
   labels:
-    type: local
+    app: xqa-db
 spec:
   capacity:
     storage: 100Mi
@@ -17,6 +35,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: xqa-db-pv-claim
   namespace: xqa
+  labels:
+    app: xqa-db
 spec:
   accessModes:
     - ReadWriteOnce
@@ -27,7 +47,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: xqa-db
+  name: xqa-db-deployment
   namespace: xqa
 spec:
   replicas: 2
@@ -53,21 +73,9 @@ spec:
             - containerPort: 5432
               name: "xqa-db"
           volumeMounts:
-            - mountPath: "/var/lib/postgresql"
-              name: xqa-db-pv-storage
+            - name: xqa-db-pv-storage
+              mountPath: "/var/lib/postgresql"
       volumes:
         - name: xqa-db-pv-storage
           persistentVolumeClaim:
             claimName: xqa-db-pv-claim
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: xqa-service
-  namespace: xqa
-spec:
-  ports:
-  - name: xqa-db
-    protocol: TCP
-    port: 5432
-    targetPort: 5432

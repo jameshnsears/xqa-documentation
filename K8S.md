@@ -86,7 +86,7 @@ kubectl --namespace=xqa describe services
 ```
 kubectl --namespace=xqa get svc xqa-db-service
 
-psql -h 10.1.1.243 -p 5432 -U xqa -d xqa
+psql -h <cluser ip|pod ip> -p 5432 -U xqa -d xqa
 select * from events;
 ```
 
@@ -94,7 +94,7 @@ select * from events;
 ```
 kubectl --namespace=xqa get svc xqa-message-broker-service
 
-http://10.1.1.252:8161/
+http://<cluser ip|pod ip>:8161/
 ```
 
 ### 5.4. Cleanup
@@ -116,5 +116,5 @@ sudo snap remove microk8s
 snap unalias kubectl
 ```
 
-https://kubernetes.io/docs/concepts/services-networking/service/
-https://cloud.google.com/python/tutorials/bookshelf-on-kubernetes-engine
+## 7. Tutorials
+* https://cloud.google.com/python/tutorials/bookshelf-on-kubernetes-engine

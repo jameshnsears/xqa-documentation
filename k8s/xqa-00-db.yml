@@ -10,6 +10,7 @@ spec:
   - port: 5432
   selector:
     app: xqa-db
+  type: NodePort
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim

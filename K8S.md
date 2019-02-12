@@ -10,6 +10,13 @@ sudo snap alias microk8s.kubectl kubectl
 microk8s.enable dashboard registry istio
 ```
 
+## 1.1. (optional) Install helm
+```
+wget https://storage.googleapis.com/kubernetes-helm/helm-v2.12.3-linux-amd64.tar.gz
+```
+
+* extract and place binaries into PATH
+
 ## 2. Start microk8s
 ```
 sudo microk8s.start
@@ -28,7 +35,7 @@ kubectl -n kube-system get secret | grep "kubernetes-dashboard-token-"
 # using: hex value - i.e. 95bt2
 kubectl -n kube-system describe secret kubernetes-dashboard-token-95bt2
 ```
-* visit https://10.152.183.46/#!/login
+* visit https://10.152.183.137/#!/login
 
 ## 4. (optional) Push XQA containers to local container registry
 ```
@@ -42,17 +49,30 @@ cd xqa-documentaton/k8s
 ```
 
 ## 5. Deploy XQA to K8S
+### 5.1. Create Namespace
 ```
 kubectl create namespace xqa
 
-kubectl create -f deployment_xqa-db.yml
-kubectl create -f deployment_xqa-message-broker.yml
+kubectl get namespaces
+```
 
-kubectl get deployments
-kubectl describe deployments
+### 5.2. Deploy
+```
+cd xqa-documentaton/k8s
 
-kubectl delete -f deployment_xqa-db.yml
-kubectl delete -f deployment_xqa-message-broker.yml
+kubectl create -f xqa-00-db.yml
+
+kubectl --namespace=xqa get pods
+
+psql -h 10.152.183.211 -p 5432 -U xqa -d xqa
+select * from events;
+
+```
+* use dashboard to view artifacts.
+
+### 5.3. Cleanup
+```
+kubectl delete namespace xqa
 ```
 
 ## 6. Teardown

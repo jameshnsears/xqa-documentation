@@ -37,9 +37,9 @@ kubectl get all --all-namespaces | grep "service/kubernetes-dashboard"
 kubectl -n kube-system get secret | grep "kubernetes-dashboard-token-"
 
 # using: hex value - i.e. 95bt2
-kubectl -n kube-system describe secret kubernetes-dashboard-token-95bt2
+kubectl -n kube-system describe secret kubernetes-dashboard-token-<...>
 ```
-* visit https://10.152.183.137/#!/login
+* visit https://10.152.183.152/#!/login
 
 ## 4. (optional) Push XQA containers to local container registry
 ```
@@ -61,28 +61,46 @@ kubectl get namespaces
 ```
 
 ### 5.2. Deploy
+* cd xqa-documentaton/k8s
+
+#### 5.2.1. xqa-db (internal ports exposed only)
 ```
-cd xqa-documentaton/k8s
-
 kubectl create -f xqa-00-db.yml
+```
 
-# kubectl --namespace=xqa get deployments
-# kubectl --namespace=xqa describe deployment
-# kubectl --namespace=xqa get pods
-# kubectl get services
+#### 5.2.1. xqa-message-broker (internal ports exposed only)
+```
+kubectl create -f xqa-00-message-broker.yml
+```
 
-# kubectl --namespace=xqa describe services
+### 5.3. Check Ports (internal & external)
+* https://stackoverflow.com/questions/48857092/how-to-expose-nginx-on-public-ip-using-nodeport-service-in-kubernetes
+
+```
+kubectl --namespace=xqa get pods
+
+kubectl --namespace=xqa describe services
+```
+
+#### 5.3.1. xqa-db
+```
 kubectl --namespace=xqa get svc xqa-db-service
 
-psql -h 10.152.183.146 -p 5432 -U xqa -d xqa
+psql -h 10.1.1.243 -p 5432 -U xqa -d xqa
 select * from events;
-
 ```
-* use dashboard to view artifacts.
 
-### 5.3. Cleanup
+#### 5.3.1. xqa-message-broker
+```
+kubectl --namespace=xqa get svc xqa-message-broker-service
+
+http://10.1.1.252:8161/
+```
+
+### 5.4. Cleanup
 ```
 kubectl delete -f xqa-00-db.yml
+kubectl delete -f xqa-00-message-broker.yml
 
 kubectl delete namespace xqa
 ```

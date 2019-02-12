@@ -1,21 +1,48 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: xqa-message-broker-service
+  namespace: xqa
+  labels:
+    app: xqa-message-broker
+spec:
+  ports:
+  - port: 5672
+    name: amqp
+  - port: 8161
+    name: web
+  selector:
+    app: xqa-message-broker
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: xqa-message-broker
+  name: xqa-message-broker-deployment
+  namespace: xqa
   labels:
-    app: xqa
+    app: xqa-message-broker
 spec:
   replicas: 2
+  selector:
+    matchLabels:
+      app: xqa-message-broker
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
-        app: xqa
-        tier: message-broker
+        app: xqa-message-broker
     spec:
       containers:
-      - name: xqa-message-broker
-        image: localhost:32000/xqa-message-broker:latest
-        ports:
-        - containerPort: 5672
-        - containerPort: 8161
-      restartPolicy: Always
+        - name: xqa-message-broker-container
+          image: jameshnsears/xqa-message-broker:latest
+          resources:
+            limits:
+              memory: "100Mi"
+            requests:
+              memory: "100Mi"
+          ports:
+            - containerPort: 5672
+              name: amqp
+            - containerPort: 8161
+              name: web

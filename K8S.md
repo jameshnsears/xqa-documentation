@@ -156,7 +156,8 @@ snap unalias kubectl
 =============
 
 stop using "xqa-*-service" - as messes up docker-compose testing
-= so change in 
+= so change k8s + src in:
+    = 
 
 increase Mi values + also how to scale if CPU / RAM exceeded?
 

@@ -63,18 +63,26 @@ kubectl get namespaces
 ### 5.2. Deploy
 * cd xqa-documentaton/k8s
 
-#### 5.2.1. xqa-db (internal ports exposed only)
+#### 5.2.1. xqa-00
 ```
 kubectl create -f xqa-00-db.yml
+kubectl create -f xqa-00-message-broker.yml
 ```
 
-#### 5.2.1. xqa-message-broker (internal ports exposed only)
+#### 5.2.3. xqa-01
 ```
-kubectl create -f xqa-00-message-broker.yml
+kubectl create -f xqa-01-shard.yml
+```
+
+#### 5.2.4. xqa-02
+```
+kubectl create -f xqa-02-db-amqp.yml
 ```
 
 ### 5.3. Check Ports (internal & external)
 * https://stackoverflow.com/questions/48857092/how-to-expose-nginx-on-public-ip-using-nodeport-service-in-kubernetes
+
+* kubectl get ep --all-namespaces
 
 ```
 kubectl --namespace=xqa get pods
@@ -90,11 +98,20 @@ psql -h <cluser ip|pod ip> -p 5432 -U xqa -d xqa
 select * from events;
 ```
 
-#### 5.3.1. xqa-message-broker
+#### 5.3.2. xqa-message-broker
+```
+kubectl --namespace=xqa get svc xqa-message-broker-service
+or
+kubectl --namespace=xqa get ep
+
+http://<cluser ip|pod ip>:8161/
+```
+
+#### 5.3.3. xqa-shard
 ```
 kubectl --namespace=xqa get svc xqa-message-broker-service
 
-http://<cluser ip|pod ip>:8161/
+basexclient ...
 ```
 
 ### 5.4. Cleanup
@@ -118,3 +135,18 @@ snap unalias kubectl
 
 ## 7. Tutorials
 * https://cloud.google.com/python/tutorials/bookshelf-on-kubernetes-engine
+
+=============
+
+Check persistantvolume been created, kill something and check it comes back up
+
+is pv bit enough for all pods?
+
+create a pv for messagebroker.
+
+create a pv for xqa-shard
+= ensure that the pv isn't shared!
+    = that when a xqa-shard goes down it comes back with it's own data
+= how to autoscale xqa-shard?
+    = size
+

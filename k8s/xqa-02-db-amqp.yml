@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xqa-db-amqp-deployment
+  namespace: xqa
+  labels:
+    app: xqa-db-amqp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: xqa-db-amqp
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: xqa-db-amqp
+    spec:
+      containers:
+        - name: xqa-db-amqp-container
+          image: jameshnsears/xqa-db-amqp:latest
+          args: ['-message_broker_host', 'xqa-message-broker-service', '-storage_host', 'xqa-db-service', '-storage_port', '5432']
+          resources:
+            limits:
+              memory: "50Mi"
+            requests:
+              memory: "50Mi"

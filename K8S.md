@@ -77,6 +77,9 @@ kubectl create -f xqa-01-shard.yml
 #### 5.2.4. xqa-02
 ```
 kubectl create -f xqa-02-db-amqp.yml
+kubectl create -f xqa-02-ingest-balancer.yml
+kubectl create -f xqa-02-query-balancer.yml
+kubectl create -f xqa-02-query-ui.yml
 ```
 
 ### 5.3. Check Ports (internal & external)
@@ -116,6 +119,11 @@ basexclient ...
 
 ### 5.4. Cleanup
 ```
+kubectl delete -f xqa-02-db-amqp.yml
+kubectl delete -f xqa-02-ingest-balancer.yml
+kubectl delete -f xqa-02-query-balancer.yml
+kubectl delete -f xqa-02-query-ui.yml
+kubectl delete -f xqa-01-shard.yml
 kubectl delete -f xqa-00-db.yml
 kubectl delete -f xqa-00-message-broker.yml
 
@@ -137,6 +145,8 @@ snap unalias kubectl
 * https://cloud.google.com/python/tutorials/bookshelf-on-kubernetes-engine
 
 =============
+
+how to use promethias
 
 Check persistantvolume been created, kill something and check it comes back up
 

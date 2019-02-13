@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xqa-query-balancer-deployment
+  namespace: xqa
+  labels:
+    app: xqa-query-balancer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: xqa-query-balancer
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: xqa-query-balancer
+    spec:
+      containers:
+        - name: xqa-query-balancer-container
+          image: jameshnsears/xqa-query-balancer:latest
+          env:
+            - name: databaseUrl
+              value: "jdbc:postgresql://xqa-db-service:5432/xqa"
+
+            - name: messageBrokerHost
+              value: "xqa-message-broker-service"
+              
+            - name: shardResponseTimeout
+              value: "5000"
+            - name: shardResponseSecondaryTimeout
+              value: "2000"
+          resources:
+            limits:
+              memory: "75Mi"
+            requests:
+              memory: "75Mi"
+          ports:
+            - containerPort: 9090
+              name: rest
+            - containerPort: 9091
+              name: admin

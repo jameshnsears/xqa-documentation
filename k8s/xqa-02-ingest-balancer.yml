@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xqa-ingest-balancer-deployment
+  namespace: xqa
+  labels:
+    app: xqa-ingest-balancer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: xqa-ingest-balancer
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: xqa-ingest-balancer
+    spec:
+      containers:
+        - name: xqa-ingest-balancer-container
+          image: jameshnsears/xqa-ingest-balancer:latest
+          args: ["-message_broker_host", "xqa-message-broker-service", "-pool_size", "2", "-insert_thread_wait", "10000", "-insert_thread_secondary_wait", "2000"]
+          resources:
+            limits:
+              memory: "75Mi"
+            requests:
+              memory: "75Mi"

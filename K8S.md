@@ -95,7 +95,7 @@ kubectl --namespace=xqa describe services
 
 #### 5.3.1. xqa-db
 ```
-kubectl --namespace=xqa get svc xqa-db-service
+kubectl --namespace=xqa get svc xqa-db
 
 psql -h <cluser ip|pod ip> -p 5432 -U xqa -d xqa
 select * from events;
@@ -103,7 +103,7 @@ select * from events;
 
 #### 5.3.2. xqa-message-broker
 ```
-kubectl --namespace=xqa get svc xqa-message-broker-service
+kubectl --namespace=xqa get svc xqa-message-broker
 or
 kubectl --namespace=xqa get ep
 
@@ -119,7 +119,7 @@ basexclient ...
 
 #### 5.3.4. xqa-query-ui
 ```
-kubectl --namespace=xqa get svc xqa-query-ui-service
+kubectl --namespace=xqa get svc xqa-query-ui
 or
 kubectl --namespace=xqa get ep
 
@@ -155,10 +155,6 @@ snap unalias kubectl
 
 =============
 
-stop using "xqa-*-service" - as messes up docker-compose testing
-= so change k8s + src in:
-    = 
-
 increase Mi values + also how to scale if CPU / RAM exceeded?
 
 how to use promethias
@@ -174,4 +170,23 @@ create a pv for xqa-shard
     = that when a xqa-shard goes down it comes back with it's own data
 = how to autoscale xqa-shard?
     = size
+
+---
+
+Body = 50
+https://www.ebay.co.uk/sch/i.html?_from=R40&_sacat=0&LH_Auction=1&_nkw=nikon%20d40%20body&LH_PrefLoc=1&LH_Complete=1&rt=nc&_trksid=p2045573.m1684
+
+35mm = 70
+https://www.ebay.co.uk/sch/i.html?_odkw=nikon+d40+body&LH_PrefLoc=1&LH_Auction=1&LH_Complete=1&_osacat=0&_from=R40&_trksid=p2045573.m570.l1311.R2.TR7.TRC0.A0.H2.Xnikon+af-s+35.TRS0&_nkw=nikon+af-s+35mm+f1.8+g+dx+lens&_sacat=0
+
+18-55mm = 55
+https://www.ebay.co.uk/sch/i.html?_odkw=nikon+af-s+35mm+f1.8+g+dx+lens&LH_PrefLoc=1&LH_Auction=1&LH_Complete=1&_osacat=0&_from=R40&_trksid=p2045573.m570.l1311.R3.TR7.TRC0.A0.H1.Xnikon+af-s+18-55.TRS0&_nkw=nikon+af-s+dx+nikkor+18-55mm&_sacat=0
+
+55 - 200mm = 70
+https://www.ebay.co.uk/sch/i.html?_odkw=nikon+af-s+dx+nikkor+18-55mm&LH_PrefLoc=1&LH_Auction=1&LH_Complete=1&_osacat=0&_from=R40&_trksid=p2045573.m570.l1311.R3.TR6.TRC1.A0.H2.Xnikon+af-s+dx+nikkor+55.TRS0&_nkw=nikon+af-s+dx+nikkor+55-200mm&_sacat=0
+
+sony professional tape recorder wm-dc6 = 130
+https://www.ebay.co.uk/sch/i.html?_odkw=sony+professional+tape+recorder&LH_PrefLoc=1&LH_Auction=1&LH_Complete=1&_osacat=0&_from=R40&_trksid=m570.l1313&_nkw=sony+professional+tape+recorder+wm-dc6&_sacat=0
+
+---
 

@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: xqa-db-service
+  name: xqa-db
   namespace: xqa
   labels:
     app: xqa-db

@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: xqa-message-broker-service
+  name: xqa-message-broker
   namespace: xqa
   labels:
     app: xqa-message-broker

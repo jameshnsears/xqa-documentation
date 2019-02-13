@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: xqa-query-ui-service
+  namespace: xqa
+  labels:
+    app: xqa-query-ui
+spec:
+  ports:
+  - port: 80
+  selector:
+    app: xqa-query-ui
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xqa-query-ui-deployment
+  namespace: xqa
+  labels:
+    app: xqa-query-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: xqa-query-ui
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: xqa-query-ui
+    spec:
+      containers:
+        - name: xqa-query-ui-container
+          image: jameshnsears/xqa-query-ui:latest
+          resources:
+            limits:
+              memory: "20Mi"
+            requests:
+              memory: "20Mi"
+          ports:
+            - containerPort: 80
+              name: web

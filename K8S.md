@@ -112,9 +112,18 @@ http://<cluser ip|pod ip>:8161/
 
 #### 5.3.3. xqa-shard
 ```
-kubectl --namespace=xqa get svc xqa-message-broker-service
+????????????
 
 basexclient ...
+```
+
+#### 5.3.4. xqa-query-ui
+```
+kubectl --namespace=xqa get svc xqa-query-ui-service
+or
+kubectl --namespace=xqa get ep
+
+http://<cluser ip|pod ip>
 ```
 
 ### 5.4. Cleanup
@@ -145,6 +154,11 @@ snap unalias kubectl
 * https://cloud.google.com/python/tutorials/bookshelf-on-kubernetes-engine
 
 =============
+
+stop using "xqa-*-service" - as messes up docker-compose testing
+= so change in 
+
+increase Mi values + also how to scale if CPU / RAM exceeded?
 
 how to use promethias
 

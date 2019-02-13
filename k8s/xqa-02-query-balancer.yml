@@ -33,9 +33,9 @@ spec:
               value: "2000"
           resources:
             limits:
-              memory: "75Mi"
+              memory: "200Mi"
             requests:
-              memory: "75Mi"
+              memory: "200Mi"
           ports:
             - containerPort: 9090
               name: rest

@@ -34,7 +34,7 @@ metadata:
   labels:
     app: xqa-db
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: xqa-db
@@ -50,9 +50,9 @@ spec:
           image: jameshnsears/xqa-db:latest
           resources:
             limits:
-              memory: "100Mi"
+              memory: "200Mi"
             requests:
-              memory: "100Mi"
+              memory: "200Mi"
           ports:
             - containerPort: 5432
               name: xqa-db

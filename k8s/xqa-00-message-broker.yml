@@ -39,9 +39,9 @@ spec:
           image: jameshnsears/xqa-message-broker:latest
           resources:
             limits:
-              memory: "100Mi"
+              memory: "200Mi"
             requests:
-              memory: "100Mi"
+              memory: "200Mi"
           ports:
             - containerPort: 5672
               name: amqp

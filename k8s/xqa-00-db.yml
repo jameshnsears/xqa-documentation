@@ -29,7 +29,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: xqa-db-deployment
+  name: xqa-db
   namespace: xqa
   labels:
     app: xqa-db

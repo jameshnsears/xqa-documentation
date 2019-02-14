@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: xqa-shard-deployment
+  name: xqa-shard
   namespace: xqa
   labels:
     app: xqa-shard
@@ -20,7 +20,7 @@ spec:
       containers:
         - name: xqa-shard-container
           image: jameshnsears/xqa-shard:latest
-          args: ["-message_broker_host", "xqa-message-broker-service", "-storage_mainmem"]
+          args: ["-message_broker_host", "xqa-message-broker", "-storage_mainmem"]
           resources:
             limits:
               memory: "75Mi"

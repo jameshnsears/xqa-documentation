@@ -15,7 +15,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: xqa-query-ui-deployment
+  name: xqa-query-ui
   namespace: xqa
   labels:
     app: xqa-query-ui

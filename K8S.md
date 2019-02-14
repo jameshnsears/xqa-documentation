@@ -56,26 +56,15 @@ cd xqa-documentaton/k8s
 ### 5.1. Create Namespace
 ```
 kubectl create namespace xqa
-
-kubectl get namespaces
 ```
 
 ### 5.2. Deploy
 * cd xqa-documentaton/k8s
 
-#### 5.2.1. xqa-00
 ```
 kubectl create -f xqa-00-db.yml
 kubectl create -f xqa-00-message-broker.yml
-```
-
-#### 5.2.3. xqa-01
-```
 kubectl create -f xqa-01-shard.yml
-```
-
-#### 5.2.4. xqa-02
-```
 kubectl create -f xqa-02-db-amqp.yml
 kubectl create -f xqa-02-ingest-balancer.yml
 kubectl create -f xqa-02-query-balancer.yml
@@ -83,17 +72,13 @@ kubectl create -f xqa-02-query-ui.yml
 ```
 
 ### 5.3. Check Ports (internal & external)
-* https://stackoverflow.com/questions/48857092/how-to-expose-nginx-on-public-ip-using-nodeport-service-in-kubernetes
-
-* kubectl get ep --all-namespaces
-
 ```
-kubectl --namespace=xqa get pods
-
 kubectl --namespace=xqa describe services
+kubectl --namespace=xqa get ep
+kubectl --namespace=xqa get pods -o wide
 ```
 
-#### 5.3.1. xqa-db
+#### 5.3.1. xqa-db (serivce)
 ```
 kubectl --namespace=xqa get svc xqa-db
 
@@ -101,23 +86,28 @@ psql -h <cluser ip|pod ip> -p 5432 -U xqa -d xqa
 select * from events;
 ```
 
-#### 5.3.2. xqa-message-broker
+#### 5.3.2. xqa-message-broker (serivce)
 ```
 kubectl --namespace=xqa get svc xqa-message-broker
-or
-kubectl --namespace=xqa get ep
 
 http://<cluser ip|pod ip>:8161/
 ```
 
-#### 5.3.3. xqa-shard
+#### 5.3.3. xqa-shard (internal)
 ```
 ????????????
+= how to get ip of pod's for a deployment
 
 basexclient ...
 ```
 
-#### 5.3.4. xqa-query-ui
+#### 5.3.4. xqa-query-balancer (service)
+```
+kubectl --namespace=xqa get svc xqa-query-balancer
+
+curl http://<cluser ip|pod ip>:9090/xquery -X POST -H "Content-Type: application/json" -d '{"xqueryRequest":"count(/)"}'
+```
+#### 5.3.5. xqa-query-ui (service)
 ```
 kubectl --namespace=xqa get svc xqa-query-ui
 or
@@ -128,21 +118,13 @@ http://<cluser ip|pod ip>
 
 ### 5.4. Cleanup
 ```
-kubectl delete -f xqa-02-db-amqp.yml
-kubectl delete -f xqa-02-ingest-balancer.yml
-kubectl delete -f xqa-02-query-balancer.yml
-kubectl delete -f xqa-02-query-ui.yml
-kubectl delete -f xqa-01-shard.yml
-kubectl delete -f xqa-00-db.yml
-kubectl delete -f xqa-00-message-broker.yml
-
 kubectl delete namespace xqa
 ```
 
 ## 6. Teardown
 ```
 sudo microk8s.reset
-
+or
 sudo microk8s.stop
 
 sudo snap remove microk8s
@@ -155,9 +137,16 @@ snap unalias kubectl
 
 =============
 
-increase Mi values + also how to scale if CPU / RAM exceeded?
+xqa-query-ui does not find xqa-query-balancer?
+= name resolution
+
+test end to end
 
 how to use promethias
+
+designate 00 as init containers?
+
+increase Mi values + also how to scale if CPU / RAM exceeded?
 
 Check persistantvolume been created, kill something and check it comes back up
 
@@ -171,22 +160,5 @@ create a pv for xqa-shard
 = how to autoscale xqa-shard?
     = size
 
----
-
-Body = 50
-https://www.ebay.co.uk/sch/i.html?_from=R40&_sacat=0&LH_Auction=1&_nkw=nikon%20d40%20body&LH_PrefLoc=1&LH_Complete=1&rt=nc&_trksid=p2045573.m1684
-
-35mm = 70
-https://www.ebay.co.uk/sch/i.html?_odkw=nikon+d40+body&LH_PrefLoc=1&LH_Auction=1&LH_Complete=1&_osacat=0&_from=R40&_trksid=p2045573.m570.l1311.R2.TR7.TRC0.A0.H2.Xnikon+af-s+35.TRS0&_nkw=nikon+af-s+35mm+f1.8+g+dx+lens&_sacat=0
-
-18-55mm = 55
-https://www.ebay.co.uk/sch/i.html?_odkw=nikon+af-s+35mm+f1.8+g+dx+lens&LH_PrefLoc=1&LH_Auction=1&LH_Complete=1&_osacat=0&_from=R40&_trksid=p2045573.m570.l1311.R3.TR7.TRC0.A0.H1.Xnikon+af-s+18-55.TRS0&_nkw=nikon+af-s+dx+nikkor+18-55mm&_sacat=0
-
-55 - 200mm = 70
-https://www.ebay.co.uk/sch/i.html?_odkw=nikon+af-s+dx+nikkor+18-55mm&LH_PrefLoc=1&LH_Auction=1&LH_Complete=1&_osacat=0&_from=R40&_trksid=p2045573.m570.l1311.R3.TR6.TRC1.A0.H2.Xnikon+af-s+dx+nikkor+55.TRS0&_nkw=nikon+af-s+dx+nikkor+55-200mm&_sacat=0
-
-sony professional tape recorder wm-dc6 = 130
-https://www.ebay.co.uk/sch/i.html?_odkw=sony+professional+tape+recorder&LH_PrefLoc=1&LH_Auction=1&LH_Complete=1&_osacat=0&_from=R40&_trksid=m570.l1313&_nkw=sony+professional+tape+recorder+wm-dc6&_sacat=0
-
----
-
+change xqa-shard so that uses a pv, and code picks up uuid (from pv) 
+= so that comes back from the dead with same uuid

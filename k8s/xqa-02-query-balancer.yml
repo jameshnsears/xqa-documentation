@@ -1,7 +1,24 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: xqa-query-balancer
+  namespace: xqa
+  labels:
+    app: xqa-query-balancer
+spec:
+  ports:
+  - port: 9090
+    name: rest
+  - port: 9091
+    name: admin
+  selector:
+    app: xqa-query-balancer
+  type: NodePort
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: xqa-query-balancer-deployment
+  name: xqa-query-balancer
   namespace: xqa
   labels:
     app: xqa-query-balancer
@@ -22,10 +39,10 @@ spec:
           image: jameshnsears/xqa-query-balancer:latest
           env:
             - name: databaseUrl
-              value: "jdbc:postgresql://xqa-db-service:5432/xqa"
+              value: "jdbc:postgresql://xqa-db:5432/xqa"
 
             - name: messageBrokerHost
-              value: "xqa-message-broker-service"
+              value: "xqa-message-broker"
               
             - name: shardResponseTimeout
               value: "5000"

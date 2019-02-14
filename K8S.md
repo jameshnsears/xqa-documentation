@@ -20,6 +20,8 @@ wget https://storage.googleapis.com/kubernetes-helm/helm-v2.12.3-linux-amd64.tar
 ```
 sudo microk8s.start
 
+# microk8s.enable ingress
+
 microk8s.status
 ```
 
@@ -101,11 +103,12 @@ http://<cluser ip|pod ip>:8161/
 basexclient ...
 ```
 
-#### 5.3.4. xqa-query-balancer (service)
+#### 5.3.4. xqa-query-balancer (internal)
 ```
 kubectl --namespace=xqa get svc xqa-query-balancer
 
-curl http://<cluser ip|pod ip>:9090/xquery -X POST -H "Content-Type: application/json" -d '{"xqueryRequest":"count(/)"}'
+curl http://<pod ip>:9090/xquery -X POST -H "Content-Type: application/json" -d '{"xqueryRequest":"count(/)"}'
+curl http://10.152.183.7:9090/xquery -X POST -H "Content-Type: application/json" -d '{"xqueryRequest":"count(/)"}'
 ```
 #### 5.3.5. xqa-query-ui (service)
 ```
@@ -114,6 +117,7 @@ or
 kubectl --namespace=xqa get ep
 
 http://<cluser ip|pod ip>
+http://10.152.183.245
 ```
 
 ### 5.4. Cleanup
@@ -135,12 +139,21 @@ snap unalias kubectl
 ## 7. Tutorials
 * https://cloud.google.com/python/tutorials/bookshelf-on-kubernetes-engine
 
+* http://127.0.0.1:8080/api/v1/namespaces/kube-system/services/monitoring-grafana/proxy
+
 =============
 
-xqa-query-ui does not find xqa-query-balancer?
-= name resolution
+1. xqa-query-ui does not find xqa-query-balancer!
+= name resolution is running on clent (the browser)
+    = use ingress, so that plain urls, minus the host i.e. /xquery - are sent to correct service
+        = means changing production xqa-query-ui + using an ingress
+    OR
+    = change ui to specify "k8s xqa-query-balancer IP:"
 
-test end to end
+2. test end to end
+= need to specify as 
+
+--
 
 how to use promethias
 

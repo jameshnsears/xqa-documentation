@@ -1,18 +1,4 @@
 apiVersion: v1
-kind: Service
-metadata:
-  name: xqa-db
-  namespace: xqa
-  labels:
-    app: xqa-db
-spec:
-  ports:
-  - port: 5432
-  selector:
-    app: xqa-db
-  type: NodePort
----
-apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: xqa-db-pv-claim

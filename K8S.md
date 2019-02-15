@@ -1,5 +1,5 @@
 # K8S
-The document lists commands and instructions for running XQA inside Kubernetes on Ubuntu 18.04.
+The document lists commands and instructions for running XQA inside Kubernetes on Ubuntu 18.04 using microk8s.
 
 ## 1. Install microk8s
 ```
@@ -10,17 +10,9 @@ sudo snap alias microk8s.kubectl kubectl
 microk8s.enable dashboard registry istio
 ```
 
-## 1.1. (optional) Install helm
-```
-wget https://storage.googleapis.com/kubernetes-helm/helm-v2.12.3-linux-amd64.tar.gz
-```
-* extract and place binaries into PATH
-
 ## 2. Start microk8s
 ```
 sudo microk8s.start
-
-# microk8s.enable ingress
 
 microk8s.status
 ```
@@ -60,7 +52,7 @@ cd xqa-documentaton/k8s
 kubectl create namespace xqa
 ```
 
-### 5.2. Deploy
+### 5.2. Create Pods
 * cd xqa-documentaton/k8s
 
 ```
@@ -74,7 +66,7 @@ kubectl create -f xqa-02-query-ui.yml
 
 ```
 
-### 5.3. Services IP's / ports (internal & external)
+### 5.3. Test Services
 ```
 # cluster IP's & ports for services
 kubectl --namespace=xqa get svc
@@ -83,18 +75,7 @@ kubectl --namespace=xqa get svc
 kubectl --namespace=xqa get ep
 ```
 
-#### 5.3.1. xqa-db (serivce)
-```
-psql -h <cluster ip|pod ip> -p 5432 -U xqa -d xqa
-select * from events;
-```
-
-#### 5.3.2. xqa-message-broker (serivce)
-```
-http://<cluster ip|pod ip>:8161/
-```
-
-#### 5.3.3. Populate xqa-shard's
+#### 5.3.1. Populate xqa-shard's
 ```
 # assuming xqa-test-data cloned
 docker run --name="xqa-ingest" -v $HOME/GIT_REPOS/xqa-test-data:/xml jameshnsears/xqa-ingest:latest -message_broker_host <xqa-message-broker cluster ip|pod ip> -path /xml
@@ -102,15 +83,25 @@ docker run --name="xqa-ingest" -v $HOME/GIT_REPOS/xqa-test-data:/xml jameshnsear
 docker rm -f xqa-ingest
 ```
 
-#### 5.3.4. xqa-query-balancer (internal)
+#### 5.3.2. xqa-db
+```
+psql -h <cluster ip|pod ip> -p 5432 -U xqa -d xqa
+select * from events;
+```
+
+#### 5.3.3. xqa-message-broker
+```
+http://<cluster ip|pod ip>:8161/
+```
+
+
+#### 5.3.4. xqa-query-balancer
 ```
 curl http://<xqa-query-balancer cluster ip|pod ip>:9090/xquery -X POST -H "Content-Type: application/json" -d '{"xqueryRequest":"count(/)"}'
 ```
-#### 5.3.5. xqa-query-ui (service)
+#### 5.3.5. xqa-query-ui
 ```
 http://<cluster ip|pod ip>
-
-NOTE: requires that "xqa-query-balancer" service IP in /etc/hosts
 ```
 
 ### 5.4. Cleanup
@@ -135,26 +126,3 @@ snap unalias kubectl
 * http://127.0.0.1:8080/api/v1/namespaces/kube-system/services/monitoring-grafana/proxy
 
 * https://github.com/dennyzhang/cheatsheet-kubernetes-A4
-
-=============
-
-how to query
-
-how to use promethias|grafana
-
-how to scale if CPU / RAM exceeded?
-
-Check persistantvolume been created, kill something and check it comes back up
-
-is pv bit enough for all pods?
-
-create a pv for messagebroker.
-
-create a pv for xqa-shard
-= ensure that the pv isn't shared!
-    = that when a xqa-shard goes down it comes back with it's own data
-= how to autoscale xqa-shard?
-    = size
-
-change xqa-shard so that uses a pv, and code picks up uuid (from pv) 
-= so that comes back from the dead with same uuid

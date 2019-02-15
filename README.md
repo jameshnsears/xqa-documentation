@@ -11,6 +11,7 @@
 * Easy to deploy / extend:
     * each microservice runs in its own container.
     * add extra BaseX engines easily - they self register against the AMQP message broker.
+    * can run in either a docker-compose or [k8s](K8S.md) environment.
 * Proven scalability & performance improvements - graphs in [xqa-perf](https://github.com/jameshnsears/xqa-perf) show:
     * ingest timing statistics.
     * XML file distribution.
@@ -46,4 +47,4 @@
 | | [xqa-test-data](https://github.com/jameshnsears/xqa-test-data) | a collection of XML files used by XQA. |
 
 ## 6. Limitatons
-XQA is a proof of concept project. It [scratched an itch](https://en.wikipedia.org/wiki/The_Cathedral_and_the_Bazaar) and achieved what it set out to prove, but it should not be considered ready for production. Refer to the GitHub [issue board](https://github.com/jameshnsears/xqa-documentation/projects/1) for outstanding issues.
+XQA is a proof of concept project. It [scratched an itch](https://en.wikipedia.org/wiki/The_Cathedral_and_the_Bazaar) and achieved what it set out to prove. Refer to the GitHub [issue board](https://github.com/jameshnsears/xqa-documentation/projects/1) for outstanding issues.

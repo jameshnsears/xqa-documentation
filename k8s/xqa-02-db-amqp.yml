@@ -21,8 +21,3 @@ spec:
         - name: xqa-db-amqp-container
           image: jameshnsears/xqa-db-amqp:latest
           args: ['-message_broker_host', 'xqa-message-broker', '-storage_host', 'xqa-db', '-storage_port', '5432']
-          resources:
-            limits:
-              memory: "50Mi"
-            requests:
-              memory: "50Mi"

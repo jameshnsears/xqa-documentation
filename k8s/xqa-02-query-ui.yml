@@ -34,11 +34,6 @@ spec:
       containers:
         - name: xqa-query-ui-container
           image: jameshnsears/xqa-query-ui:latest
-          resources:
-            limits:
-              memory: "20Mi"
-            requests:
-              memory: "20Mi"
           ports:
             - containerPort: 80
               name: web

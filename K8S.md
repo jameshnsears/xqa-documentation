@@ -71,53 +71,46 @@ kubectl create -f xqa-02-db-amqp.yml
 kubectl create -f xqa-02-ingest-balancer.yml
 kubectl create -f xqa-02-query-balancer.yml
 kubectl create -f xqa-02-query-ui.yml
+
 ```
 
-### 5.3. Check Ports (internal & external)
+### 5.3. Services IP's / ports (internal & external)
 ```
-kubectl --namespace=xqa describe services
+# cluster IP's & ports for services
+kubectl --namespace=xqa get svc
+
+# pod IP's & ports
 kubectl --namespace=xqa get ep
-kubectl --namespace=xqa get pods -o wide
 ```
 
 #### 5.3.1. xqa-db (serivce)
 ```
-kubectl --namespace=xqa get svc xqa-db
-
-psql -h <cluser ip|pod ip> -p 5432 -U xqa -d xqa
+psql -h <cluster ip|pod ip> -p 5432 -U xqa -d xqa
 select * from events;
 ```
 
 #### 5.3.2. xqa-message-broker (serivce)
 ```
-kubectl --namespace=xqa get svc xqa-message-broker
-
-http://<cluser ip|pod ip>:8161/
+http://<cluster ip|pod ip>:8161/
 ```
 
-#### 5.3.3. xqa-shard (internal)
+#### 5.3.3. Populate xqa-shard's
 ```
-????????????
-= how to get ip of pod's for a deployment
+# assuming xqa-test-data cloned
+docker run --name="xqa-ingest" -v $HOME/GIT_REPOS/xqa-test-data:/xml jameshnsears/xqa-ingest:latest -message_broker_host <xqa-message-broker cluster ip|pod ip> -path /xml
 
-basexclient ...
+docker rm -f xqa-ingest
 ```
 
 #### 5.3.4. xqa-query-balancer (internal)
 ```
-kubectl --namespace=xqa get svc xqa-query-balancer
-
-curl http://<pod ip>:9090/xquery -X POST -H "Content-Type: application/json" -d '{"xqueryRequest":"count(/)"}'
-curl http://10.152.183.7:9090/xquery -X POST -H "Content-Type: application/json" -d '{"xqueryRequest":"count(/)"}'
+curl http://<xqa-query-balancer cluster ip|pod ip>:9090/xquery -X POST -H "Content-Type: application/json" -d '{"xqueryRequest":"count(/)"}'
 ```
 #### 5.3.5. xqa-query-ui (service)
 ```
-kubectl --namespace=xqa get svc xqa-query-ui
-or
-kubectl --namespace=xqa get ep
+http://<cluster ip|pod ip>
 
-http://<cluser ip|pod ip>
-http://10.152.183.245
+NOTE: requires that "xqa-query-balancer" service IP in /etc/hosts
 ```
 
 ### 5.4. Cleanup
@@ -136,28 +129,21 @@ sudo snap remove microk8s
 snap unalias kubectl
 ```
 
-## 7. Tutorials
+## 7. Misc.
 * https://cloud.google.com/python/tutorials/bookshelf-on-kubernetes-engine
 
 * http://127.0.0.1:8080/api/v1/namespaces/kube-system/services/monitoring-grafana/proxy
 
+* https://github.com/dennyzhang/cheatsheet-kubernetes-A4
+
 =============
 
-1. xqa-query-ui does not find xqa-query-balancer!
-= name resolution is running on clent (the browser)
-    = use ingress, so that plain urls, minus the host i.e. /xquery - are sent to correct service
-        = means changing production xqa-query-ui + using an ingress
-    OR
-    = change ui to specify "k8s xqa-query-balancer IP:"
-
-2. test end to end
+1. test end to end
 = need to specify as 
 
 --
 
-how to use promethias
-
-designate 00 as init containers?
+how to use promethias|grafana
 
 increase Mi values + also how to scale if CPU / RAM exceeded?
 

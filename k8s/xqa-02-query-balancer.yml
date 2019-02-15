@@ -48,11 +48,6 @@ spec:
               value: "5000"
             - name: shardResponseSecondaryTimeout
               value: "2000"
-          resources:
-            limits:
-              memory: "200Mi"
-            requests:
-              memory: "200Mi"
           ports:
             - containerPort: 9090
               name: rest

@@ -21,8 +21,3 @@ spec:
         - name: xqa-ingest-balancer-container
           image: jameshnsears/xqa-ingest-balancer:latest
           args: ["-message_broker_host", "xqa-message-broker", "-pool_size", "2", "-insert_thread_wait", "10000", "-insert_thread_secondary_wait", "2000"]
-          resources:
-            limits:
-              memory: "75Mi"
-            requests:
-              memory: "75Mi"

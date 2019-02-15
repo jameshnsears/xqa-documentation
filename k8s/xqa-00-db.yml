@@ -1,4 +1,19 @@
 apiVersion: v1
+kind: Service
+metadata:
+  name: xqa-db
+  namespace: xqa
+  labels:
+    app: xqa-db
+spec:
+  ports:
+  - port: 5432
+    name: postgres
+  selector:
+    app: xqa-db
+  type: NodePort
+---
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: xqa-db-pv-claim
@@ -34,14 +49,9 @@ spec:
       containers:
         - name: xqa-db-container
           image: jameshnsears/xqa-db:latest
-          resources:
-            limits:
-              memory: "200Mi"
-            requests:
-              memory: "200Mi"
           ports:
             - containerPort: 5432
-              name: xqa-db
+              name: postgres
           volumeMounts:
             - name: xqa-db-volume
               mountPath: /var/lib/postgresql

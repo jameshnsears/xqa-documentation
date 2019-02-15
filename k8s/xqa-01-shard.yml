@@ -21,11 +21,6 @@ spec:
         - name: xqa-shard-container
           image: jameshnsears/xqa-shard:latest
           args: ["-message_broker_host", "xqa-message-broker", "-storage_mainmem"]
-          resources:
-            limits:
-              memory: "75Mi"
-            requests:
-              memory: "75Mi"
           ports:
             - containerPort: 1984
               name: basex

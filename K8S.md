@@ -138,14 +138,11 @@ snap unalias kubectl
 
 =============
 
-1. test end to end
-= need to specify as 
-
---
+how to query
 
 how to use promethias|grafana
 
-increase Mi values + also how to scale if CPU / RAM exceeded?
+how to scale if CPU / RAM exceeded?
 
 Check persistantvolume been created, kill something and check it comes back up
 

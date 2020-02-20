@@ -364,16 +364,13 @@ jobs:
 
   "e2e, with jmeter":
     machine:
-      image: circleci/classic:latest
+      image:  ubuntu-1604:201903-01
 
     steps:
       - run: |
           docker --version
           docker-compose --version
       
-      - run: sudo apt update
-      - run: sudo apt upgrade -y
-
       - run: |
           sudo apt install -y git
           git clone https://github.com/jameshnsears/xqa-documentation

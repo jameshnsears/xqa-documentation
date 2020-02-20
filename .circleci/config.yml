@@ -370,7 +370,10 @@ jobs:
       - run: |
           docker --version
           docker-compose --version
-      
+
+      - run: sudo apt update
+      - run: sudo apt upgrade -y
+
       - run: |
           sudo apt install -y git
           git clone https://github.com/jameshnsears/xqa-documentation

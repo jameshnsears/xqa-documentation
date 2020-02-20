@@ -371,8 +371,8 @@ jobs:
           docker --version
           docker-compose --version
       
-      - run: apt update
-      - run: apt upgrade -y
+      - run: sudo apt update
+      - run: sudo apt upgrade -y
 
       - run: |
           sudo apt install -y git

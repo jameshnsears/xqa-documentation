@@ -141,7 +141,7 @@ jobs:
     steps:
       - run: apt update
       - run: apt upgrade -y
-      - run: apt install -y openjdk-11-jre it curl maven
+      - run: apt install -y openjdk-11-jre git curl maven
 
       - run: git clone https://github.com/jameshnsears/xqa-ingest-balancer.git
 
